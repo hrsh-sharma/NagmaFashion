@@ -1,0 +1,98 @@
+<app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+
+<!-- ── Page Header ─────────────────────────────────────── -->
+<div class="wl-page-header">
+  <div class="container-fluid-lg">
+    <div class="wl-page-header__inner">
+      <div>
+        <span class="wl-eyebrow">Your Collection</span>
+        <h1 class="wl-page-title">Wishlist</h1>
+      </div>
+      <div class="wl-item-count" *ngIf="(wishlistItems$ | async)?.data?.length">
+        <span class="wl-item-count__num">{{ (wishlistItems$ | async)?.data?.length }}</span>
+        <span class="wl-item-count__label">Saved Items</span>
+      </div>
+    </div>
+    <div class="wl-page-header__rule"></div>
+  </div>
+</div>
+
+<!-- ── Main Content ────────────────────────────────────── -->
+<section class="wl-section">
+  <div class="container-fluid-lg">
+
+    <!-- Skeleton -->
+    <ng-container *ngIf="wishlistService?.skeletonLoader else productContent">
+      <div class="wl-grid">
+        <div *ngFor="let item of skeletonItems">
+          <app-skeleton-product-box></app-skeleton-product-box>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Product Grid -->
+    <ng-template #productContent>
+      <div class="wl-grid" *ngIf="(wishlistItems$ | async)?.data?.length">
+
+        <div class="wl-card" *ngFor="let product of (wishlistItems$ | async)?.data">
+
+          <!-- Image -->
+          <div class="wl-card__img-wrap">
+            <span class="wl-card__sale-tag" *ngIf="isOnSale(product)">SALE</span>
+            <a [routerLink]="['/product/', product?.slug]">
+              <img [src]="product?.product_thumbnail?.original_url || 'assets/images/product.png'"
+                   [alt]="product?.name" class="wl-card__img">
+            </a>
+            <button class="wl-card__remove" (click)="removeWishlist(product)" title="Remove from wishlist">
+              <i class="ri-close-line"></i>
+            </button>
+            <button class="wl-card__bag-hover"
+                    (click)="addToCart(product)"
+                    [disabled]="product?.stock_status !== 'in_stock'">
+              <i class="ri-shopping-bag-line"></i>
+              {{ product?.stock_status === 'in_stock' ? 'Add to Bag' : 'Out of Stock' }}
+            </button>
+          </div>
+
+          <!-- Info -->
+          <div class="wl-card__info">
+            <a [routerLink]="['/product/', product?.slug]" class="wl-card__name">{{ product?.name }}</a>
+
+            <div class="wl-card__price-row">
+              <span class="wl-card__price">{{ product?.sale_price | currencySymbol }}</span>
+              <span class="wl-card__original" *ngIf="isOnSale(product)">{{ product?.price | currencySymbol }}</span>
+              <span class="wl-card__off" *ngIf="isOnSale(product)">{{ getDiscount(product) }}% off</span>
+            </div>
+
+            <div class="wl-card__meta">
+              <div class="wl-card__stars" *ngIf="product?.rating_count">
+                <ng-container *ngFor="let s of getStarArray()">
+                  <i [class]="s <= getAvgRating(product) ? 'ri-star-fill' : 'ri-star-line'"></i>
+                </ng-container>
+              </div>
+              <span class="wl-card__stock wl-card__stock--in"  *ngIf="product?.stock_status === 'in_stock'">In Stock</span>
+              <span class="wl-card__stock wl-card__stock--out" *ngIf="product?.stock_status !== 'in_stock'">Out of Stock</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </ng-template>
+
+    <!-- Empty State -->
+    <div class="wl-empty"
+         *ngIf="!(wishlistItems$ | async)?.data?.length && !wishlistService.skeletonLoader">
+      <div class="wl-empty__icon">
+        <i class="ri-heart-line"></i>
+      </div>
+      <h4 class="wl-empty__title">Your wishlist is empty</h4>
+      <p class="wl-empty__sub">Save items you love and come back to them anytime.</p>
+      <a [routerLink]="['/collections']" class="wl-empty__btn">
+        <i class="ri-shopping-bag-line"></i>
+        Start Shopping
+      </a>
+    </div>
+
+  </div>
+</section>

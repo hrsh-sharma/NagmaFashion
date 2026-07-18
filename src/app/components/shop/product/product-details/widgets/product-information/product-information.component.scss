@@ -1,0 +1,58 @@
+// NAGMA — Product Information (below fold)
+
+:host { display: block; text-align: left; margin-bottom: 40px; }
+
+.pickup-box {
+
+  .product-title h4 {
+    font-family: "Playfair Display", serif !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: #1A1A1A !important;
+    margin: 0 0 24px !important;
+    padding: 0 0 14px !important;
+    border: none !important;
+    border-bottom: 2px solid #C9A96E !important;
+    display: inline-block !important;
+    background: none !important;
+    text-transform: none !important;
+
+    // Kill any ::before / ::after pseudo-elements on the heading
+    &::before, &::after { content: none !important; }
+  }
+
+  .product-info-list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: transparent !important;
+
+    li {
+      font-family: "Inter", sans-serif !important;
+      font-size: 13.5px !important;
+      color: #555 !important;
+      padding: 13px 0 !important;
+      padding-left: 0 !important;        // override global 13px
+      border-bottom: 1px solid #E8E4DC !important;
+      border-top: none !important;
+      width: 100% !important;
+      line-height: 1.5 !important;
+      position: static !important;
+
+      // Kill the global 5px circle bullet
+      &::after {
+        content: none !important;
+        display: none !important;
+      }
+      &::before {
+        content: none !important;
+        display: none !important;
+      }
+
+      &:first-child { border-top: 1px solid #E8E4DC !important; }
+      &:last-child  { border-bottom: none !important; }
+    }
+  }
+}

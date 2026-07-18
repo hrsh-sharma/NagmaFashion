@@ -1,0 +1,88 @@
+<header class="nf-header" [class.nf-header--sticky]="stick && sticky">
+
+  <!-- ═══════════════════════════════════════════════════════
+    ROW 1 — Search (left) · Centered Logo · Icons (right)
+  ═══════════════════════════════════════════════════════ -->
+  <div class="nf-header__top">
+    <div class="container-fluid-lg">
+      <div class="nf-top-row">
+
+        <!-- LEFT: Mobile hamburger OR search -->
+        <div class="nf-top-row__left">
+          <!-- Mobile hamburger -->
+          <button class="nf-hamburger d-xl-none" (click)="toggle(!active)">
+            <i class="ri-menu-line"></i>
+          </button>
+          <!-- Desktop search -->
+          <div class="nf-top-search d-none d-xl-flex">
+            <app-box-search [style]="'standard'"></app-box-search>
+          </div>
+        </div>
+
+        <!-- CENTER: Logo -->
+        <div class="nf-top-row__logo">
+          <app-logo [textClass]="'txt-theme f-w-700'" [data]="data" [logo]="logo"></app-logo>
+        </div>
+
+        <!-- RIGHT: Account | Wishlist | Cart -->
+        <div class="nf-top-row__right">
+
+          <button class="nf-icon-btn d-xl-none" aria-label="Search">
+            <i class="ri-search-line"></i>
+          </button>
+
+          <div class="nf-icon-action">
+            <app-my-account [style]="'basic'"></app-my-account>
+            <span class="nf-icon-label d-none d-lg-inline">Account</span>
+          </div>
+
+          <a class="nf-icon-action d-none d-md-flex" [routerLink]="['/wishlist']" style="text-decoration:none">
+            <app-header-wishlist [style]="'basic'"></app-header-wishlist>
+            <span class="nf-icon-label d-none d-lg-inline">Wishlist</span>
+          </a>
+
+          <div class="nf-icon-action onhover-dropdown">
+            <app-header-cart [style]="'basic'"></app-header-cart>
+            <span class="nf-icon-label d-none d-lg-inline">Cart</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+    ROW 2 — Full-width centered navigation (desktop only)
+  ═══════════════════════════════════════════════════════ -->
+  <div class="nf-header__nav d-none d-xl-block">
+    <div class="container-fluid-lg">
+      <div class="nf-nav-row">
+        <div class="main-nav navbar navbar-expand-xl navbar-light">
+          <app-menu></app-menu>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+    Mobile offcanvas menu
+  ═══════════════════════════════════════════════════════ -->
+  <div class="d-xl-none">
+    <div class="offcanvas offcanvas-collapse nf-mobile-menu" [class.show]="active">
+      <div class="offcanvas-header nf-mobile-menu__header">
+        <div class="nf-mobile-menu__brand">
+          <img src="assets/images/nagma-logo.png" alt="Nagma" class="nf-mobile-menu__logo">
+          <h5 class="nf-mobile-menu__title">NAGMA</h5>
+        </div>
+        <button class="nf-mobile-menu__close" type="button" (click)="toggle(false)">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+      <div class="offcanvas-body nf-mobile-menu__body">
+        <app-menu></app-menu>
+      </div>
+    </div>
+    <div class="offcanvas-backdrop fade" *ngIf="active" [class.show]="active" (click)="toggle(false)"></div>
+  </div>
+
+</header>

@@ -1,0 +1,172 @@
+// ═══════════════════════════════════════════════════════
+// NAGMA — Collection Page Layout
+// ═══════════════════════════════════════════════════════
+
+$lux-gold:   #C9A96E;
+$lux-gold-d: #b08e54;
+$lux-dark:   #1A1A1A;
+$lux-cream:  #F8F4EE;
+$white:      #FFFFFF;
+$border:     #E8E4DC;
+$text-muted: #888;
+$ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+// ── Collection Title Bar ──────────────────────────────────
+.cl-title-bar {
+  background: $white;
+  border-bottom: 1px solid $border;
+  padding: 20px 0 18px;
+
+  &__heading {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(20px, 2.5vw, 30px);
+    font-weight: 700;
+    color: $lux-dark;
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  &__accent {
+    width: 40px;
+    height: 2px;
+    background: $lux-gold;
+  }
+}
+
+// ── Shop Section ─────────────────────────────────────────
+.shop-section {
+  background: $white;
+  padding-top: 56px;
+  padding-bottom: 64px;
+}
+
+// ── Two-column layout ────────────────────────────────────
+.cl-layout {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 40px;
+  align-items: start;
+
+  @media (max-width: 1100px) { grid-template-columns: 200px 1fr; gap: 28px; }
+
+  @media (max-width: 991px) {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+// ── Sidebar column ────────────────────────────────────────
+.cl-sidebar-col {
+  position: sticky;
+  top: 80px;
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #D6CDBE transparent;
+
+  &::-webkit-scrollbar { width: 3px; }
+  &::-webkit-scrollbar-track { background: transparent; }
+  &::-webkit-scrollbar-thumb { background: #D6CDBE; border-radius: 3px; }
+
+  @media (max-width: 991px) {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 300px;
+    height: 100dvh;
+    max-height: 100dvh;
+    background: $white;
+    z-index: 1300;
+    padding: 24px 20px;
+    box-shadow: 4px 0 40px rgba(0, 0, 0, 0.12);
+    transition: left 0.32s $ease;
+    overflow-y: auto;
+
+    &.show { left: 0; }
+  }
+}
+
+// ── Products column ───────────────────────────────────────
+.cl-products-col { min-width: 0; }
+
+// ── Product card overrides ────────────────────────────────
+::ng-deep {
+  .pc {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: $white !important;
+    transition: box-shadow 0.22s ease !important;
+
+    &:hover { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important; }
+
+    .pc__img-wrap { aspect-ratio: 4 / 5 !important; border-radius: 0 !important; }
+
+    .pc__info {
+      padding: 10px 0 14px !important;
+      background: $white !important;
+    }
+
+    .pc__action {
+      button {
+        border-color: rgba($lux-gold, 0.5) !important;
+        color: $lux-dark !important;
+
+        &:hover {
+          background: $lux-gold !important;
+          border-color: $lux-gold !important;
+          color: $white !important;
+        }
+      }
+    }
+  }
+}
+
+// ── Product list grid spacing ─────────────────────────────
+::ng-deep .product-list-section {
+  margin-left: -10px !important;
+  margin-right: -10px !important;
+  row-gap: 32px !important;
+
+  > * {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+}
+
+// ── Pagination override ───────────────────────────────────
+::ng-deep {
+  app-collection-paginate { display: block; margin-top: 36px; }
+
+  .page-link {
+    border-radius: 2px !important;
+    color: $lux-dark !important;
+    border-color: $border !important;
+    font-family: "Inter", sans-serif !important;
+    font-size: 13px !important;
+
+    &:hover {
+      background: $lux-cream !important;
+      border-color: $lux-gold !important;
+      color: $lux-gold !important;
+    }
+  }
+
+  .page-item.active .page-link {
+    background: $lux-gold !important;
+    border-color: $lux-gold !important;
+    color: $white !important;
+  }
+}
+
+// ── Dark mode ─────────────────────────────────────────────
+html.dark {
+  .cl-title-bar { background: #1a1613; border-color: #2a2620; }
+  .cl-title-bar__heading { color: #e8e0d0; }
+  .shop-section { background: #141210; }
+  .cl-sidebar-col { background: #141210; }
+
+  ::ng-deep .pc { background: #1e1c18 !important; }
+  ::ng-deep .pc__info { background: #1e1c18 !important; }
+}

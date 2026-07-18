@@ -1,0 +1,810 @@
+// ── NAGMA Design Tokens ───────────────────────────────────
+$gold:   #C9A96E;
+$gold-d: #b08e54;
+$dark:   #1A1A1A;
+$cream:  #F8F4EE;
+$border: #E8E4DC;
+$muted:  #888888;
+$white:  #ffffff;
+
+// ── Stepper ───────────────────────────────────────────────
+.nyk-stepper-bar {
+  background: $white;
+  border-bottom: 1px solid $border;
+  padding: 18px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 12px rgba(0,0,0,0.04);
+}
+
+.nyk-stepper-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.nyk-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+
+  .nyk-step-circle {
+    width: 30px;
+    height: 30px;
+    background: #e8e4dc;
+    color: $muted;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    border: 1px solid $border;
+    transition: all 0.3s ease;
+
+    i { font-size: 14px; }
+  }
+
+  .nyk-step-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: $muted;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+
+  &--done {
+    .nyk-step-circle {
+      background: $dark;
+      border-color: $dark;
+      color: $white;
+    }
+    .nyk-step-label { color: $dark; font-weight: 600; }
+  }
+
+  &--active {
+    .nyk-step-circle {
+      background: $gold;
+      border-color: $gold;
+      color: $white;
+      box-shadow: 0 0 0 3px rgba($gold, 0.2);
+    }
+    .nyk-step-label { color: $gold; font-weight: 700; }
+  }
+}
+
+.nyk-step-line {
+  flex: 1;
+  height: 1px;
+  background: $border;
+  margin: 0 12px;
+  min-width: 36px;
+}
+
+// ── Main Section ──────────────────────────────────────────
+.nyk-checkout-section {
+  padding: 40px 0 60px;
+  background: $cream;
+  min-height: calc(100vh - 65px);
+}
+
+// ── Section Header ────────────────────────────────────────
+.nyk-section-header {
+  margin-bottom: 28px;
+}
+
+.nyk-section-eyebrow {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: $gold;
+  margin-bottom: 8px;
+}
+
+.nyk-choose-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: $dark;
+  margin: 0 0 8px;
+  letter-spacing: -0.5px;
+}
+
+.nyk-choose-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: $muted;
+  margin: 0 0 20px;
+  line-height: 1.6;
+}
+
+.nyk-section-rule {
+  height: 1px;
+  background: $border;
+}
+
+// ── Address Sections ──────────────────────────────────────
+.nyk-address-section,
+.nyk-billing-section {
+  background: $white;
+  border: 1px solid $border;
+  padding: 20px 24px;
+  margin-bottom: 12px;
+}
+
+.nyk-address-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.nyk-add-address-card {
+  border: 1.5px dashed $border;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  color: $muted;
+  background: $cream;
+  transition: all 0.22s ease;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+
+  i {
+    font-size: 24px;
+    color: $muted;
+    transition: all 0.22s ease;
+  }
+
+  &:hover {
+    border-color: $gold;
+    color: $gold;
+    background: rgba($gold, 0.04);
+
+    i { color: $gold; }
+  }
+}
+
+// Section subheadings (Billing, Delivery, etc.)
+.nyk-section-subheading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid $border;
+
+  h5 {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: $dark;
+    margin: 0;
+    text-transform: uppercase;
+  }
+}
+
+.nyk-link-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: $gold;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+
+  i { font-size: 14px; }
+
+  &:hover { color: $gold-d; text-decoration: underline; }
+}
+
+// Delivery section
+.nyk-delivery-section {
+  background: $white;
+  border: 1px solid $border;
+  padding: 20px 24px;
+  margin-bottom: 12px;
+}
+
+.nyk-delivery-body { padding-top: 4px; }
+
+// Payment section
+.nyk-payment-full-section {
+  margin-top: 12px;
+}
+
+// ── Guest User Cards ──────────────────────────────────────
+.nyk-guest-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nyk-guest-step {
+  display: flex;
+  gap: 16px;
+  background: $white;
+  border: 1px solid $border;
+  padding: 20px 24px;
+
+  .nyk-guest-step-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba($gold, 0.1);
+    color: $gold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .nyk-guest-step-body {
+    flex: 1;
+
+    h5 {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      color: $dark;
+      margin-bottom: 14px;
+    }
+  }
+}
+
+// ── Modern Form Styles ────────────────────────────────────
+.form-group-modern {
+  margin-bottom: 1.25rem;
+
+  .form-label-modern {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: $muted;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .form-control-modern {
+    width: 100%;
+    padding: 11px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: $dark;
+    background-color: $cream;
+    border: 1px solid $border;
+    border-radius: 0;
+    transition: all 0.2s ease;
+    outline: none;
+    height: 44px;
+    box-sizing: border-box;
+
+    &:hover { border-color: $muted; }
+
+    &:focus {
+      border-color: $gold;
+      box-shadow: 0 0 0 3px rgba($gold, 0.1);
+      background-color: $white;
+    }
+
+    &::placeholder { color: #c8c0b8; font-size: 12px; }
+  }
+
+  .error-message {
+    display: block;
+    margin-top: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #c0392b;
+    font-weight: 500;
+  }
+}
+
+.btn-register {
+  width: 100% !important;
+  padding: 12px 24px !important;
+  background: $dark !important;
+  color: $white !important;
+  border: 1px solid $dark !important;
+  border-radius: 0 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+
+  &:hover:not(:disabled) {
+    background: $gold !important;
+    border-color: $gold !important;
+  }
+
+  &:disabled {
+    background: $border !important;
+    border-color: $border !important;
+    color: $muted !important;
+    cursor: not-allowed !important;
+  }
+}
+
+.already-account-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: $muted;
+  margin-top: 12px;
+
+  a {
+    color: $gold;
+    text-decoration: none;
+    font-weight: 600;
+
+    &:hover { text-decoration: underline; }
+  }
+}
+
+// ── RIGHT SIDEBAR ─────────────────────────────────────────
+.nyk-right-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: sticky;
+  top: 80px;
+}
+
+.nyk-sidebar-card {
+  background: $white;
+  border: 1px solid $border;
+  overflow: hidden;
+}
+
+// Bag card
+.nyk-bag-row {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  cursor: pointer;
+  gap: 8px;
+  user-select: none;
+  border-bottom: 1px solid transparent;
+
+  &:hover { background: rgba($gold, 0.03); }
+
+  .nyk-bag-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: $dark;
+    flex: 1;
+  }
+
+  .nyk-bag-count {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: $muted;
+  }
+
+  i {
+    font-size: 18px;
+    color: $muted;
+    transition: transform 0.2s ease;
+  }
+}
+
+.nyk-bag-items {
+  border-top: 1px solid $border;
+  padding: 16px 20px;
+  background: $cream;
+}
+
+.nyk-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nyk-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+
+  .nyk-item-img {
+    width: 56px;
+    height: 64px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: $white;
+    border: 1px solid $border;
+
+    img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  }
+
+  .nyk-item-info {
+    flex: 1;
+    min-width: 0;
+
+    .nyk-item-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: $dark;
+      margin-bottom: 3px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .nyk-item-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: $muted;
+      margin-bottom: 4px;
+    }
+
+    .nyk-item-price-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      .nyk-item-price {
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        color: $dark;
+      }
+
+      .nyk-item-qty {
+        font-family: 'Inter', sans-serif;
+        font-size: 12px;
+        color: $muted;
+      }
+    }
+  }
+}
+
+// ── Order Summary Card ────────────────────────────────────
+.nyk-summary-card {}
+
+.nyk-summary-header {
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid $border;
+}
+
+.nyk-summary-eyebrow {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: $gold;
+  margin-bottom: 4px;
+}
+
+.nyk-summary-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: $dark;
+  margin: 0;
+}
+
+.nyk-price-breakdown {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nyk-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: $muted;
+}
+
+.nyk-free-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #2d7a3a;
+}
+
+.nyk-price-divider {
+  height: 1px;
+  background: $border;
+  margin: 4px 0;
+}
+
+// Total block — the main redesigned total
+.nyk-total-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0 2px;
+}
+
+.nyk-total-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: $dark;
+}
+
+.nyk-total-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: $dark;
+  line-height: 1;
+}
+
+// Saving strip
+.nyk-saving-strip {
+  background: rgba($gold, 0.08);
+  border: 1px solid rgba($gold, 0.2);
+  padding: 11px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: $gold-d;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  i { font-size: 15px; flex-shrink: 0; }
+}
+
+// Min order error
+.nyk-min-order-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  padding: 10px 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #c0392b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  i { font-size: 15px; }
+}
+
+// Place Order button
+.nyk-place-order-btn {
+  width: 100%;
+  padding: 16px 20px !important;
+  background: $dark !important;
+  color: $white !important;
+  border: 1px solid $dark !important;
+  border-radius: 0 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  min-height: 52px !important;
+
+  i { font-size: 15px !important; }
+
+  &:hover:not(:disabled) {
+    background: $gold !important;
+    border-color: $gold !important;
+  }
+
+  &:disabled {
+    background: $border !important;
+    border-color: $border !important;
+    color: $muted !important;
+    cursor: not-allowed !important;
+  }
+}
+
+// Trust text
+.nyk-trust-text {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: $muted;
+  padding: 4px 2px;
+  line-height: 1.5;
+
+  i { font-size: 14px; color: $gold; flex-shrink: 0; margin-top: 1px; }
+}
+
+// ── Responsive ────────────────────────────────────────────
+@media (max-width: 991px) {
+  .nyk-right-sidebar { position: static; }
+  .nyk-address-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+}
+
+@media (max-width: 768px) {
+  .nyk-stepper-inner { max-width: 100%; padding: 0 16px; }
+  .nyk-step-label { display: none; }
+  .nyk-step-line { min-width: 20px; }
+  .nyk-address-grid { grid-template-columns: 1fr; }
+  .nyk-choose-title { font-size: 22px; }
+}
+
+@media (max-width: 576px) {
+  .nyk-checkout-section { padding: 20px 0 40px; }
+  .nyk-total-amount { font-size: 20px; }
+}
+
+.otp-modal {
+  background: #ffffff;
+  border: 1px solid #e8e4dc;
+  padding: 44px 40px;
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  margin: 0 auto;
+
+  &__icon {
+    width: 64px;
+    height: 64px;
+    background: rgba(201, 169, 110, 0.10);
+    border: 1px solid rgba(201, 169, 110, 0.22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+
+    i { font-size: 30px; color: #C9A96E; }
+  }
+
+  &__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1A1A1A;
+    margin: 0;
+  }
+
+  &__desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #888888;
+    text-align: center;
+    margin: 0;
+    line-height: 1.6;
+
+    strong { color: #1A1A1A; font-weight: 600; }
+  }
+
+  &__error {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #e74c3c;
+    margin: 0;
+  }
+
+  &__btn {
+    width: 100%;
+    height: 50px;
+    background: #1A1A1A;
+    color: #ffffff;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover:not(:disabled) { background: #C9A96E; }
+    &:disabled { background: #C8C8C8; cursor: not-allowed; }
+  }
+
+  &__resend {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #888888;
+    margin: 0;
+    text-align: center;
+  }
+
+  &__resend-btn {
+    background: none;
+    border: none;
+    color: #C9A96E;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 12px;
+    text-decoration: underline;
+    padding: 0;
+  }
+}
+
+.otp-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.otp-field {
+  width: 100%;
+
+  &__input {
+    width: 100%;
+    height: 56px;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 8px;
+    border: 1.5px solid #E8E4DC;
+    background: #F6F6F8;
+    color: #1A1A1A;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &:focus {
+      border-color: #C9A96E;
+      box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.10);
+      background: #ffffff;
+    }
+
+    &::placeholder {
+      letter-spacing: normal;
+      font-size: 14px;
+      color: #999;
+      font-weight: 400;
+    }
+
+    &--error { border-color: #e74c3c !important; }
+  }
+}

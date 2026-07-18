@@ -1,0 +1,159 @@
+// ── NAGMA Design Tokens ───────────────────────────────────
+$gold:   #C9A96E;
+$gold-d: #b08e54;
+$dark:   #1A1A1A;
+$cream:  #F8F4EE;
+$border: #E8E4DC;
+$muted:  #888888;
+$white:  #ffffff;
+
+// No address empty state
+.nyk-no-address {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: $muted;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 20px 0;
+
+  i { font-size: 20px; color: $gold; opacity: 0.6; }
+}
+
+// Address card label (full-width clickable)
+.nyk-address-card-label {
+  display: block;
+  cursor: pointer;
+  margin: 0;
+}
+
+// Address card
+.nyk-address-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid $border;
+  background: $cream;
+  transition: all 0.22s ease;
+  cursor: pointer;
+
+  &:hover {
+    border-color: rgba($gold, 0.5);
+    background: rgba($gold, 0.04);
+  }
+
+  &--selected {
+    border-color: $gold;
+    background: rgba($gold, 0.06);
+    box-shadow: 0 0 0 2px rgba($gold, 0.15);
+  }
+}
+
+// Custom radio — square style
+.nyk-address-radio {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+
+  .nyk-radio-input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+
+    &:checked + .nyk-radio-dot {
+      border-color: $gold;
+      background: $gold;
+
+      &::after {
+        transform: translate(-50%, -50%) scale(1);
+        background: $white;
+      }
+    }
+  }
+
+  .nyk-radio-dot {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid $border;
+    background: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.18s ease;
+    pointer-events: none;
+    border-radius: 0;
+
+    &::after {
+      content: '';
+      width: 7px;
+      height: 7px;
+      background: transparent;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transition: all 0.18s ease;
+    }
+  }
+}
+
+// Card body
+.nyk-address-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.nyk-address-card-top {
+  margin-bottom: 8px;
+}
+
+.nyk-address-type-badge {
+  display: inline-block;
+  background: rgba($gold, 0.12);
+  color: $gold-d;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 3px 8px;
+  border-radius: 0;
+}
+
+.nyk-address-line {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: $dark;
+  line-height: 1.6;
+
+  &--main {
+    margin-bottom: 6px;
+
+    div {
+      display: block;
+      margin-bottom: 2px;
+    }
+  }
+}
+
+.nyk-address-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: $muted;
+  font-weight: 400;
+}
+
+.nyk-meta-sep {
+  color: $border;
+}

@@ -1,0 +1,83 @@
+// ============================================================
+// Menu Dropdown — Luxury Dark Style
+// ============================================================
+
+$lux-gold:   #C9A96E;
+$lux-dark:   #1A1A1A;
+$lux-bg:     #1E1C1A;
+$lux-border: rgba(201, 169, 110, 0.15);
+$lux-text:   #C8BFB0;
+$lux-muted:  #8A8480;
+
+// ── Mega dropdown container ──────────────────────────────
+.dropdown-menu-2 {
+  background: $lux-bg !important;
+  border-top: 2px solid $lux-gold !important;
+  border-radius: 0 !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+  padding: 20px 40px !important;
+  margin-top: 0 !important;
+
+  .row { gap: 0; }
+
+  .dropdown-column {
+    padding: 0 28px;
+    border-right: 1px solid $lux-border;
+
+    &:first-child { padding-left: 0; }
+    &:last-of-type { border-right: none; padding-right: 0; }
+  }
+}
+
+// ── Simple (non-mega) dropdown ───────────────────────────
+ul.dropdown-menu {
+  background: $lux-bg !important;
+  border: 1px solid $lux-border !important;
+  border-top: 2px solid $lux-gold !important;
+  border-radius: 0 0 6px 6px !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4) !important;
+  padding: 8px 0 !important;
+  min-width: 200px !important;
+
+  .dropdown-item {
+    font-family: "Inter", sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.06em !important;
+    color: $lux-text !important;
+    padding: 10px 20px !important;
+    background: transparent !important;
+    border-bottom: 1px solid rgba($lux-border, 0.5) !important;
+    transition: color 0.18s ease, padding-left 0.18s ease !important;
+
+    &:last-child { border-bottom: none !important; }
+
+    &:hover {
+      color: $lux-gold !important;
+      background: rgba($lux-gold, 0.06) !important;
+      padding-left: 26px !important;
+    }
+  }
+}
+
+// ── Skeleton loader ──────────────────────────────────────
+.skeleton-menu {
+  li {
+    width: 80px;
+    height: 14px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+    animation: lux-pulse 1.4s ease infinite;
+    margin: 0 12px;
+  }
+}
+
+@keyframes lux-dropdown-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes lux-pulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.7; }
+}

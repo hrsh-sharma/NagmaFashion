@@ -1,0 +1,164 @@
+// ═══════════════════════════════════════════════════════
+// NAGMA — Category Filter
+// ═══════════════════════════════════════════════════════
+
+$lux-gold:  #C9A96E;
+$lux-dark:  #1A1A1A;
+$border:    #E8E4DC;
+$white:     #FFFFFF;
+
+:host { display: block; }
+
+// ── Search box ────────────────────────────────────────────
+.nf-cat-search {
+  position: relative;
+  margin-bottom: 12px;
+
+  &__icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #aaa;
+    pointer-events: none;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 8px 10px 8px 32px;
+    border: 1px solid $border;
+    border-radius: 2px;
+    font-family: "Inter", sans-serif;
+    font-size: 12.5px;
+    color: $lux-dark;
+    outline: none;
+    background: $white;
+    transition: border-color 0.18s ease;
+
+    &:focus { border-color: $lux-gold; }
+    &::placeholder { color: #bbb; }
+  }
+}
+
+// ── Category list ─────────────────────────────────────────
+.nf-cat-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.nf-cat-list__item {
+  display: flex;
+  flex-direction: column;
+}
+
+// ── Single category row ───────────────────────────────────
+.nf-cat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  cursor: pointer;
+  user-select: none;
+
+  &__box {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    border: 1.5px solid $border;
+    border-radius: 2px;
+    background: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.18s ease;
+  }
+
+  &__check {
+    font-size: 10px;
+    color: $white;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  &__label {
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    color: #555;
+    line-height: 1.4;
+    flex: 1;
+    transition: color 0.15s ease;
+  }
+
+  &:hover {
+    .nf-cat-item__box   { border-color: $lux-gold; }
+    .nf-cat-item__label { color: $lux-dark; }
+  }
+
+  &--checked {
+    .nf-cat-item__box   { background: $lux-gold; border-color: $lux-gold; }
+    .nf-cat-item__check { opacity: 1; }
+    .nf-cat-item__label { color: $lux-dark; font-weight: 600; }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+    pointer-events: none;
+  }
+}
+
+// ── Sub-category list ─────────────────────────────────────
+.nf-cat-sublist {
+  list-style: none;
+  padding: 0 0 0 26px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+
+  .nf-cat-item {
+    padding: 7px 0;
+    &__label { font-size: 12.5px; color: #777; }
+    &__box   { width: 14px; height: 14px; }
+    &__check { font-size: 9px; }
+  }
+}
+
+// ── Empty state ───────────────────────────────────────────
+.nf-cat-empty {
+  font-family: "Inter", sans-serif;
+  font-size: 12.5px;
+  color: #aaa;
+  text-align: center;
+  padding: 12px 0;
+  margin: 0;
+}
+
+// ── Dark mode ─────────────────────────────────────────────
+html.dark {
+  .nf-cat-search__input {
+    background: #1e1c18;
+    border-color: #3a3630;
+    color: #d0c8b8;
+    &::placeholder { color: #666; }
+    &:focus { border-color: $lux-gold; }
+  }
+
+  .nf-cat-item {
+    &__box   { background: #2a2620; border-color: #4a4640; }
+    &__label { color: #a0988a; }
+
+    &:hover {
+      .nf-cat-item__box   { border-color: $lux-gold; }
+      .nf-cat-item__label { color: #d0c8b8; }
+    }
+
+    &--checked {
+      .nf-cat-item__box   { background: $lux-gold; border-color: $lux-gold; }
+      .nf-cat-item__label { color: #e0d8c8; }
+    }
+  }
+}

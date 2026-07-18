@@ -1,0 +1,39 @@
+// ═══════════════════════════════════════════════════════
+// NAGMA — Collection Products Grid
+// ═══════════════════════════════════════════════════════
+
+$lux-gold:  #C9A96E;
+$lux-cream: #F8F4EE;
+$white:     #FFFFFF;
+$border:    #E8E4DC;
+
+:host { display: block; }
+
+// ── Product grid spacing ─────────────────────────────────
+::ng-deep {
+  .product-list-section {
+    margin-left: -10px !important;
+    margin-right: -10px !important;
+    row-gap: 32px !important;
+
+    > * {
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+    }
+  }
+
+  .collection-no-data {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// ── Pagination ───────────────────────────────────────────
+::ng-deep app-collection-paginate {
+  display: block;
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid $border;
+}

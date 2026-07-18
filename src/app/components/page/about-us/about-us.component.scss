@@ -1,0 +1,234 @@
+// ═══════════════════════════════════════════════════════════
+// NAGMA — About Us Page (clean editorial text layout)
+// ═══════════════════════════════════════════════════════════
+
+$gold:   #C9A96E;
+$dark:   #1A1A1A;
+$cream:  #F8F4EE;
+$border: #E8E4DC;
+$muted:  #888888;
+$text:   #444444;
+$white:  #FFFFFF;
+
+// ── Page wrapper ──────────────────────────────────────────
+.au-page {
+  background: $white;
+  padding: 64px 0 96px;
+}
+
+.au-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+// ── Title block ───────────────────────────────────────────
+.au-title-block {
+  text-align: center;
+  margin-bottom: 72px;
+}
+
+.au-eyebrow {
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: $gold;
+  margin-bottom: 14px;
+}
+
+.au-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  color: $dark;
+  margin: 0 0 24px;
+  line-height: 1.1;
+}
+
+.au-title-rule {
+  width: 48px;
+  height: 2px;
+  background: $gold;
+  margin: 0 auto 28px;
+}
+
+.au-lead {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: $muted;
+  line-height: 1.8;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+// ── Divider ───────────────────────────────────────────────
+.au-divider {
+  width: 100%;
+  height: 1px;
+  background: $border;
+  margin: 56px 0;
+}
+
+// ── Section ───────────────────────────────────────────────
+.au-section {
+  margin-bottom: 0;
+}
+
+.au-section__heading {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 700;
+  color: $dark;
+  margin: 0 0 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid $border;
+  line-height: 1.2;
+}
+
+// ── Story body ────────────────────────────────────────────
+.au-section__body {
+  p {
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    color: $text;
+    line-height: 1.85;
+    margin: 0 0 18px;
+
+    &:last-child { margin-bottom: 0; }
+  }
+}
+
+// ── Values list ───────────────────────────────────────────
+.au-values {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid $border;
+}
+
+.au-value-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  padding: 28px 0;
+  border-bottom: 1px solid $border;
+}
+
+.au-value-item__num {
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: $gold;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 3px;
+  min-width: 28px;
+}
+
+.au-value-item__title {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: $dark;
+  margin: 0 0 8px;
+  letter-spacing: 0.01em;
+}
+
+.au-value-item__text {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: $muted;
+  line-height: 1.7;
+  margin: 0;
+}
+
+// ── Mission quote ─────────────────────────────────────────
+.au-mission {
+  background: $cream;
+  border: 1px solid $border;
+  border-left: 3px solid $gold;
+  padding: 36px 40px;
+
+  @media (max-width: 575px) { padding: 28px 24px; }
+}
+
+.au-mission__quote-mark {
+  font-family: "Playfair Display", serif;
+  font-size: 72px;
+  color: $gold;
+  line-height: 0.6;
+  display: block;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.au-mission__text {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(17px, 2.5vw, 21px);
+  font-weight: 400;
+  color: $dark;
+  line-height: 1.7;
+  margin: 0 0 20px;
+  font-style: italic;
+}
+
+.au-mission__footer {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: $muted;
+  letter-spacing: 0.04em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+// ── Info grid ─────────────────────────────────────────────
+.au-info-grid {
+  border-top: 1px solid $border;
+}
+
+.au-info-row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid $border;
+  align-items: baseline;
+
+  @media (max-width: 575px) {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+.au-info-row__label {
+  font-family: "Inter", sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: $muted;
+  flex-shrink: 0;
+}
+
+.au-info-row__value {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: $text;
+  line-height: 1.65;
+
+  a {
+    color: $dark;
+    text-decoration: none;
+    border-bottom: 1px solid $border;
+    transition: color 0.18s ease, border-color 0.18s ease;
+
+    &:hover {
+      color: $gold;
+      border-color: $gold;
+    }
+  }
+}

@@ -1,0 +1,339 @@
+// ═══════════════════════════════════════════════════════════
+// NAGMA — Address Modal  (ViewEncapsulation.None — global)
+// ═══════════════════════════════════════════════════════════
+
+$gold:   #C9A96E;
+$gold-d: #b08e54;
+$dark:   #1A1A1A;
+$cream:  #F8F4EE;
+$border: #E8E4DC;
+$muted:  #888888;
+$text:   #444444;
+$white:  #FFFFFF;
+$red:    #B91C1C;
+
+// ── Modal shell overrides ─────────────────────────────────
+.nagma-address-modal .modal-dialog {
+  max-width: 680px !important;
+  width: 100% !important;
+  margin: auto !important;
+}
+
+.nagma-address-modal .modal-content {
+  border-radius: 0 !important;
+  border: 1px solid $border !important;
+  overflow: hidden !important;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.18) !important;
+  padding: 0 !important;
+}
+
+.nagma-address-modal .modal-header,
+.nagma-address-modal .modal-body,
+.nagma-address-modal .modal-footer {
+  display: none !important;
+  padding: 0 !important;
+}
+
+// ── Header ────────────────────────────────────────────────
+.am-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 28px;
+  background: $cream;
+  border-bottom: 1px solid $border;
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  &__icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 2px;
+    background: $white;
+    border: 1px solid $border;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    i { font-size: 20px; color: $gold; }
+  }
+
+  &__label {
+    font-family: "Inter", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: $gold;
+    margin: 0 0 4px;
+  }
+
+  &__title {
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: $dark;
+    margin: 0;
+    line-height: 1.2;
+  }
+}
+
+.am-close-btn {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $white;
+  border: 1px solid $border;
+  border-radius: 2px;
+  color: $muted;
+  font-size: 20px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color 0.18s ease, color 0.18s ease;
+
+  &:hover { border-color: $dark; color: $dark; }
+}
+
+// ── Body ──────────────────────────────────────────────────
+.am-body {
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 60vh;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar { width: 3px; }
+  &::-webkit-scrollbar-track { background: transparent; }
+  &::-webkit-scrollbar-thumb { background: $border; }
+}
+
+// ── 2-column row ──────────────────────────────────────────
+.am-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  @media (max-width: 576px) { grid-template-columns: 1fr; }
+}
+
+// ── Field ─────────────────────────────────────────────────
+.am-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.am-label {
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $muted;
+}
+
+.am-input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid $border;
+  border-radius: 2px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: $dark;
+  background: $white;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: $dark;
+    box-shadow: 0 0 0 2px rgba($gold, 0.18);
+  }
+
+  &::placeholder { color: #C4BFB7; font-size: 13px; }
+
+  &--error {
+    border-color: $red;
+    &:focus { box-shadow: 0 0 0 2px rgba($red, 0.1); }
+  }
+}
+
+.am-textarea {
+  @extend .am-input;
+  resize: vertical;
+  min-height: 88px;
+  line-height: 1.6;
+}
+
+.am-error {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: "Inter", sans-serif;
+  font-size: 11.5px;
+  color: $red;
+  font-weight: 500;
+  margin: 0;
+
+  i { font-size: 13px; }
+}
+
+// ── Select2 overrides (global) ────────────────────────────
+.am-select2 { width: 100%; }
+
+.am-select2 .select2-container { width: 100% !important; }
+
+.am-select2 .select2-selection {
+  padding: 10px 14px !important;
+  padding-right: 36px !important;
+  border: 1px solid $border !important;
+  border-radius: 2px !important;
+  background: $white !important;
+  min-height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  transition: border-color 0.18s ease !important;
+}
+
+.am-select2 .select2-selection:focus-within,
+.am-select2 .select2-container--open .select2-selection {
+  border-color: $dark !important;
+  box-shadow: 0 0 0 2px rgba($gold, 0.18) !important;
+}
+
+.am-select2 .select2-selection__rendered {
+  padding: 0 !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 14px !important;
+  color: $dark !important;
+  line-height: 1.5 !important;
+}
+
+.am-select2 .select2-selection__placeholder { color: #C4BFB7 !important; font-size: 13px !important; }
+.am-select2 .select2-selection__arrow { right: 10px !important; }
+
+.am-select2 .select2-dropdown {
+  border: 1px solid $border !important;
+  border-radius: 2px !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1) !important;
+  margin-top: 2px !important;
+}
+
+.am-select2 .select2-results__option {
+  font-family: "Inter", sans-serif !important;
+  padding: 10px 14px !important;
+  font-size: 13.5px !important;
+  color: $text !important;
+}
+
+.am-select2 .select2-results__option[aria-selected="true"],
+.am-select2 .select2-results__option--highlighted {
+  background: $cream !important;
+  color: $dark !important;
+  font-weight: 600 !important;
+}
+
+// ── Phone input ───────────────────────────────────────────
+.am-phone-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.am-phone-prefix {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 100%;
+  min-width: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $cream;
+  color: $dark;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  border-right: 1px solid $border;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.am-phone-input { padding-left: 66px !important; }
+
+// ── Footer ────────────────────────────────────────────────
+.am-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 28px;
+  border-top: 1px solid $border;
+  background: $cream;
+}
+
+.am-cancel-btn {
+  padding: 11px 24px;
+  border: 1px solid $border;
+  background: $white;
+  color: $muted;
+  border-radius: 2px;
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.18s ease, color 0.18s ease;
+  white-space: nowrap;
+
+  &:hover { border-color: $dark; color: $dark; }
+}
+
+.am-save-btn,
+button.am-save-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  padding: 11px 28px !important;
+  background: $dark !important;
+  color: $white !important;
+  border: 1px solid $dark !important;
+  border-radius: 2px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
+  white-space: nowrap !important;
+
+  i { font-size: 15px !important; }
+
+  &:hover {
+    background: $gold !important;
+    border-color: $gold !important;
+    color: $dark !important;
+  }
+}
+
+// ── Mobile ────────────────────────────────────────────────
+@media (max-width: 576px) {
+  .am-header { padding: 16px 18px; }
+  .am-body { padding: 18px; max-height: 70vh; }
+  .am-footer { padding: 14px 18px; flex-direction: column-reverse; align-items: stretch; }
+  .am-cancel-btn { text-align: center; }
+  .am-save-btn, button.am-save-btn { width: 100% !important; }
+}

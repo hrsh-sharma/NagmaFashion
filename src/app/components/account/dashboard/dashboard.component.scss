@@ -1,0 +1,412 @@
+// ═══════════════════════════════════════════════════════════
+// NAGMA — Account Dashboard
+// Layout: Left sidebar (identity + nav) | Right content
+// ═══════════════════════════════════════════════════════════
+
+$gold:    #C9A96E;
+$gold-d:  #b08e54;
+$dark:    #1A1A1A;
+$cream:   #F8F4EE;
+$border:  #E8E4DC;
+$muted:   #888888;
+$text:    #444444;
+$white:   #FFFFFF;
+
+// ── Root layout ───────────────────────────────────────────
+.dash {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 60vh;
+  background: $white;
+  border: 1px solid $border;
+
+  @media (max-width: 900px) { grid-template-columns: 1fr; }
+}
+
+// ═══════════════════════════════════════════════════════════
+// SIDEBAR
+// ═══════════════════════════════════════════════════════════
+.dash__sidebar {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid $border;
+  background: $cream;
+
+  @media (max-width: 900px) {
+    border-right: none;
+    border-bottom: 1px solid $border;
+  }
+}
+
+// ── Identity ──────────────────────────────────────────────
+.dash__identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 28px 28px;
+  gap: 4px;
+}
+
+.dash__avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: $white;
+  border: 2px solid $border;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 14px;
+  flex-shrink: 0;
+}
+
+.dash__avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dash__avatar-initial {
+  font-family: "Playfair Display", serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: $gold;
+  line-height: 1;
+}
+
+.dash__welcome {
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $gold;
+  margin: 0;
+}
+
+.dash__name {
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: $dark;
+  margin: 4px 0 0;
+  line-height: 1.2;
+}
+
+.dash__email {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  color: $muted;
+  margin: 2px 0 0;
+  word-break: break-all;
+}
+
+// ── Sidebar rule ──────────────────────────────────────────
+.dash__sidebar-rule {
+  height: 1px;
+  background: $border;
+  margin: 0 24px;
+}
+
+// ── Nav ───────────────────────────────────────────────────
+.dash__nav {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0 0;
+  flex: 1;
+}
+
+.dash__nav-label {
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $muted;
+  margin: 0 0 8px;
+  padding: 0 24px;
+}
+
+.dash__nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 24px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.18s ease;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 0;
+    background: $gold;
+    border-radius: 0 2px 2px 0;
+    transition: height 0.2s ease;
+  }
+
+  &:hover {
+    background: rgba($gold, 0.06);
+
+    &::before { height: 55%; }
+    .dash__nav-text { color: $dark; }
+    .dash__nav-chev { color: $gold; transform: translateX(2px); }
+    .dash__nav-icon { border-color: rgba($gold, 0.4); color: $gold; }
+  }
+}
+
+.dash__nav-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 2px;
+  background: $white;
+  border: 1px solid $border;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 16px;
+  color: $dark;
+  transition: border-color 0.18s ease, color 0.18s ease;
+}
+
+.dash__nav-text {
+  flex: 1;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: $text;
+  transition: color 0.18s ease;
+}
+
+.dash__nav-chev {
+  font-size: 18px;
+  color: #ccc;
+  flex-shrink: 0;
+  transition: color 0.18s ease, transform 0.18s ease;
+}
+
+// ── Sidebar footer ────────────────────────────────────────
+.dash__sidebar-footer {
+  padding: 20px 24px 32px;
+  margin-top: auto;
+}
+
+.dash__edit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  padding: 12px 0;
+  background: $dark;
+  color: $white;
+  border: none;
+  border-radius: 2px;
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+
+  i { font-size: 15px; }
+
+  &:hover { background: $gold; color: $dark; }
+}
+
+// ═══════════════════════════════════════════════════════════
+// MAIN CONTENT
+// ═══════════════════════════════════════════════════════════
+.dash__main {
+  display: flex;
+  flex-direction: column;
+  background: $white;
+}
+
+.dash__section {
+  padding: 36px 40px;
+  border-bottom: 1px solid $border;
+
+  &:last-child { border-bottom: none; }
+
+  @media (max-width: 768px) { padding: 24px 20px; }
+}
+
+.dash__section-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  gap: 12px;
+}
+
+.dash__section-title {
+  font-family: "Playfair Display", serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: $dark;
+  margin: 0 0 8px;
+  line-height: 1.2;
+}
+
+.dash__section-accent {
+  width: 32px;
+  height: 2px;
+  background: $gold;
+}
+
+// ── Inline text button ────────────────────────────────────
+.dash__text-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $gold;
+  cursor: pointer;
+  transition: color 0.18s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  i { font-size: 13px; }
+
+  &:hover { color: $gold-d; }
+}
+
+// ── Field rows ────────────────────────────────────────────
+.dash__fields { display: flex; flex-direction: column; }
+
+.dash__field {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  align-items: baseline;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid $border;
+
+  &:first-child { border-top: 1px solid $border; }
+  &--inline { align-items: center; }
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+.dash__field-label {
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $muted;
+  flex-shrink: 0;
+}
+
+.dash__field-value {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: $dark;
+  margin: 0;
+
+  &--muted { color: $muted; font-style: italic; }
+
+  &--row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+}
+
+.dash__dots {
+  font-size: 16px;
+  letter-spacing: 3px;
+  color: $muted;
+  line-height: 1;
+}
+
+// ── Address ───────────────────────────────────────────────
+.dash__address {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dash__address-tag {
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $gold;
+  background: rgba($gold, 0.1);
+  border: 1px solid rgba($gold, 0.25);
+  padding: 4px 12px;
+  width: fit-content;
+}
+
+.dash__address-line {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: $text;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.dash__address-pin {
+  font-family: "Inter", sans-serif;
+  font-size: 12.5px;
+  color: $muted;
+  margin: 0;
+}
+
+// ── Dark mode ─────────────────────────────────────────────
+html.dark {
+  .dash { background: #1e1c18; border-color: #2a2620; }
+  .dash__sidebar { background: #141210; border-color: #2a2620; }
+  .dash__sidebar-rule { background: #2a2620; }
+  .dash__name { color: #e8e0d0; }
+  .dash__main { background: #1e1c18; }
+  .dash__section { border-color: #2a2620; }
+  .dash__section-title { color: #e8e0d0; }
+  .dash__field { border-color: #2a2620; }
+  .dash__field-value { color: #c8c0b0; }
+  .dash__nav-icon { background: #2a2620; border-color: #3a3630; color: #c8c0b0; }
+  .dash__edit-btn { background: #2a2620; color: #b0a898; &:hover { background: $gold; color: $dark; } }
+}
+
+// ── Responsive ────────────────────────────────────────────
+@media (max-width: 900px) {
+  .dash__identity { padding: 28px 20px 20px; }
+  .dash__sidebar-footer { padding: 16px 20px 24px; }
+  .dash__nav-item { padding: 12px 20px; }
+  .dash__nav-label { padding: 0 20px; }
+}
+
+@media (max-width: 576px) {
+  .dash__identity { padding: 24px 16px 16px; }
+  .dash__nav-item { padding: 11px 16px; }
+  .dash__nav-label { padding: 0 16px; }
+  .dash__sidebar-footer { padding: 12px 16px 20px; }
+}

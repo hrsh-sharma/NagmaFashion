@@ -1,0 +1,32 @@
+<!-- ═══════════════════════════════════════════════════════
+     NAGMA — Collection Page (Left Sidebar Layout)
+═══════════════════════════════════════════════════════ -->
+
+<!-- ── Collection Title Bar ─────────────────────────────── -->
+<div class="cl-title-bar">
+  <div class="container-fluid-lg">
+    <h1 class="cl-title-bar__heading">
+      {{ filter?.['category'] ? (filter['category'] | titlecase) : 'All Collections' }}
+    </h1>
+    <div class="cl-title-bar__accent"></div>
+  </div>
+</div>
+
+<!-- ── Shop Section ─────────────────────────────────────── -->
+<section class="shop-section" id="filtered_products">
+  <div class="container-fluid-lg">
+    <div class="cl-layout">
+
+      <!-- Filter Sidebar -->
+      <aside class="cl-sidebar-col" [class.show]="attributeService.offCanvasMenu">
+        <app-collection-sidebar [filter]="filter"></app-collection-sidebar>
+      </aside>
+
+      <!-- Product Area -->
+      <main class="cl-products-col">
+        <app-collection-products [filter]="filter"></app-collection-products>
+      </main>
+
+    </div>
+  </div>
+</section>

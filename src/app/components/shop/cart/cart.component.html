@@ -1,0 +1,176 @@
+<app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+
+<section class="ct-section">
+  <div class="container-fluid-lg">
+
+    <!-- ══ FILLED CART ══ -->
+    <div class="row g-xl-5 g-sm-4 g-3" *ngIf="(cartItem$ | async)?.length">
+
+      <!-- ── LEFT: Cart Items ──────────────────────────────── -->
+      <div class="col-xxl-8 col-xl-7 col-lg-7">
+
+        <!-- Header -->
+        <div class="ct-header">
+          <div>
+            <span class="ct-eyebrow">Review Items</span>
+            <h2 class="ct-title">Shopping Bag</h2>
+          </div>
+          <div class="ct-count">
+            <span class="ct-count__num">{{ (cartItem$ | async)?.length }}</span>
+            <span class="ct-count__label">Item{{ (cartItem$ | async)?.length !== 1 ? 's' : '' }}</span>
+          </div>
+        </div>
+        <div class="ct-rule"></div>
+
+        <!-- Items -->
+        <div class="ct-items">
+          <div class="ct-item" *ngFor="let item of cartItem$ | async">
+
+            <!-- Image -->
+            <div class="ct-item__img-wrap">
+              <a [routerLink]="['/product/', item?.product?.slug]">
+                <img [src]="item?.variation && item?.variation?.variation_image
+                              ? item?.variation?.variation_image?.original_url
+                              : item?.product?.product_thumbnail
+                              ? item?.product?.product_thumbnail?.original_url
+                              : 'assets/images/product.png'"
+                     class="ct-item__img" alt="product">
+              </a>
+              <button class="ct-item__remove" (click)="delete(item.id)" title="Remove">
+                <i class="ri-close-line"></i>
+              </button>
+            </div>
+
+            <!-- Details -->
+            <div class="ct-item__info">
+
+              <div class="ct-item__top">
+                <a [routerLink]="['/product/', item.product.slug]" class="ct-item__name">
+                  {{ item?.variation ? item.variation.name : item?.product?.name }}
+                </a>
+                <div class="ct-item__price-col">
+                  <span class="ct-item__price">
+                    {{ (item?.variation ? item?.variation?.sale_price
+                        : item?.product && item?.wholesale_price
+                        ? item?.wholesale_price!
+                        : item?.product?.sale_price) | currencySymbol }}
+                  </span>
+                  <span class="ct-item__original" *ngIf="item?.product?.discount">
+                    {{ (item?.variation ? item?.variation?.price : item?.product?.price) | currencySymbol }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="ct-item__meta" *ngIf="item?.variation || item?.product?.unit">
+                <span class="ct-item__tag" *ngIf="item?.variation">
+                  Size: <strong>{{ item?.variation?.selected_variation || item?.variation?.name }}</strong>
+                </span>
+                <span class="ct-item__tag" *ngIf="item?.product?.unit">
+                  Unit: {{ item.product.unit }}
+                </span>
+              </div>
+
+              <div class="ct-item__save" *ngIf="item?.product?.discount">
+                <i class="ri-price-tag-3-line"></i>
+                You save {{ ((item?.variation ? item?.variation!.price : item.product.price) -
+                             (item?.variation  ? item?.variation!.sale_price : item.product.sale_price)) | currencySymbol }}
+              </div>
+
+              <div class="ct-item__bottom">
+                <!-- Qty stepper -->
+                <div class="ct-qty">
+                  <span class="ct-qty__label">Quantity</span>
+                  <div class="ct-qty__row">
+                    <app-button [class]="'btn ct-qty__btn'" [id]="'minus_quantity'"
+                      [spinner]="false" [type]="'button'" (click)="updateQuantity(item, -1)">
+                      <i class="ri-subtract-fill"></i>
+                    </app-button>
+                    <input class="ct-qty__num" type="text" name="quantity"
+                           value="{{ item.quantity }}" readonly>
+                    <app-button [class]="'btn ct-qty__btn'" [id]="'plus_quantity'"
+                      [spinner]="false" [type]="'button'" (click)="updateQuantity(item, 1)">
+                      <i class="ri-add-line"></i>
+                    </app-button>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /ct-item__info -->
+          </div><!-- /ct-item -->
+        </div><!-- /ct-items -->
+
+        <div class="ct-back">
+          <a [routerLink]="['/collections/']" class="ct-back__link">
+            <i class="ri-arrow-left-line"></i> Continue Shopping
+          </a>
+        </div>
+
+      </div><!-- /col-lg left -->
+
+      <!-- ── RIGHT: Order Summary ──────────────────────────── -->
+      <div class="col-xxl-4 col-xl-5 col-lg-5">
+        <div class="ct-summary p-sticky">
+
+          <div class="ct-summary__head">
+            <span class="ct-summary__eyebrow">Breakdown</span>
+            <h3 class="ct-summary__title">Order Summary</h3>
+          </div>
+
+          <div class="ct-summary__rows">
+            <div class="ct-summary__row">
+              <span>Subtotal</span>
+              <span>{{ (cartTotal$ | async) || 0 | currencySymbol }}</span>
+            </div>
+            <div class="ct-summary__row" *ngIf="!(cartDigital$ | async)">
+              <span>Shipping</span>
+              <span class="ct-tag-free" *ngIf="!(checkout$ | async)">At checkout</span>
+              <span *ngIf="checkout$ | async">{{ (checkout$ | async)?.total?.shipping_total | currencySymbol }}</span>
+            </div>
+            <div class="ct-summary__row">
+              <span>Tax</span>
+              <span class="ct-tag-free" *ngIf="!(checkout$ | async)">Inclusive</span>
+              <span *ngIf="checkout$ | async">{{ (checkout$ | async)?.total?.tax_total | currencySymbol }}</span>
+            </div>
+          </div>
+
+          <div class="ct-summary__divider"></div>
+
+          <div class="ct-summary__total">
+            <div>
+              <div class="ct-summary__total-lbl">Order Total</div>
+              <div class="ct-summary__total-note">Incl. taxes &amp; charges</div>
+            </div>
+            <div class="ct-summary__total-amt">
+              {{ (checkout$ | async)
+                  ? ((checkout$ | async)?.total?.total | currencySymbol)
+                  : ((cartTotal$ | async) || 0 | currencySymbol) }}
+            </div>
+          </div>
+
+          <div class="ct-summary__actions">
+            <a class="ct-btn-go" [routerLink]="['/checkout/']">
+              <i class="ri-lock-line"></i> Proceed to Checkout
+            </a>
+            <a class="ct-btn-back" [routerLink]="['/collections/']">
+              <i class="ri-arrow-left-line"></i> Continue Shopping
+            </a>
+          </div>
+
+          <div class="ct-summary__trust">
+            <i class="ri-shield-check-line"></i>
+            Secure payments · Authentic products · Easy returns
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /row -->
+
+    <!-- ══ EMPTY ══ -->
+    <app-no-data [class]="'no-data-added'" [text]="'No Items Added'"
+      [description]="'It appears that nothing has been added to your cart.'"
+      *ngIf="!(cartItem$ | async)?.length">
+    </app-no-data>
+
+  </div>
+</section>

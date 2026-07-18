@@ -1,0 +1,192 @@
+// ═══════════════════════════════════════════════════════════
+// NAGMA — Terms & Conditions
+// ═══════════════════════════════════════════════════════════
+
+$gold:   #C9A96E;
+$dark:   #1A1A1A;
+$cream:  #F8F4EE;
+$border: #E8E4DC;
+$muted:  #888888;
+$text:   #444444;
+$white:  #FFFFFF;
+
+.pol-page { background: $white; padding: 64px 0 96px; }
+
+.pol-container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.pol-title-block { text-align: center; margin-bottom: 64px; }
+
+.pol-eyebrow {
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: $gold;
+  margin-bottom: 14px;
+}
+
+.pol-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  color: $dark;
+  margin: 0 0 22px;
+  line-height: 1.1;
+}
+
+.pol-title-rule {
+  width: 48px;
+  height: 2px;
+  background: $gold;
+  margin: 0 auto 24px;
+}
+
+.pol-lead {
+  font-family: "Inter", sans-serif;
+  font-size: 15.5px;
+  color: $muted;
+  line-height: 1.75;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.pol-divider {
+  width: 100%;
+  height: 1px;
+  background: $border;
+  margin: 48px 0;
+}
+
+.pol-section { margin-bottom: 0; }
+
+.pol-section__heading {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 700;
+  color: $dark;
+  margin: 0 0 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid $border;
+  line-height: 1.2;
+}
+
+.pol-section__subheading {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $dark;
+  margin: 24px 0 10px;
+}
+
+.pol-section__text {
+  font-family: "Inter", sans-serif;
+  font-size: 14.5px;
+  color: $text;
+  line-height: 1.85;
+  margin: 0 0 14px;
+  &:last-child { margin-bottom: 0; }
+  strong { color: $dark; font-weight: 700; }
+}
+
+.pol-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 14px;
+
+  li {
+    font-family: "Inter", sans-serif;
+    font-size: 14.5px;
+    color: $text;
+    line-height: 1.75;
+    padding: 9px 0 9px 20px;
+    border-bottom: 1px solid $border;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 19px;
+      width: 5px;
+      height: 5px;
+      background: $gold;
+      border-radius: 50%;
+    }
+
+    strong { color: $dark; font-weight: 700; }
+    &:last-child { border-bottom: none; }
+  }
+}
+
+.pol-highlight {
+  background: $cream;
+  border: 1px solid $border;
+  border-left: 3px solid $gold;
+  padding: 18px 22px;
+  margin-top: 16px;
+
+  p {
+    font-family: "Inter", sans-serif;
+    font-size: 13.5px;
+    color: $text;
+    line-height: 1.7;
+    margin: 0;
+  }
+}
+
+.pol-contact {
+  background: $cream;
+  border: 1px solid $border;
+  padding: 36px 40px;
+  @media (max-width: 575px) { padding: 28px 22px; }
+}
+
+.pol-contact__title {
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: $dark;
+  margin: 0 0 8px;
+}
+
+.pol-contact__sub {
+  font-family: "Inter", sans-serif;
+  font-size: 13.5px;
+  color: $muted;
+  margin: 0 0 24px;
+  line-height: 1.6;
+}
+
+.pol-contact__list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.pol-contact__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: $text;
+
+  i { font-size: 17px; color: $gold; flex-shrink: 0; margin-top: 1px; }
+
+  a {
+    color: $dark;
+    text-decoration: none;
+    border-bottom: 1px solid $border;
+    transition: color 0.18s ease, border-color 0.18s ease;
+    &:hover { color: $gold; border-color: $gold; }
+  }
+}

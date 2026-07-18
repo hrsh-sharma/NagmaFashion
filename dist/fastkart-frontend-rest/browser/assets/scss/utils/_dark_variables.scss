@@ -1,0 +1,36 @@
+:root {
+  --theme-color: #C9A96E;           /* Gold — luxury primary */
+  --theme-color-secondary: #E8DDD0; /* Warm cream secondary */
+  --theme-color-light: #2A2520;     /* Warm dark accent */
+}
+
+$white: #141210;
+$black: #F0EBE3;
+$title-color: #F0EBE3;
+$content-color: #B8B0A8;
+$light-gray: #1C1A18;
+$danger-color: #C0392B;
+$rating-color: #C9A96E;
+$border-color: rgba(201, 169, 110, 0.2);
+
+
+// font family
+$public-sans: "Inter", sans-serif;
+$fontawesome: 'Font Awesome 6 Free';
+
+// Breakpoints
+$min-breakpoints: (lg: 992px,
+  xl: 1200px,
+  2xl: 1366px,
+);
+
+$max-breakpoints: (2xs: 360px,
+  xs: 480px,
+  sm: 575px,
+  md: 767px,
+  lg: 991px,
+  xl: 1199px,
+  2xl: 1366px,
+  3xl: 1460px,
+  4xl: 1660px,
+);

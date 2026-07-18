@@ -1,0 +1,455 @@
+// ============================================================
+// Premium Banner System — Nykaa Fashion × Tata Cliq
+// White · Clean · Rounded · Hover Zoom + "Shop Now" Strip
+// ============================================================
+
+$nf-pink:    #D4145A;
+$nf-dark:    #1C1C2E;
+$nf-gold:    #C9A065;
+$nf-white:   #FFFFFF;
+$nf-bg:      #FAFAFA;
+$nf-radius:  12px;
+$nf-shadow:  0 2px 16px rgba(0, 0, 0, 0.07);
+$nf-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.17);
+$nf-ease:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+// ── Hero Section ───────────────────────────────────────────
+.nf-hero-section {
+  background: $nf-white;
+  padding: 16px 16px 24px;
+
+  @media (min-width: 576px)  { padding: 20px 24px 28px; }
+  @media (min-width: 768px)  { padding: 24px 36px 32px; }
+  @media (min-width: 1200px) { padding: 28px 52px 36px; }
+  @media (min-width: 1400px) { padding: 32px 72px 40px; }
+  @media (min-width: 1600px) { padding: 36px 96px 44px; }
+}
+
+// ── Hero Grid ─────────────────────────────────────────────
+.nf-hero-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 3fr 2fr;
+    gap: 18px;
+    align-items: stretch;
+  }
+
+  @media (min-width: 1400px) { gap: 22px; }
+}
+
+// ── Main Banner Column — reduced height (Nykaa style) ────
+.nf-main-col .nf-card--main {
+  min-height: 180px;
+  max-height: 380px;
+
+  @media (min-width: 576px)  { min-height: 220px; max-height: 400px; }
+  @media (min-width: 768px)  { min-height: 260px; max-height: 420px; }
+  @media (min-width: 1200px) { min-height: 300px; max-height: 440px; }
+
+  // Prevent image from exceeding the max height
+  ::ng-deep img { max-height: 440px; object-position: top center; }
+}
+
+// ── Sub Banners Column ─────────────────────────────────────
+.nf-sub-col {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr 1fr;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  @media (min-width: 1400px) { gap: 22px; }
+
+  .nf-card--sub {
+    min-height: 130px;
+
+    @media (min-width: 768px)  { min-height: 190px; }
+    @media (min-width: 1200px) { min-height: 235px; }
+  }
+}
+
+// ── Universal Banner Card ──────────────────────────────────
+.nf-card {
+  position: relative;
+  border-radius: $nf-radius;
+  overflow: hidden;
+  background: $nf-bg;
+  box-shadow: $nf-shadow;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  transition: transform 0.4s $nf-ease, box-shadow 0.4s $nf-ease;
+
+  &--full { border-radius: 0; }
+
+  // Images fill the card
+  ::ng-deep {
+    .b-cl,
+    .home-contain {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      border-radius: inherit;
+      background-size: cover !important;
+      background-position: center !important;
+      transition: transform 0.5s $nf-ease !important;
+    }
+
+    img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block;
+      transition: transform 0.5s $nf-ease !important;
+    }
+
+    a { display: block; height: 100%; width: 100%; }
+  }
+
+  // "Shop Now" hover label — Nykaa style
+  &__hover-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 18px 22px 16px;
+    background: linear-gradient(to top,
+      rgba($nf-dark, 0.82) 0%,
+      rgba($nf-dark, 0.35) 55%,
+      transparent 100%
+    );
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: transform 0.32s $nf-ease, opacity 0.32s ease;
+    z-index: 3;
+
+    span {
+      color: $nf-white;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    i {
+      color: $nf-gold;
+      font-size: 18px;
+      transition: transform 0.22s ease;
+    }
+  }
+
+  // Gold accent underline — Tata Cliq touch
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, $nf-pink, $nf-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s $nf-ease;
+    z-index: 4;
+  }
+
+  // Hover
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $nf-shadow-lg;
+
+    ::ng-deep {
+      .b-cl,
+      .home-contain,
+      img { transform: scale(1.04) !important; }
+    }
+
+    .nf-card__hover-label {
+      opacity: 1;
+      transform: translateY(0);
+
+      i { transform: translateX(5px); }
+    }
+
+    &::after { transform: scaleX(1); }
+  }
+}
+
+// ── Dark mode ──────────────────────────────────────────────
+html.dark {
+  .nf-card {
+    background: #1e1e2e;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
+
+    &:hover { box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5); }
+  }
+}
+
+// ============================================================
+// Tokyo Theme — Luxury Editorial Hero
+// ============================================================
+
+$lux-gold:   #C9A96E;
+$lux-dark:   #1A1A1A;
+$lux-cream:  #F5EFE4;
+$lux-text:   #C8BFB0;
+$lux-ease:   cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+.lux-hero {
+  padding: 20px 0 32px;
+
+  // ── Grid layout ──────────────────────────────────────────
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 3fr 2fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    @media (min-width: 1200px) {
+      grid-template-columns: 62fr 38fr;
+      gap: 20px;
+    }
+  }
+
+  // ── Side column — stacked sub-banners ────────────────────
+  &__side {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 1200px) { gap: 20px; }
+  }
+
+  // ── Universal card shell ──────────────────────────────────
+  &__card {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    background: #141210;
+    cursor: pointer;
+
+    // Images fill card
+    ::ng-deep {
+      .home-contain,
+      a {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        display: block;
+      }
+
+      img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center top;
+        display: block;
+        transition: transform 0.7s $lux-ease !important;
+      }
+    }
+
+    &:hover ::ng-deep img { transform: scale(1.05) !important; }
+
+    // ── Main banner — tall with left text overlay ──────────
+    &--main {
+      min-height: 360px;
+
+      @media (min-width: 576px)  { min-height: 420px; }
+      @media (min-width: 768px)  { min-height: 480px; }
+      @media (min-width: 1200px) { min-height: 560px; }
+      @media (min-width: 1400px) { min-height: 620px; }
+
+      // Dark gradient across left side for text readability
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          105deg,
+          rgba($lux-dark, 0.78) 0%,
+          rgba($lux-dark, 0.45) 45%,
+          transparent 70%
+        );
+        z-index: 2;
+        pointer-events: none;
+      }
+    }
+
+    // ── Sub banner — shorter cards ─────────────────────────
+    &--sub {
+      min-height: 160px;
+
+      @media (min-width: 576px)  { min-height: 190px; }
+      @media (min-width: 768px)  { min-height: 220px; }
+      @media (min-width: 1200px) { min-height: 265px; }
+      @media (min-width: 1400px) { min-height: 295px; }
+
+      // Bottom gradient for sub label
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba($lux-dark, 0.7) 0%,
+          transparent 55%
+        );
+        z-index: 2;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      &:hover::before { opacity: 1; }
+    }
+  }
+
+  // ── Main card text overlay ────────────────────────────────
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    align-items: flex-end;
+    padding: 36px 40px;
+
+    @media (min-width: 768px)  { padding: 44px 48px; }
+    @media (min-width: 1200px) { padding: 56px 60px; }
+  }
+
+  &__overlay-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    max-width: 340px;
+  }
+
+  &__tag {
+    display: inline-block;
+    font-family: "Inter", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: $lux-gold;
+    border: 1px solid rgba($lux-gold, 0.5);
+    padding: 5px 12px;
+    border-radius: 2px;
+  }
+
+  &__title {
+    font-family: "Playfair Display", serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.18;
+    color: #FFFFFF;
+    margin: 0;
+    letter-spacing: -0.01em;
+
+    @media (min-width: 768px)  { font-size: 40px; }
+    @media (min-width: 1200px) { font-size: 50px; }
+    @media (min-width: 1400px) { font-size: 56px; }
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: $lux-dark !important;
+    background: $lux-gold;
+    padding: 13px 24px;
+    text-decoration: none !important;
+    border: none;
+    transition: background 0.22s ease, gap 0.22s ease;
+
+    i {
+      font-size: 16px;
+      transition: transform 0.22s ease;
+    }
+
+    &:hover {
+      background: darken(#C9A96E, 8%);
+      gap: 14px;
+      i { transform: translateX(4px); }
+    }
+  }
+
+  // ── Gold corner accent ─────────────────────────────────────
+  &__corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 48px 48px 0;
+    border-color: transparent $lux-gold transparent transparent;
+    z-index: 4;
+    opacity: 0.7;
+  }
+
+  // ── Sub-banner hover label ────────────────────────────────
+  &__sub-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 18px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.28s ease, transform 0.28s ease;
+
+    span {
+      font-family: "Inter", sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: $lux-gold;
+    }
+
+    i {
+      font-size: 15px;
+      color: $lux-gold;
+      transition: transform 0.22s ease;
+    }
+  }
+
+  &__card--sub:hover &__sub-label {
+    opacity: 1;
+    transform: translateY(0);
+    i { transform: translateX(4px); }
+  }
+}

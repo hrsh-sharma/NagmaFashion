@@ -1,0 +1,386 @@
+// ── NAGMA Design Tokens ───────────────────────────────────
+$gold:   #C9A96E;
+$gold-d: #b08e54;
+$dark:   #1A1A1A;
+$cream:  #F8F4EE;
+$border: #E8E4DC;
+$muted:  #888888;
+$white:  #ffffff;
+
+// ── Page Header ───────────────────────────────────────────
+.wl-page-header {
+  background: $white;
+  border-bottom: 1px solid $border;
+  padding: 40px 0 0;
+}
+
+.wl-page-header__inner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-bottom: 24px;
+}
+
+.wl-eyebrow {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: $gold;
+  margin-bottom: 8px;
+}
+
+.wl-page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: $dark;
+  margin: 0;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.wl-item-count {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.wl-item-count__num {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: $gold;
+  line-height: 1;
+}
+
+.wl-item-count__label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: $muted;
+}
+
+.wl-page-header__rule {
+  height: 1px;
+  background: $border;
+}
+
+// ── Main Section ──────────────────────────────────────────
+.wl-section {
+  padding: 48px 0 80px;
+  background: $white;
+}
+
+// ── Product Grid ──────────────────────────────────────────
+.wl-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+
+  @media (max-width: 1199px) { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 860px)  { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  @media (max-width: 480px)  { grid-template-columns: 1fr; gap: 16px; }
+}
+
+// ── Product Card ──────────────────────────────────────────
+.wl-card {
+  background: $white;
+  border: 1px solid $border;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.25s ease;
+
+  &:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.09);
+  }
+}
+
+// Image wrapper with hover overlay
+.wl-card__img-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  background: $cream;
+
+  &:hover .wl-card__bag-hover {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &:hover .wl-card__img {
+    transform: scale(1.04);
+  }
+}
+
+.wl-card__sale-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 3;
+  background: $dark;
+  color: $white;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 8px;
+}
+
+.wl-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+.wl-card__remove {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 3;
+  width: 30px;
+  height: 30px;
+  background: $white;
+  border: 1px solid $border;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  i {
+    font-size: 16px;
+    color: $muted;
+    line-height: 1;
+  }
+
+  &:hover {
+    background: $dark;
+    border-color: $dark;
+    i { color: $white; }
+  }
+}
+
+.wl-card__bag-hover {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  background: $dark;
+  color: $white;
+  border: none;
+  padding: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease;
+
+  i { font-size: 16px; }
+
+  &:hover:not(:disabled) {
+    background: $gold;
+  }
+
+  &:disabled {
+    background: $muted;
+    cursor: not-allowed;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ── Card Info ─────────────────────────────────────────────
+.wl-card__info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  border-top: 1px solid $border;
+}
+
+.wl-card__name {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: $dark;
+  text-decoration: none;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.5;
+
+  &:hover { color: $gold; }
+}
+
+.wl-card__price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.wl-card__price {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: $dark;
+}
+
+.wl-card__original {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: $muted;
+  text-decoration: line-through;
+}
+
+.wl-card__off {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: $gold;
+}
+
+// ── Card Meta (stars + stock) ─────────────────────────────
+.wl-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.wl-card__stars {
+  display: flex;
+  gap: 1px;
+
+  i {
+    font-size: 12px;
+    color: $gold;
+
+    &.ri-star-line { color: $border; }
+  }
+}
+
+.wl-card__stock {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  text-transform: uppercase;
+}
+
+.wl-card__stock--in {
+  color: #2d7a3a;
+  background: rgba(45, 122, 58, 0.08);
+}
+
+.wl-card__stock--out {
+  color: #8b3636;
+  background: rgba(139, 54, 54, 0.08);
+}
+
+// ── Empty State ───────────────────────────────────────────
+.wl-empty {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.wl-empty__icon {
+  width: 96px;
+  height: 96px;
+  border: 1px solid $border;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 28px;
+  background: $cream;
+
+  i {
+    font-size: 44px;
+    color: $gold;
+    opacity: 0.7;
+  }
+}
+
+.wl-empty__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: $dark;
+  margin-bottom: 12px;
+}
+
+.wl-empty__sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: $muted;
+  max-width: 400px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+
+.wl-empty__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 36px;
+  background: $dark;
+  color: $white;
+  border: 1px solid $dark;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+
+  i { font-size: 16px; }
+
+  &:hover {
+    background: $gold;
+    border-color: $gold;
+    color: $white;
+  }
+}
+
+// ── Responsive ────────────────────────────────────────────
+@media (max-width: 768px) {
+  .wl-page-header__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .wl-item-count {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .wl-page-title {
+    font-size: 28px;
+  }
+}

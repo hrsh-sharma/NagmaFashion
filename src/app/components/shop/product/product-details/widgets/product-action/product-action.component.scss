@@ -1,0 +1,42 @@
+// NAGMA — Product Action (stock indicator + links)
+
+.size-delivery-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #555;
+    text-decoration: none;
+    transition: color 0.18s ease;
+
+    i { font-size: 14px; color: #C9A96E; }
+
+    &:hover { color: #C9A96E; }
+  }
+
+  @media (max-width: 480px) {
+    gap: 10px;
+    a { font-size: 11px; }
+  }
+}
+
+.progress-sec {
+  margin-bottom: 14px;
+
+  h6 {
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #888;
+    margin-bottom: 6px;
+  }
+}

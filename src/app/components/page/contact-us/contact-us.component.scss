@@ -1,0 +1,274 @@
+// ═══════════════════════════════════════════════════════════
+// NAGMA — Contact Us Page
+// ═══════════════════════════════════════════════════════════
+
+$gold:   #C9A96E;
+$gold-d: #b08e54;
+$dark:   #1A1A1A;
+$cream:  #F8F4EE;
+$border: #E8E4DC;
+$muted:  #888888;
+$text:   #444444;
+$white:  #FFFFFF;
+$red:    #B91C1C;
+
+// ── Page section ──────────────────────────────────────────
+.cu-section {
+  padding: 72px 0 96px;
+  background: $white;
+}
+
+// ── Two-column grid ───────────────────────────────────────
+.cu-grid {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 1px;
+  background: $border;
+  border: 1px solid $border;
+
+  @media (max-width: 991px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ══ LEFT: Info panel ══════════════════════════════════════
+.cu-info {
+  background: $cream;
+  padding: 52px 44px;
+
+  @media (max-width: 575px) {
+    padding: 36px 24px;
+  }
+}
+
+.cu-info__eyebrow {
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $gold;
+  margin-bottom: 14px;
+}
+
+.cu-info__title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(26px, 3vw, 34px);
+  font-weight: 700;
+  color: $dark;
+  margin: 0 0 14px;
+  line-height: 1.2;
+}
+
+.cu-info__sub {
+  font-family: "Inter", sans-serif;
+  font-size: 13.5px;
+  color: $muted;
+  line-height: 1.7;
+  margin: 0 0 44px;
+}
+
+// ── Info items ────────────────────────────────────────────
+.cu-info__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid $border;
+}
+
+.cu-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 24px 0;
+  border-bottom: 1px solid $border;
+}
+
+.cu-info-item__icon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  background: $white;
+  border: 1px solid $border;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+
+  i {
+    font-size: 18px;
+    color: $gold;
+  }
+}
+
+.cu-info-item__body {
+  flex: 1;
+}
+
+.cu-info-item__label {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $muted;
+  margin-bottom: 6px;
+}
+
+.cu-info-item__value {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: $text;
+  line-height: 1.65;
+  margin: 0;
+
+  a {
+    color: $dark;
+    text-decoration: none;
+    border-bottom: 1px solid $border;
+    transition: border-color 0.18s ease, color 0.18s ease;
+
+    &:hover {
+      color: $gold;
+      border-color: $gold;
+    }
+  }
+}
+
+// ══ RIGHT: Form panel ═════════════════════════════════════
+.cu-form-wrap {
+  background: $white;
+  padding: 52px 52px;
+
+  @media (max-width: 767px) {
+    padding: 36px 24px;
+  }
+}
+
+// ── Form header ───────────────────────────────────────────
+.cu-form-header {
+  margin-bottom: 40px;
+}
+
+.cu-form-header__title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(24px, 2.5vw, 30px);
+  font-weight: 700;
+  color: $dark;
+  margin: 0 0 10px;
+  line-height: 1.2;
+}
+
+.cu-form-header__sub {
+  font-family: "Inter", sans-serif;
+  font-size: 13.5px;
+  color: $muted;
+  margin: 0;
+  line-height: 1.6;
+}
+
+// ── Form layout ───────────────────────────────────────────
+.cu-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.cu-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+  @media (max-width: 575px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ── Field ─────────────────────────────────────────────────
+.cu-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.cu-label {
+  font-family: "Inter", sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: $muted;
+}
+
+.cu-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid $border;
+  border-radius: 2px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: $dark;
+  background: $white;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: #C4BFB7;
+    font-size: 13px;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $dark;
+    box-shadow: 0 0 0 2px rgba($gold, 0.18);
+  }
+
+  &--textarea {
+    resize: vertical;
+    min-height: 130px;
+  }
+}
+
+// ── Submit ────────────────────────────────────────────────
+.cu-form__footer {
+  padding-top: 4px;
+}
+
+.cu-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 36px;
+  background: $dark;
+  color: $white;
+  border: 1px solid $dark;
+  border-radius: 2px;
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+  i { font-size: 16px; }
+
+  &:hover:not(:disabled) {
+    background: $gold;
+    border-color: $gold;
+    color: $dark;
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+
+// ── Mobile stacking ───────────────────────────────────────
+@media (max-width: 991px) {
+  .cu-info { border-bottom: 1px solid $border; }
+}

@@ -1,0 +1,378 @@
+// ── NAGMA design tokens ───────────────────────────────────
+$gold:   #C9A96E;
+$gold-d: #b08e54;
+$dark:   #1A1A1A;
+$cream:  #F8F4EE;
+$border: #E8E4DC;
+$muted:  #888888;
+$white:  #ffffff;
+$error:  #D32F2F;
+
+// ── Page layout ───────────────────────────────────────────
+.auth-section {
+  min-height: 100vh;
+  padding: 0;
+  background: $white;
+}
+
+.auth-split {
+  display: flex;
+  min-height: 100vh;
+}
+
+// ── Left brand panel ──────────────────────────────────────
+.auth-split__brand {
+  width: 42%;
+  flex-shrink: 0;
+  background: $dark;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(#C9A96E, 0.07) 1px, transparent 1px);
+    background-size: 22px 22px;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    border: 1px solid rgba(#C9A96E, 0.12);
+    pointer-events: none;
+  }
+}
+
+.auth-split__brand-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 40px;
+  text-align: center;
+}
+
+.auth-split__logo {
+  width: 68px;
+  height: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.88;
+}
+
+.auth-split__rule {
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(#C9A96E, 0.6), transparent);
+}
+
+.auth-split__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(38px, 4.5vw, 54px);
+  font-weight: 700;
+  color: $white;
+  letter-spacing: 0.16em;
+  margin: 0;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.auth-split__tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.auth-split__quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(#C9A96E, 0.65);
+  margin: 0;
+  max-width: 210px;
+  line-height: 1.7;
+}
+
+// ── Right form panel ──────────────────────────────────────
+.auth-split__form {
+  flex: 1;
+  background: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 60px;
+  overflow-y: auto;
+  min-height: 100vh;
+}
+
+.auth-split__form-inner {
+  width: 100%;
+  max-width: 400px;
+}
+
+// ── Form head ─────────────────────────────────────────────
+.auth-form-head {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.auth-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: $dark;
+  text-align: center;
+  margin: 0 0 4px;
+}
+
+.auth-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  color: $muted;
+  text-align: center;
+  margin: 0 0 12px;
+}
+
+// ── Destination badge ─────────────────────────────────────
+.auth-dest {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: $dark;
+    background: rgba($gold, 0.08);
+    border: 1px solid rgba($gold, 0.25);
+    padding: 7px 14px;
+
+    i { font-size: 15px; color: $gold; }
+  }
+}
+
+// ── Form ──────────────────────────────────────────────────
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+// ── Field ─────────────────────────────────────────────────
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  &__label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #666;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  &__input {
+    width: 100%;
+    height: 48px;
+    background: #F6F6F8;
+    border: 1.5px solid transparent;
+    border-radius: 0;
+    padding: 0 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: $dark;
+    outline: none;
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+
+    &:focus {
+      border-color: $gold;
+      background: $white;
+      box-shadow: 0 0 0 3px rgba($gold, 0.10);
+    }
+
+    &--error {
+      border-color: $error !important;
+      background: rgba($error, 0.04) !important;
+    }
+  }
+
+  &__error {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: $error;
+
+    &::before {
+      content: '⚠';
+      font-size: 11px;
+    }
+  }
+}
+
+// ── OTP input overrides ───────────────────────────────────
+.auth-otp-input {
+  height: 60px !important;
+  text-align: center;
+  font-size: 26px !important;
+  font-weight: 700;
+  letter-spacing: 10px;
+  font-family: 'Inter', sans-serif;
+
+  &::placeholder {
+    letter-spacing: 6px;
+    font-size: 18px;
+    color: #ccc;
+    font-weight: 400;
+  }
+}
+
+// ── Submit button (via ng-deep) ────────────────────────────
+::ng-deep .auth-submit-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 50px !important;
+  background: $dark !important;
+  color: $white !important;
+  border: none !important;
+  border-radius: 0 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: background 0.2s ease !important;
+
+  &:hover { background: $gold !important; }
+
+  &:disabled,
+  &[disabled] {
+    background: #C8C8C8 !important;
+    cursor: not-allowed !important;
+  }
+}
+
+// ── Divider ───────────────────────────────────────────────
+.auth-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #C0C0C0;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  margin: 4px 0;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: $border;
+  }
+}
+
+// ── Resend ────────────────────────────────────────────────
+.auth-resend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  &__text {
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    color: $muted;
+    margin: 0;
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: 1px solid $gold;
+    color: $gold;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 9px 20px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+    border-radius: 0;
+
+    i { font-size: 14px; }
+
+    &:hover {
+      background: $gold;
+      color: $white;
+    }
+  }
+}
+
+// ── Alt link row ──────────────────────────────────────────
+.auth-alt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: $muted;
+  margin-top: 4px;
+
+  &__link {
+    color: $gold;
+    font-weight: 700;
+    border-bottom: 1px solid $gold;
+    border-radius: 0;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease;
+
+    &:hover { color: $gold-d; border-color: $gold-d; }
+  }
+}
+
+// ── Responsive ────────────────────────────────────────────
+@media (max-width: 900px) {
+  .auth-split__brand { display: none; }
+  .auth-split__form { padding: 40px 24px; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .auth-split__form { padding: 30px 18px; }
+
+  .auth-otp-input {
+    font-size: 22px !important;
+    letter-spacing: 8px;
+  }
+}

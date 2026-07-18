@@ -1,0 +1,58 @@
+<div class="pc" [class]="class">
+
+  <!-- Wishlist -->
+  <button class="pc__wish"
+          [class.pc__wish--active]="product.is_wishlist"
+          (click)="addToWishlist(product)"
+          *ngIf="!close"
+          title="Wishlist">
+    <i class="ri-heart-fill" *ngIf="product.is_wishlist"></i>
+    <i class="ri-heart-line" *ngIf="!product.is_wishlist"></i>
+  </button>
+
+  <!-- Close (wishlist page) -->
+  <button class="pc__close" *ngIf="close" (click)="removeWishlist(product.id)">
+    <i class="ri-close-line"></i>
+  </button>
+
+  <!-- Image -->
+  <a [routerLink]="['/product/', product.slug]" class="pc__img-wrap">
+    <img appLazyLoad
+         [src]="product.product_thumbnail ? product.product_thumbnail.original_url : 'assets/images/product.png'"
+         [alt]="product.name"
+         class="pc__img lazy-loading"
+         placeholder="assets/images/placeholder.png">
+
+    <!-- Rating pill — bottom-left of image -->
+    <div class="pc__rating" *ngIf="product.rating_count">
+      <i class="ri-star-fill"></i>
+      <span class="pc__rating-score">{{ product.rating_count | number:'1.1-1' }}</span>
+      <span class="pc__rating-sep">|</span>
+      <span class="pc__rating-count">{{ product.reviews_count || '0' }}</span>
+    </div>
+
+  </a>
+
+  <!-- Info -->
+  <div class="pc__info">
+    <span class="pc__brand" *ngIf="product.brand">{{ product.brand.name }}</span>
+    <a [routerLink]="['/product/', product.slug]" class="pc__name">{{ product.name }}</a>
+    <div class="pc__price-row">
+      <span class="pc__price">{{ product.price | currencySymbol }}</span>
+      <span class="pc__mrp" *ngIf="product.is_sale_enable && product.sale_price">
+        {{ product.sale_price | currencySymbol }}
+      </span>
+      <span class="pc__off"
+            *ngIf="product.is_sale_enable && product.sale_price && product.price > product.sale_price">
+        ({{ ((1 - product.sale_price / product.price) * 100) | number:'1.0-0' }}% OFF)
+      </span>
+    </div>
+    <div class="pc__action">
+      <app-product-cart-button [product]="product" [text]="'Add to Cart'"></app-product-cart-button>
+    </div>
+  </div>
+
+</div>
+
+<app-variation-modal #variationModal></app-variation-modal>
+<app-cart-popup-modal #cartPopupModal></app-cart-popup-modal>

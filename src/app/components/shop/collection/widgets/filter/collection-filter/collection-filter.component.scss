@@ -1,0 +1,62 @@
+// ═══════════════════════════════════════════════════════
+// NAGMA — Active Filter Chips
+// ═══════════════════════════════════════════════════════
+
+$lux-gold:  #C9A96E;
+$lux-gold-d: #b08e54;
+
+:host { display: block; }
+
+.nf-active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 12px 0 6px;
+}
+
+.nf-active-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 6px 5px 10px;
+  border: 1px solid rgba($lux-gold, 0.35);
+  border-radius: 2px;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #444;
+  background: rgba($lux-gold, 0.06);
+  white-space: nowrap;
+  line-height: 1;
+
+  &__remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    color: #aaa;
+    border-radius: 50%;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+
+    i { font-size: 12px; line-height: 1; }
+
+    &:hover {
+      color: $lux-gold-d;
+      background: rgba($lux-gold, 0.12);
+    }
+  }
+}
+
+html.dark {
+  .nf-active-chip {
+    color: #c8c0b0;
+    background: rgba($lux-gold, 0.08);
+    border-color: rgba($lux-gold, 0.25);
+  }
+}

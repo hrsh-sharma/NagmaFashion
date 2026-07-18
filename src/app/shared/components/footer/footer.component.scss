@@ -1,0 +1,14 @@
+// Override legacy footer.scss decorative shapes (footer-shape.png left/right)
+:host ::ng-deep footer {
+  background: #0E0D0C !important;
+
+  &::before,
+  &::after {
+    content: none !important;
+    background: none !important;
+    background-image: none !important;
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+}

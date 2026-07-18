@@ -1,0 +1,132 @@
+<div class="dash">
+
+  <!-- ══ LEFT SIDEBAR ════════════════════════════════════════ -->
+  <aside class="dash__sidebar">
+
+    <!-- Identity block -->
+    <div class="dash__identity">
+      <div class="dash__avatar">
+        <img *ngIf="(user$ | async)?.profile_image?.original_url"
+             [src]="(user$ | async)?.profile_image?.original_url"
+             class="dash__avatar-img" alt="profile photo">
+        <span *ngIf="!(user$ | async)?.profile_image?.original_url"
+              class="dash__avatar-initial">
+          {{ (user$ | async)?.name?.charAt(0)?.toUpperCase() || 'U' }}
+        </span>
+      </div>
+      <p class="dash__welcome">Welcome back</p>
+      <h2 class="dash__name">{{ ((user$ | async)?.name | titlecase) || 'User' }}</h2>
+      <p class="dash__email">{{ (user$ | async)?.email }}</p>
+    </div>
+
+    <!-- Sidebar divider -->
+    <div class="dash__sidebar-rule"></div>
+
+    <!-- Navigation -->
+    <nav class="dash__nav">
+      <p class="dash__nav-label">Account</p>
+
+      <button type="button" class="dash__nav-item" (click)="navigateTo('order')">
+        <span class="dash__nav-icon"><i class="ri-shopping-bag-3-line"></i></span>
+        <span class="dash__nav-text">My Orders</span>
+        <i class="ri-arrow-right-s-line dash__nav-chev"></i>
+      </button>
+
+      <button type="button" class="dash__nav-item" (click)="navigateTo('addresses')">
+        <span class="dash__nav-icon"><i class="ri-map-pin-line"></i></span>
+        <span class="dash__nav-text">Addresses</span>
+        <i class="ri-arrow-right-s-line dash__nav-chev"></i>
+      </button>
+    </nav>
+
+    <!-- Sidebar CTA -->
+    <div class="dash__sidebar-footer">
+      <button type="button" class="dash__edit-btn" (click)="ProfileModal.openModal()">
+        <i class="ri-edit-line"></i> Edit Profile
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- ══ RIGHT MAIN CONTENT ══════════════════════════════════ -->
+  <main class="dash__main">
+
+    <!-- ── Profile Information ──────────────────────────── -->
+    <section class="dash__section">
+
+      <div class="dash__section-head">
+        <div>
+          <h3 class="dash__section-title">Profile Information</h3>
+          <div class="dash__section-accent"></div>
+        </div>
+        <button type="button" class="dash__text-btn" (click)="ProfileModal.openModal()">
+          <i class="ri-edit-line"></i> Edit
+        </button>
+      </div>
+
+      <div class="dash__fields">
+
+        <div class="dash__field">
+          <span class="dash__field-label">Full Name</span>
+          <span class="dash__field-value">{{ ((user$ | async)?.name | titlecase) || '—' }}</span>
+        </div>
+
+        <div class="dash__field">
+          <span class="dash__field-label">Email Address</span>
+          <span class="dash__field-value">{{ (user$ | async)?.email || '—' }}</span>
+        </div>
+
+        <div class="dash__field">
+          <span class="dash__field-label">Phone Number</span>
+          <span class="dash__field-value" *ngIf="(user$ | async)?.phone; else noPhone">
+            +{{ (user$ | async)?.country_code }}&nbsp;{{ (user$ | async)?.phone }}
+          </span>
+          <ng-template #noPhone>
+            <span class="dash__field-value dash__field-value--muted">Not added</span>
+          </ng-template>
+        </div>
+
+        <div class="dash__field dash__field--inline">
+          <span class="dash__field-label">Password</span>
+          <span class="dash__field-value dash__field-value--row">
+            <span class="dash__dots">••••••••</span>
+            <button type="button" class="dash__text-btn" (click)="PasswordModal.openModal()">Change</button>
+          </span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Default Address ──────────────────────────────── -->
+    <section class="dash__section" *ngIf="address">
+
+      <div class="dash__section-head">
+        <div>
+          <h3 class="dash__section-title">Default Address</h3>
+          <div class="dash__section-accent"></div>
+        </div>
+        <button type="button" class="dash__text-btn" (click)="navigateTo('addresses')">
+          <i class="ri-map-pin-line"></i> Manage
+        </button>
+      </div>
+
+      <div class="dash__address">
+        <span class="dash__address-tag">{{ address?.title }}</span>
+        <p class="dash__address-line">
+          <span *ngIf="address?.floor_no">Floor {{ address?.floor_no }}, </span>
+          <span *ngIf="address?.flat_no">Flat {{ address?.flat_no }}, </span>
+          <span *ngIf="address?.building">{{ address?.building }}, </span>
+          <span *ngIf="address?.road">{{ address?.road }}, </span>
+          {{ address?.street }}, {{ address?.city }}, {{ address?.area }}
+        </p>
+        <p class="dash__address-pin">{{ address?.country_id }} — {{ address?.pincode }}</p>
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+<app-edit-profile-modal #profileModal></app-edit-profile-modal>
+<app-change-password-modal #passwordModal></app-change-password-modal>

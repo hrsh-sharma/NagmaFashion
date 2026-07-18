@@ -1,0 +1,243 @@
+// ═══════════════════════════════════════════════════════
+// NAGMA — Filter Sidebar
+// ═══════════════════════════════════════════════════════
+
+$lux-gold:   #C9A96E;
+$lux-gold-d: #b08e54;
+$lux-dark:   #1A1A1A;
+$lux-cream:  #F8F4EE;
+$white:      #FFFFFF;
+$border:     #E8E4DC;
+$text-muted: #888;
+
+:host { display: block; }
+
+// ── Kill Bootstrap accordion defaults ─────────────────────
+::ng-deep {
+  .accordion-button {
+    &::after { display: none !important; }
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    color: inherit !important;
+    font-size: inherit !important;
+  }
+  .accordion-item  { border: none !important; background: transparent !important; }
+  .accordion-body  { padding: 0 !important; }
+  .accordion-header{ margin: 0 !important; }
+}
+
+// ── Sidebar shell ──────────────────────────────────────────
+.nf-sidebar {
+  background: $white;
+}
+
+// ── Header: "Filters / Clear All" ────────────────────────
+.nf-sidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid $border;
+  margin-bottom: 0;
+}
+
+.nf-sidebar__title {
+  font-family: "Playfair Display", serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: $lux-dark;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.nf-sidebar__header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nf-sidebar__clear {
+  font-family: "Inter", sans-serif;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: $lux-gold;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color 0.18s ease;
+
+  &:hover { color: $lux-gold-d; }
+}
+
+.nf-sidebar__close {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid $border;
+  background: $white;
+  color: #777;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 17px;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: $lux-gold;
+    border-color: $lux-gold;
+    color: $white;
+  }
+}
+
+// ── Active filter chips (e.g. selected category) ──────────
+.nf-filter-section {
+  padding: 14px 0;
+  border-bottom: 1px solid $border;
+}
+
+.nf-filter-section__label {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $text-muted;
+  margin-bottom: 10px;
+}
+
+.nf-filter-section__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.nf-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  background: rgba($lux-gold, 0.10);
+  border: 1px solid rgba($lux-gold, 0.25);
+  border-radius: 2px;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: $lux-dark;
+  line-height: 1;
+  white-space: nowrap;
+
+  &--removable {
+    cursor: pointer;
+    transition: all 0.15s ease;
+
+    i { font-size: 12px; color: $text-muted; }
+
+    &:hover {
+      background: rgba($lux-gold, 0.18);
+      border-color: $lux-gold;
+      i { color: $lux-gold-d; }
+    }
+  }
+}
+
+// ── Accordion ─────────────────────────────────────────────
+.nf-accordion { display: flex; flex-direction: column; }
+
+.nf-accordion__item {
+  border-bottom: 1px solid $border !important;
+}
+
+.nf-accordion__btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 0 !important;
+  background: none !important;
+  border: none;
+  cursor: pointer;
+  gap: 8px;
+
+  span {
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: $lux-dark;
+    letter-spacing: 0.01em;
+    line-height: 1;
+  }
+
+  .nf-accordion__icon {
+    font-size: 17px;
+    color: $text-muted;
+    flex-shrink: 0;
+    line-height: 1;
+    transition: transform 0.22s ease;
+  }
+
+  &[aria-expanded="true"] {
+    span { color: $lux-gold; }
+    .nf-accordion__icon { transform: rotate(45deg); color: $lux-gold; }
+  }
+}
+
+.nf-accordion__body {
+  padding: 2px 0 14px;
+}
+
+// ── Size chips ─────────────────────────────────────────────
+.nf-size-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.nf-size-chip {
+  min-width: 42px;
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid $border;
+  border-radius: 2px;
+  background: $white;
+  font-family: "Inter", sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #555;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.18s ease;
+
+  &:hover { border-color: $lux-gold; color: $lux-gold; }
+
+  &.active {
+    background: $lux-gold;
+    border-color: $lux-gold;
+    color: $white;
+  }
+}
+
+// ── Dark mode ──────────────────────────────────────────────
+html.dark {
+  .nf-sidebar         { background: #141210; }
+  .nf-sidebar__title  { color: #e8e0d0; }
+  .nf-sidebar__clear  { color: $lux-gold; }
+  .nf-sidebar__header,
+  .nf-filter-section,
+  .nf-accordion__item { border-color: #2a2620 !important; }
+  .nf-filter-section__label { color: #888; }
+  .nf-chip { background: rgba($lux-gold, 0.08); border-color: rgba($lux-gold, 0.2); color: #d0c8b8; }
+  .nf-accordion__btn span  { color: #d0c8b8; }
+  .nf-accordion__icon      { color: #888; }
+  .nf-size-chip { background: #1e1c18; border-color: #3a3630; color: #c0b8a8;
+    &:hover { border-color: $lux-gold; color: $lux-gold; }
+    &.active { background: $lux-gold; border-color: $lux-gold; color: #1A1A1A; }
+  }
+  ::ng-deep .accordion-button { background: transparent !important; }
+}

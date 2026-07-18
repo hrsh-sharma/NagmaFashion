@@ -1,0 +1,76 @@
+// ============================================================
+// Link Box — Mega Menu Column (Luxury Dark)
+// ============================================================
+
+$lux-gold:   #C9A96E;
+$lux-text:   #C8BFB0;
+$lux-muted:  #8A8480;
+$lux-border: rgba(201, 169, 110, 0.12);
+
+// ── Category heading (e.g. "Western Wear") ───────────────
+.dropdown-header {
+  font-family: "Playfair Display", serif !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  color: $lux-gold !important;
+  text-transform: none !important;
+  padding: 0 0 6px 0 !important;
+  margin-bottom: 4px !important;
+  border-bottom: 1px solid $lux-border !important;
+  white-space: nowrap;
+}
+
+// ── Sub-item list wrapper ────────────────────────────────
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+// ── Individual link items ────────────────────────────────
+.dropdown-item {
+  font-family: "Inter", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.03em !important;
+  color: $lux-text !important;
+  padding: 4px 0 !important;
+  background: transparent !important;
+  border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  transition: color 0.18s ease, transform 0.18s ease !important;
+  cursor: pointer;
+
+  // Gold dash that appears on hover
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 1px;
+    background: $lux-gold;
+    transition: width 0.2s ease;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  &:hover {
+    color: $lux-gold !important;
+    background: transparent !important;
+    transform: translateX(4px);
+
+    &::before { width: 12px; }
+  }
+
+  // Badge label
+  .menu-label {
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.08em !important;
+    padding: 2px 6px !important;
+    border-radius: 3px !important;
+    text-transform: uppercase !important;
+  }
+}

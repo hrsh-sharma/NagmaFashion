@@ -1,0 +1,350 @@
+// ═══════════════════════════════════════════════════════════
+// NAGMA — Product Contain (Info Panel)
+// ═══════════════════════════════════════════════════════════
+
+$gold:    #C9A96E;
+$gold-d:  #b08e54;
+$dark:    #1A1A1A;
+$cream:   #F8F4EE;
+$border:  #E8E4DC;
+$muted:   #888888;
+$white:   #FFFFFF;
+
+:host { display: block; text-align: left; }
+
+// ── Brand label ───────────────────────────────────────────────
+.nyk-brand {
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $gold;
+  margin-bottom: 10px;
+}
+
+// ── Product name ──────────────────────────────────────────────
+.nyk-product-name {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 700;
+  color: $dark;
+  line-height: 1.2;
+  margin: 0 0 20px;
+  letter-spacing: -0.01em;
+}
+
+// ── Price row ─────────────────────────────────────────────────
+.nyk-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.nyk-price {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(22px, 2.5vw, 28px);
+  font-weight: 700;
+  color: $dark;
+  line-height: 1;
+}
+
+.nyk-discount-pct {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #2E7D52;
+  background: rgba(#2E7D52, 0.08);
+  padding: 3px 9px;
+  border-radius: 2px;
+}
+
+// ── MRP ───────────────────────────────────────────────────────
+.nyk-mrp {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  color: $muted;
+  margin-bottom: 20px;
+
+  del { color: $muted; }
+
+  &__tax {
+    font-size: 11px;
+    color: #aaa;
+  }
+}
+
+// ── Divider ───────────────────────────────────────────────────
+.nyk-divider {
+  height: 1px;
+  background: $border;
+  margin: 20px 0;
+}
+
+// ── Short description ─────────────────────────────────────────
+.nyk-short-desc {
+  font-family: "Inter", sans-serif;
+  font-size: 13.5px;
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.75;
+
+  p { margin: 0; }
+}
+
+// ── Variants (size, color) ────────────────────────────────────
+.nyk-variants {
+  margin-bottom: 20px;
+
+  ::ng-deep {
+    .product-title h4,
+    .title-name {
+      font-family: "Inter", sans-serif !important;
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.14em !important;
+      text-transform: uppercase !important;
+      color: $muted !important;
+      margin-bottom: 12px !important;
+    }
+
+    .select-package {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 8px !important;
+      padding: 0 !important;
+      margin-bottom: 12px !important;
+
+      li {
+        width: 50px !important;
+        height: 50px !important;
+        min-width: unset !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        list-style: none !important;
+        border-radius: 2px !important;
+        border: 1.5px solid $border !important;
+        background: $white !important;
+        cursor: pointer !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        transition: border-color 0.18s ease, background 0.18s ease !important;
+
+        &:hover { border-color: $gold !important; }
+
+        &.active {
+          border-color: $dark !important;
+          border-width: 2px !important;
+          background: $white !important;
+        }
+
+        button {
+          background: transparent !important;
+          border: none !important;
+          font-family: "Inter", sans-serif !important;
+          font-size: 13px !important;
+          font-weight: 600 !important;
+          color: $dark !important;
+          width: 100% !important;
+          height: 100% !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          padding: 0 !important;
+        }
+      }
+
+      // Force square regardless of attribute style class
+      &.circle li { border-radius: 2px !important; }
+    }
+  }
+}
+
+// ── Qty row ───────────────────────────────────────────────────
+.nyk-qty-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.nyk-qty-label {
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $muted;
+  white-space: nowrap;
+}
+
+.nyk-qty-box {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid $border;
+  border-radius: 2px;
+  overflow: hidden;
+  height: 48px;
+}
+
+.nyk-qty-btn {
+  width: 44px;
+  height: 100%;
+  background: $cream;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+
+  i { font-size: 18px; color: $dark; }
+
+  &:hover { background: rgba($gold, 0.15); }
+}
+
+.nyk-qty-val {
+  min-width: 52px;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: $dark;
+  padding: 0 12px;
+}
+
+// ── CTA buttons ───────────────────────────────────────────────
+.nyk-cta-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 12px;
+  margin-bottom: 24px;
+
+  ::ng-deep app-button { display: contents; }
+
+  ::ng-deep .nyk-btn--bag {
+    background: $dark !important;
+    color: $white !important;
+    border: 1.5px solid $dark !important;
+    text-transform: uppercase !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.12em !important;
+    &:hover { background: $gold !important; border-color: $gold !important; color: $dark !important; }
+  }
+
+  ::ng-deep .nyk-btn--wishlist {
+    background: $white !important;
+    color: $dark !important;
+    border: 1.5px solid $border !important;
+    text-transform: uppercase !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.12em !important;
+    &:hover { border-color: $gold !important; color: $gold !important; }
+  }
+}
+
+.nyk-btn {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px;
+  font-family: "Inter", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  border-radius: 2px !important;
+  cursor: pointer;
+  transition: all 0.22s ease !important;
+  white-space: nowrap;
+
+  i { font-size: 16px; flex-shrink: 0; }
+
+  &--wishlist {
+    background: $white !important;
+    color: $dark !important;
+    border: 1.5px solid $border !important;
+    &:hover { border-color: $gold !important; color: $gold !important; }
+
+    i { color: $gold; }
+  }
+
+  &--bag {
+    background: $dark !important;
+    color: $white !important;
+    border: 1.5px solid $dark !important;
+    &:hover { background: $gold !important; border-color: $gold !important; color: $dark !important; }
+  }
+
+  &--disabled {
+    background: #E8E4DC !important;
+    color: $muted !important;
+    cursor: not-allowed !important;
+    border: none !important;
+  }
+}
+
+// ── Wholesale total ───────────────────────────────────────────
+.nyk-total {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: $dark;
+  margin-bottom: 16px;
+
+  span { color: $gold; font-family: "Playfair Display", serif; }
+}
+
+// ── Unavailable ───────────────────────────────────────────────
+.nyk-unavailable {
+  padding: 14px 18px;
+  background: $cream;
+  border: 1px solid $border;
+  border-radius: 2px;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  color: $muted;
+  font-weight: 600;
+}
+
+// ── Responsive ───────────────────────────────────────────────
+@media (max-width: 767px) {
+  .nyk-product-name { margin-bottom: 14px; }
+
+  .nyk-cta-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 575px) {
+  .nyk-divider { margin: 14px 0; }
+
+  .nyk-cta-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .nyk-btn { height: 48px; }
+}
+
+// ── Dark mode ─────────────────────────────────────────────────
+html.dark {
+  .nyk-product-name { color: #e8e0d0; }
+  .nyk-price        { color: #e8e0d0; }
+  .nyk-short-desc   { color: #b0a898; }
+  .nyk-divider      { background: #2a2620; }
+  .nyk-qty-box      { border-color: #2a2620; }
+  .nyk-qty-btn      { background: #2a2620; }
+  .nyk-qty-val      { color: #e8e0d0; }
+  .nyk-unavailable  { background: #1e1c18; border-color: #2a2620; }
+}

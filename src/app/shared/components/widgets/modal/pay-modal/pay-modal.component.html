@@ -1,0 +1,65 @@
+<!-- ── Backdrop ─────────────────────────────────────────── -->
+<div class="pay-drop__backdrop" *ngIf="isOpen" (click)="close()"></div>
+
+<!-- ── Dropdown panel ──────────────────────────────────── -->
+<div class="pay-drop" *ngIf="isOpen">
+
+  <!-- Head -->
+  <div class="pay-drop__head">
+    <div class="pay-drop__head-info">
+      <p class="pay-drop__head-label">Select Payment Method</p>
+      <p class="pay-drop__head-order">Order #{{ order?.order_number }}</p>
+    </div>
+    <button type="button" class="pay-drop__close" (click)="close()">
+      <i class="ri-close-line"></i>
+    </button>
+  </div>
+
+  <!-- Methods list -->
+  <div class="pay-drop__body">
+    <ng-container *ngFor="let payment of (setting$ | async)?.payment_methods">
+      <label class="pay-drop__method"
+             *ngIf="payment.status"
+             [class.pay-drop__method--selected]="paymentType.value === payment.name">
+        <input type="radio"
+               name="payment_method"
+               [value]="payment.name"
+               [formControl]="paymentType"
+               hidden>
+        <span class="pay-drop__method-icon">
+          <i class="ri-wallet-3-line"></i>
+        </span>
+        <span class="pay-drop__method-name">
+          {{ (payment.title ? payment.title : payment.name) | titleCase }}
+        </span>
+        <span class="pay-drop__method-tick" *ngIf="paymentType.value === payment.name">
+          <i class="ri-check-line"></i>
+        </span>
+      </label>
+    </ng-container>
+
+    <p class="pay-drop__error"
+       *ngIf="paymentType?.touched && paymentType.errors?.['required']">
+      <i class="ri-error-warning-line"></i>
+      Please select a payment method to continue
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <div class="pay-drop__footer">
+    <div class="pay-drop__amount-block">
+      <span class="pay-drop__amount-label">Order Total</span>
+      <span class="pay-drop__amount">{{ order?.total | currencySymbol }}</span>
+    </div>
+    <div class="pay-drop__actions">
+      <button type="button" class="pay-drop__btn pay-drop__btn--cancel" (click)="close()">
+        Cancel
+      </button>
+      <button type="button" class="pay-drop__btn pay-drop__btn--submit" (click)="submit()">
+        <i class="ri-secure-payment-line"></i>
+        Pay Now
+      </button>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,219 @@
+// ═══════════════════════════════════════════════════════
+// NAGMA — Sort / View Controls Bar
+// ═══════════════════════════════════════════════════════
+
+$lux-gold:   #C9A96E;
+$lux-gold-d: #b08e54;
+$lux-dark:   #1A1A1A;
+$lux-cream:  #F8F4EE;
+$white:      #FFFFFF;
+$border:     #E8E4DC;
+$text-muted: #888;
+
+:host { display: block; }
+
+.nf-sort-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid $border;
+  margin-bottom: 24px;
+  flex-wrap: nowrap;
+}
+
+.nf-sort-bar__spacer { flex: 1; }
+
+// ── Mobile: "Filters" button ──────────────────────────────
+.nf-sort-bar__mobile-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid $border;
+  border-radius: 2px;
+  background: $white;
+  font-family: "Inter", sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: $lux-dark;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: all 0.18s ease;
+
+  i { font-size: 15px; color: $text-muted; }
+
+  &:hover {
+    border-color: $lux-gold;
+    color: $lux-gold;
+    i { color: $lux-gold; }
+  }
+}
+
+// ── Grid view toggles ─────────────────────────────────────
+.nf-grid-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.nf-grid-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 2px;
+  border: 1px solid $border;
+  background: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.15s ease;
+
+  img {
+    width: 16px;
+    height: 16px;
+    opacity: 0.35;
+    filter: grayscale(1);
+    transition: opacity 0.15s ease, filter 0.15s ease;
+  }
+
+  &:hover {
+    border-color: $lux-gold;
+    img { opacity: 0.7; filter: none; }
+  }
+
+  &--active {
+    background: $lux-cream;
+    border-color: $lux-gold;
+    box-shadow: none;
+    img { opacity: 1; filter: none; }
+  }
+}
+
+// ── Sort dropdown ─────────────────────────────────────────
+.nf-sort-select {
+  display: flex;
+  align-items: center;
+  border: 1px solid $border;
+  border-radius: 2px;
+  padding: 0 10px;
+  height: 36px;
+  background: $white;
+  gap: 6px;
+  position: relative;
+  transition: border-color 0.18s ease;
+
+  &:hover { border-color: $lux-gold; }
+
+  &__icon {
+    font-size: 14px;
+    color: $lux-gold;
+    flex-shrink: 0;
+  }
+
+  &__label {
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    color: $text-muted;
+    white-space: nowrap;
+    flex-shrink: 0;
+    letter-spacing: 0.02em;
+  }
+
+  &__input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: "Inter", sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: $lux-dark;
+    cursor: pointer;
+    appearance: none;
+    padding-right: 20px;
+    min-width: 100px;
+    max-width: 150px;
+  }
+
+  &__caret {
+    position: absolute;
+    right: 8px;
+    font-size: 16px;
+    color: $text-muted;
+    pointer-events: none;
+  }
+}
+
+// ── Dark mode ──────────────────────────────────────────────
+html.dark {
+  .nf-sort-bar { border-bottom-color: #2a2620; }
+
+  .nf-sort-bar__mobile-filter {
+    background: #1e1c18;
+    border-color: #3a3630;
+    color: #c8c0b0;
+    i { color: #888; }
+  }
+
+  .nf-grid-group { }
+  .nf-grid-btn {
+    background: #1e1c18;
+    border-color: #3a3630;
+    &--active { background: #2a2620; border-color: $lux-gold; }
+  }
+
+  .nf-sort-select {
+    background: #1e1c18;
+    border-color: #3a3630;
+    &:hover { border-color: $lux-gold; }
+    &__label { color: #888; }
+    &__input { color: #d0c8b8; option { background: #1e1c18; } }
+    &__caret { color: #888; }
+  }
+}
+
+// ── Responsive ────────────────────────────────────────────
+@media (max-width: 991px) {
+  .nf-sort-bar__spacer { display: none; }
+
+  .nf-sort-bar__mobile-filter {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .nf-sort-select {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+    padding: 0 8px;
+
+    &__label { display: none; }
+
+    &__input {
+      min-width: 0;
+      max-width: none;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .nf-sort-bar {
+    gap: 8px;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+
+  .nf-sort-bar__mobile-filter {
+    font-size: 12px;
+    padding: 8px 10px;
+    gap: 4px;
+    i { font-size: 14px; }
+  }
+
+  .nf-sort-select {
+    height: 34px;
+    &__input { font-size: 12px; }
+  }
+}

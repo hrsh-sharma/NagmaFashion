@@ -1,0 +1,244 @@
+<section class="auth-section">
+  <div class="auth-split">
+
+    <!-- Left brand panel -->
+    <div class="auth-split__brand">
+      <div class="auth-split__brand-inner">
+        <img src="assets/images/nagma-logo.png" alt="Nagma" class="auth-split__logo" draggable="false">
+        <div class="auth-split__rule"></div>
+        <h1 class="auth-split__title">NAGMA</h1>
+        <p class="auth-split__tagline">Premium Fashion · Crafted for You</p>
+        <div class="auth-split__rule"></div>
+        <p class="auth-split__quote">"Wear your story with grace"</p>
+      </div>
+    </div>
+
+    <!-- Right form panel -->
+    <div class="auth-split__form">
+      <div class="auth-split__form-inner">
+
+        <div class="auth-form-head">
+          <h2 class="auth-title">Create Your Account</h2>
+          <p class="auth-subtitle">Join us for exclusive offers &amp; a personalised experience</p>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form">
+
+          <!-- Full Name -->
+          <div class="auth-field">
+            <label class="auth-field__label" for="name">{{ 'Full Name' | translate }}</label>
+            <div class="auth-field__wrap">
+              <i class="ri-user-line auth-field__icon"></i>
+              <input type="text" id="name" class="auth-field__input auth-field__input--with-icon"
+                     formControlName="name"
+                     placeholder="{{ 'Name' | translate }}"
+                     (keydown)="allowOnlyLetters($event)"
+                     (input)="sanitizeNameInput($event)"
+                     (paste)="sanitizeNamePaste($event)"
+                     [class.auth-field__input--error]="form.controls['name'].touched && form.controls['name'].invalid">
+            </div>
+            <p class="auth-field__error" *ngIf="form.controls['name'].touched && form.controls['name'].errors?.['required']">
+              {{ 'name_is_required' | translate }}
+            </p>
+            <p class="auth-field__error" *ngIf="form.controls['name'].touched && form.controls['name'].errors?.['pattern']">
+              {{ 'Only letters and spaces are allowed' | translate }}
+            </p>
+          </div>
+
+          <!-- Email -->
+          <div class="auth-field">
+            <label class="auth-field__label" for="email">{{ 'Email Address' | translate }}</label>
+            <div class="auth-field__wrap">
+              <i class="ri-mail-line auth-field__icon"></i>
+              <input type="email" id="email" class="auth-field__input auth-field__input--with-icon"
+                     formControlName="email"
+                     placeholder="{{ 'enter_your_email' | translate }}"
+                     (input)="filterEmailCharacters($event)"
+                     pattern="[a-zA-Z0-9._\-+@]+"
+                     [class.auth-field__input--error]="form.controls['email'].touched && form.controls['email'].invalid">
+            </div>
+            <p class="auth-field__error" *ngIf="form.controls['email'].touched && form.controls['email'].errors?.['required']">
+              {{ 'Email Is Required' | translate }}
+            </p>
+            <p class="auth-field__error" *ngIf="form.controls['email'].touched && form.controls['email'].errors?.['email']">
+              {{ 'Invalid Email' | translate }}
+            </p>
+          </div>
+
+          <!-- Phone -->
+          <div class="auth-field">
+            <label class="auth-field__label" for="phone">{{ 'Phone Number' | translate }}</label>
+            <div class="auth-phone">
+              <select2 class="auth-phone__code"
+                [data]="codes"
+                [templates]="template"
+                formControlName="country_code">
+                <ng-template #template let-data="data">
+                  <div class="country">
+                    <div class="flag-box">
+                      <div class="iti-flag {{data?.class}}"></div>
+                    </div>
+                    <span class="dial-code">{{data.code}}</span>
+                  </div>
+                </ng-template>
+              </select2>
+              <div class="auth-field__wrap auth-phone__input-wrap">
+                <i class="ri-phone-line auth-field__icon"></i>
+                <input type="tel" id="phone"
+                       class="auth-field__input auth-field__input--with-icon auth-phone__input"
+                       formControlName="phone"
+                       placeholder="{{ 'Phone' | translate }}"
+                       maxlength="10"
+                       (keydown)="allowOnlyDigits($event)"
+                       (input)="sanitizePhoneInput($event)"
+                       (paste)="sanitizePhonePaste($event)"
+                       [class.auth-field__input--error]="form.controls['phone'].touched && form.controls['phone'].invalid">
+              </div>
+            </div>
+            <p class="auth-field__error" *ngIf="form.controls['phone'].touched && form.controls['phone'].errors?.['required']">
+              {{ 'Phone Number Is Required' | translate }}
+            </p>
+            <p class="auth-field__error" *ngIf="form.controls['phone'].touched && form.controls['phone'].errors?.['invalid']">
+              {{ 'Phone Number must be 10 digits.' }}
+            </p>
+          </div>
+
+          <!-- Password -->
+          <div class="auth-field">
+            <label class="auth-field__label" for="password">{{ 'Password' | translate }}</label>
+            <div class="auth-field__wrap">
+              <i class="ri-lock-2-line auth-field__icon"></i>
+              <input [type]="showPassword ? 'text' : 'password'" id="password"
+                     class="auth-field__input auth-field__input--with-icon auth-field__input--with-toggle"
+                     formControlName="password"
+                     placeholder="{{ 'password' | translate }}"
+                     [class.auth-field__input--error]="form.controls['password'].touched && form.controls['password'].invalid">
+              <button type="button" class="auth-field__toggle"
+                      (click)="showPassword = !showPassword"
+                      [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'">
+                <i [class]="showPassword ? 'ri-eye-line' : 'ri-eye-off-line'"></i>
+              </button>
+            </div>
+            <p class="auth-field__error" *ngIf="form.controls['password'].touched && form.controls['password'].errors?.['required']">
+              {{ 'password_is_required' | translate }}
+            </p>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="auth-field">
+            <label class="auth-field__label" for="password_confirmation">{{ 'Password Confirmation' | translate }}</label>
+            <div class="auth-field__wrap">
+              <i class="ri-shield-check-line auth-field__icon"></i>
+              <input [type]="showConfirmPassword ? 'text' : 'password'" id="password_confirmation"
+                     class="auth-field__input auth-field__input--with-icon auth-field__input--with-toggle"
+                     formControlName="password_confirmation"
+                     placeholder="{{ 'password_confirmation' | translate }}"
+                     [class.auth-field__input--error]="form.controls['password_confirmation'].touched && (form.controls['password_confirmation'].errors?.['required'] || passwordMatchError)">
+              <button type="button" class="auth-field__toggle"
+                      (click)="showConfirmPassword = !showConfirmPassword"
+                      [attr.aria-label]="showConfirmPassword ? 'Hide password' : 'Show password'">
+                <i [class]="showConfirmPassword ? 'ri-eye-line' : 'ri-eye-off-line'"></i>
+              </button>
+            </div>
+            <p class="auth-field__error" *ngIf="form.controls['password_confirmation'].touched && form.controls['password_confirmation'].errors?.['required']">
+              {{ 'confirm_password_is_required' | translate }}
+            </p>
+            <p class="auth-field__error" *ngIf="passwordMatchError">
+              {{ 'confirm Password Does Not Matched' | translate }}
+            </p>
+          </div>
+
+          <!-- Terms checkbox -->
+          <div class="auth-field">
+            <label class="auth-check">
+              <input type="checkbox" class="auth-check__input" id="flexCheckDefault" [formControl]="tnc">
+              <span class="auth-check__box" [class.auth-check__box--error]="tnc.touched && tnc.invalid"></span>
+              <span class="auth-check__text" [class.auth-check__text--error]="tnc.touched && tnc.invalid">
+                {{ 'I Agree With' | translate }}
+                <a [routerLink]="['/term-condition']" class="auth-link">{{ 'Terms' | translate }}</a>
+                {{ 'And' | translate }}
+                <a [routerLink]="['/privacy-policy']" class="auth-link">{{ 'Privacy' | translate }}</a>
+              </span>
+            </label>
+          </div>
+
+          <!-- ReCaptcha -->
+          <div class="auth-field" *ngIf="reCaptcha">
+            <re-captcha formControlName="recaptcha"></re-captcha>
+            <p class="auth-field__error" *ngIf="form.controls['recaptcha']?.touched && form.controls['recaptcha']?.errors?.['required']">
+              {{ 'ReCaptcha is Required' | translate }}
+            </p>
+          </div>
+
+          <!-- Submit -->
+          <app-button [id]="'sign_up_btn'" [disabled]="tnc.invalid || form.invalid" [class]="'auth-submit-btn'">
+            {{ 'Sign Up' | translate }}
+          </app-button>
+
+        </form>
+
+        <!-- Divider -->
+        <div class="auth-divider"><span>OR</span></div>
+
+        <!-- Login link -->
+        <div class="auth-alt">
+          <span>{{ 'Already Have An Account' | translate }}?</span>
+          <a [routerLink]="['/auth/login']" class="auth-alt__link">{{ 'Login' | translate }}</a>
+        </div>
+
+        <!-- Terms -->
+        <p class="auth-terms">
+          By continuing, I agree to Nagma's
+          <a [routerLink]="['/term-condition']">Terms &amp; Conditions</a>
+          and
+          <a [routerLink]="['/privacy-policy']">Privacy Policy</a>
+        </p>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- OTP Verification Overlay -->
+<div class="otp-overlay" *ngIf="showOtpOverlay">
+  <div class="otp-modal">
+
+    <div class="otp-modal__icon">
+      <i class="ri-mail-check-line"></i>
+    </div>
+
+    <h2 class="otp-modal__title">Verify Your Email</h2>
+    <p class="otp-modal__desc">
+      Enter the 6-digit code sent to <strong>{{ registeredEmail }}</strong>
+    </p>
+
+    <div class="otp-field">
+      <input
+        type="text"
+        inputmode="numeric"
+        maxlength="6"
+        autocomplete="one-time-code"
+        class="otp-field__input"
+        placeholder="Enter 6-digit code"
+        [(ngModel)]="otpValue"
+        (input)="onOtpInput($event)"
+        [class.otp-field__input--error]="otpError">
+    </div>
+
+    <p class="otp-modal__error" *ngIf="otpError">{{ otpError }}</p>
+
+    <button
+      class="otp-modal__btn"
+      [disabled]="!otpComplete || otpLoading"
+      (click)="submitOtp()">
+      {{ otpLoading ? 'Verifying...' : 'Verify & Continue' }}
+    </button>
+
+    <p class="otp-modal__resend">
+      Didn't receive the code?&nbsp;
+      <button type="button" class="otp-modal__resend-btn" (click)="resendOtp()">Resend</button>
+    </p>
+
+  </div>
+</div>

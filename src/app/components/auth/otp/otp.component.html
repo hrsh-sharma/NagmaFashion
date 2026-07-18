@@ -1,0 +1,91 @@
+<app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+
+<section class="auth-section">
+  <div class="auth-split">
+
+    <!-- Left brand panel -->
+    <div class="auth-split__brand">
+      <div class="auth-split__brand-inner">
+        <img src="assets/images/nagma-logo.png" alt="Nagma" class="auth-split__logo" draggable="false">
+        <div class="auth-split__rule"></div>
+        <h1 class="auth-split__title">NAGMA</h1>
+        <p class="auth-split__tagline">Premium Fashion · Crafted for You</p>
+        <div class="auth-split__rule"></div>
+        <p class="auth-split__quote">"Wear your story with grace"</p>
+      </div>
+    </div>
+
+    <!-- Right form panel -->
+    <div class="auth-split__form">
+      <div class="auth-split__form-inner">
+        <app-alert></app-alert>
+
+        <div class="auth-form-head">
+          <h2 class="auth-title">Verify Your Account</h2>
+          <p class="auth-subtitle">{{ 'Enter the verification code sent to' | translate }}</p>
+
+          <!-- Destination badge -->
+          <div class="auth-dest">
+            <span *ngIf="otpType === 'email'" class="auth-dest__badge">
+              <i class="ri-mail-line"></i>{{ email }}
+            </span>
+            <span *ngIf="otpType === 'number'" class="auth-dest__badge">
+              <i class="ri-phone-line"></i>{{ number.phone }}
+            </span>
+          </div>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form">
+
+          <!-- OTP field -->
+          <div class="auth-field">
+            <label class="auth-field__label" for="otp">{{ 'Verification Code' | translate }}</label>
+            <input
+              type="text"
+              class="auth-field__input auth-otp-input"
+              id="otp"
+              formControlName="otp"
+              maxlength="5"
+              placeholder="· · · · ·"
+              oninput="this.value = this.value?.replace(/[^0-9]/g, '');"
+              onKeyPress="if(this.value.length==5) return false;"
+              [class.auth-field__input--error]="form.controls['otp'].touched && form.controls['otp'].invalid">
+            <p class="auth-field__error" *ngIf="form.controls['otp'].touched && form.controls['otp'].errors?.['required']">
+              {{ 'Verification code is required' | translate }}
+            </p>
+            <p class="auth-field__error" *ngIf="form.controls['otp'].touched && form.controls['otp'].errors?.['pattern']">
+              {{ 'Please enter a valid 5-digit code' | translate }}
+            </p>
+          </div>
+
+          <!-- Submit -->
+          <app-button [id]="'otp_validate_btn'" [class]="'auth-submit-btn'">
+            {{ 'Validate' | translate }}
+          </app-button>
+
+        </form>
+
+        <!-- Divider -->
+        <div class="auth-divider"><span>OR</span></div>
+
+        <!-- Resend -->
+        <div class="auth-resend">
+          <p class="auth-resend__text">{{ "Didn't receive the code?" | translate }}</p>
+          <button type="button" class="auth-resend__btn" (click)="resendOtp()">
+            <i class="ri-refresh-line"></i>{{ 'Resend Code' | translate }}
+          </button>
+        </div>
+
+        <!-- Back to login -->
+        <div class="auth-alt">
+          <span>{{ 'Wrong email or phone?' | translate }}</span>
+          <a [routerLink]="['/auth/login']" class="auth-alt__link">
+            {{ 'Back to Login' | translate }}
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>

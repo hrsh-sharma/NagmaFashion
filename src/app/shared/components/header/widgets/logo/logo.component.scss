@@ -1,0 +1,25 @@
+.nagma-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+
+  &:hover { opacity: 0.85; }
+}
+
+.nagma-logo-img {
+  width: clamp(44px, 5vw, 58px) !important;
+  height: auto !important;
+  display: block;
+}
+
+.nagma-brand-name {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #1A1A1A;
+  line-height: 1;
+  text-transform: uppercase;
+}

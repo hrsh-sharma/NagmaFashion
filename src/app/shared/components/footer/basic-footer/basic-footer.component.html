@@ -1,0 +1,122 @@
+<!-- ═══════════════════════════════════════════════════════
+     NAGMA — Luxury Footer
+═══════════════════════════════════════════════════════ -->
+
+<!-- ── MAIN FOOTER ─────────────────────────────────────── -->
+<footer class="ft-main">
+  <div class="ft-container">
+
+    <!-- TOP: Newsletter + brand intro -->
+    <div class="ft-top">
+      <div class="ft-top__brand">
+        <h2 class="ft-top__title">Join The NAGMA<br>Inner Circle</h2>
+        <p class="ft-top__sub">Be first to access new arrivals, private edits and exclusive style notes.</p>
+      </div>
+      <div class="ft-top__form">
+        <input type="email"
+               class="ft-news-input"
+               placeholder="Your email address"
+               [formControl]="email"
+               (keyup.enter)="submitNewsletter()">
+        <button type="button"
+                class="ft-news-btn"
+                (click)="submitNewsletter()"
+                [disabled]="isSubmitting">
+          <span>{{ isSubmitting ? 'Joining…' : 'Subscribe' }}</span>
+          <i class="ri-arrow-right-line"></i>
+        </button>
+      </div>
+      <p class="ft-news-error" *ngIf="email.touched && email.errors?.['email']">
+        Please enter a valid email
+      </p>
+    </div>
+
+    <!-- COLUMNS -->
+    <div class="ft-cols">
+
+      <!-- Brand column -->
+      <div class="ft-col ft-col--brand">
+        <a routerLink="/" class="ft-brand">
+          <img src="assets/images/nagma-logo.png" alt="Nagma" class="ft-brand__img">
+          <span class="ft-brand__name">NAGMA</span>
+        </a>
+        <p class="ft-brand__tag">Curated fashion for the modern Indian wardrobe — where heritage meets contemporary craft.</p>
+        <div class="ft-social">
+          <a href="https://www.instagram.com/SPARKSHOPWEARofficial/" target="_blank" rel="noopener" class="ft-social__link" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61587125992259" target="_blank" rel="noopener" class="ft-social__link" aria-label="Facebook"><i class="ri-facebook-line"></i></a>
+          <a href="https://www.youtube.com/@SPARKSHOPWEARofficial" target="_blank" rel="noopener" class="ft-social__link" aria-label="YouTube"><i class="ri-youtube-line"></i></a>
+          <a href="https://www.pinterest.com/SPARKSHOPWEARofficial/" target="_blank" rel="noopener" class="ft-social__link" aria-label="Pinterest"><i class="ri-pinterest-line"></i></a>
+        </div>
+      </div>
+
+      <!-- Shop column -->
+      <div class="ft-col">
+        <h5 class="ft-col__title">Shop</h5>
+        <ul class="ft-col__list">
+          <li><a routerLink="/collections">All Collections</a></li>
+          <li><a routerLink="/collections/sarees">Sarees</a></li>
+          <li><a routerLink="/collections/lehenga-choli-sets">Lehengas</a></li>
+          <li><a routerLink="/collections/kurtis">Kurtis</a></li>
+          <li><a routerLink="/collections/dresses">Dresses</a></li>
+          <li><a routerLink="/collections/kurta-suit-sets">Kurta Sets</a></li>
+        </ul>
+      </div>
+
+      <!-- Help column -->
+      <div class="ft-col">
+        <h5 class="ft-col__title">Help</h5>
+        <ul class="ft-col__list">
+          <li><a routerLink="/page/about-us">About Us</a></li>
+          <li><a routerLink="/contact-us">Contact Us</a></li>
+          <li><a routerLink="/shipping-policy">Shipping &amp; Returns</a></li>
+          <li><a routerLink="/refund-and-cancellation">Refunds</a></li>
+          <li><a routerLink="/term-condition">Terms &amp; Conditions</a></li>
+          <li><a routerLink="/privacy-policy">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact column -->
+      <div class="ft-col ft-col--contact">
+        <h5 class="ft-col__title">Visit Us</h5>
+        <p class="ft-address">
+          5th Floor, G-14, Office No. 507,<br>
+          Sector 3 Road, Sector 3,<br>
+          Noida, Gautam Buddha Nagar,<br>
+          Uttar Pradesh &ndash; 201301
+        </p>
+        <a href="mailto:info@sparkshopwear.com" class="ft-contact-line">
+          <i class="ri-mail-line"></i> info&#64;sparkshopwear.com
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+
+<!-- ── COPYRIGHT BAR ───────────────────────────────────── -->
+<div class="ft-bottom">
+  <div class="ft-container ft-bottom__row">
+    <p class="ft-bottom__copy">&copy; {{ currentYear }} Nagma Retail Solutions Private Limited. All rights reserved.</p>
+  </div>
+</div>
+
+<!-- ── Sticky social + back-to-top ──────────────────────── -->
+<div class="sticky-action-container">
+  <div class="social-widget" [class.expanded]="showSocialActions">
+    <div class="social-menu">
+      <a href="https://www.facebook.com/profile.php?id=61587125992259" class="social-item" target="_blank" title="Facebook"><i class="ri-facebook-fill"></i></a>
+      <a href="https://x.com/SPARKSHOPWEAR" class="social-item" target="_blank" title="X"><i class="ri-twitter-x-fill"></i></a>
+      <a href="https://www.instagram.com/SPARKSHOPWEARofficial/" class="social-item" target="_blank" title="Instagram"><i class="ri-instagram-fill"></i></a>
+      <a href="https://www.pinterest.com/SPARKSHOPWEARofficial/_profile/" class="social-item" target="_blank" title="Pinterest"><i class="ri-pinterest-fill"></i></a>
+      <a href="https://www.youtube.com/@SPARKSHOPWEARofficial" class="social-item" target="_blank" title="Youtube"><i class="ri-youtube-fill"></i></a>
+    </div>
+    <button class="social-toggle-btn" (click)="toggleSocialActions()" type="button" title="Social Menu">
+      <i class="ri-share-line" *ngIf="!showSocialActions"></i>
+      <i class="ri-close-line" *ngIf="showSocialActions"></i>
+    </button>
+  </div>
+  <button class="back-to-top-btn" [class.show]="showBackToTop" (click)="scrollToTop()" type="button" title="Back to Top">
+    <i class="ri-arrow-up-line"></i>
+  </button>
+</div>

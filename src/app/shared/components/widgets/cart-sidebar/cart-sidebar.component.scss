@@ -1,0 +1,497 @@
+// ── NAGMA Design Tokens ───────────────────────────────────
+$gold:   #C9A96E;
+$gold-d: #b08e54;
+$dark:   #1A1A1A;
+$cream:  #F8F4EE;
+$border: #E8E4DC;
+$muted:  #888888;
+$white:  #ffffff;
+$ease:   cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+// ── Backdrop ──────────────────────────────────────────────
+.cs-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1040;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &--show {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// ── Drawer ────────────────────────────────────────────────
+.cs-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 420px;
+  max-width: 100vw;
+  height: 100dvh;
+  background: $white;
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.32s $ease;
+  box-shadow: -4px 0 40px rgba(0, 0, 0, 0.12);
+
+  &--open { transform: translateX(0); }
+
+  @media (max-width: 480px) { width: 100vw; }
+}
+
+// ── Header ────────────────────────────────────────────────
+.cs-header {
+  flex-shrink: 0;
+  background: $white;
+  padding: 24px 24px 0;
+}
+
+.cs-header__inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+.cs-header__eyebrow {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: $gold;
+  margin-bottom: 6px;
+}
+
+.cs-header__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: $dark;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.cs-header__count {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: $muted;
+}
+
+.cs-header__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid $border;
+  background: $white;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: all 0.18s ease;
+
+  i {
+    font-size: 18px;
+    color: $muted;
+  }
+
+  &:hover {
+    background: $dark;
+    border-color: $dark;
+    i { color: $white; }
+  }
+}
+
+.cs-header__rule {
+  height: 1px;
+  background: $border;
+}
+
+// ── Scrollable body ───────────────────────────────────────
+.cs-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: $cream;
+
+  &::-webkit-scrollbar { width: 3px; }
+  &::-webkit-scrollbar-track { background: transparent; }
+  &::-webkit-scrollbar-thumb { background: $border; }
+}
+
+.cs-footer-spacer { height: 110px; }
+
+// ── Items section ─────────────────────────────────────────
+.cs-items {
+  background: $white;
+  margin-bottom: 8px;
+}
+
+.cs-item {
+  display: flex;
+  gap: 16px;
+  padding: 20px 24px;
+  border-bottom: 1px solid $border;
+
+  &:last-child { border-bottom: none; }
+
+  &__img {
+    width: 84px;
+    height: 100px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: $cream;
+    border: 1px solid $border;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__top {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  &__names { flex: 1; min-width: 0; }
+
+  &__brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: $gold;
+    margin: 0 0 3px;
+  }
+
+  &__name {
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    font-weight: 400;
+    color: $dark;
+    margin: 0;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__del {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border: 1px solid $border;
+    background: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.18s ease;
+
+    i { font-size: 13px; color: $muted; }
+
+    &:hover {
+      background: $dark;
+      border-color: $dark;
+      i { color: $white; }
+    }
+  }
+
+  &__price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  &__price {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: $dark;
+  }
+
+  &__original {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: $muted;
+    text-decoration: line-through;
+  }
+
+  // Size + Qty row
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  &__size {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: $muted;
+
+    strong {
+      color: $dark;
+      font-weight: 600;
+    }
+  }
+
+  &__qty {
+    display: flex;
+    align-items: center;
+    border: 1px solid $border;
+    height: 28px;
+  }
+
+  &__qty-btn {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.15s ease;
+
+    i { font-size: 12px; color: $dark; }
+    &:hover { background: $cream; }
+  }
+
+  &__qty-num {
+    min-width: 28px;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: $dark;
+    border-left: 1px solid $border;
+    border-right: 1px solid $border;
+    line-height: 26px;
+    padding: 0 4px;
+  }
+}
+
+// ── Order Summary ─────────────────────────────────────────
+.cs-summary {
+  background: $white;
+  padding: 20px 24px;
+
+  &__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: $dark;
+    margin: 0 0 16px;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: $muted;
+    margin-bottom: 12px;
+  }
+
+  &__free {
+    color: #2d7a3a;
+    font-weight: 600;
+  }
+
+  &__divider {
+    height: 1px;
+    background: $border;
+    margin: 8px 0 16px;
+  }
+
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: $dark;
+
+    strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: $dark;
+    }
+  }
+}
+
+// ── Sticky Footer ─────────────────────────────────────────
+.cs-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $white;
+  border-top: 1px solid $border;
+  z-index: 10;
+  padding: 16px 24px 20px;
+}
+
+.cs-footer__inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.cs-footer__total-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cs-footer__label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: $muted;
+}
+
+.cs-footer__price {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: $dark;
+  line-height: 1;
+}
+
+.cs-footer__btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 16px;
+  background: $dark;
+  color: $white !important;
+  text-decoration: none !important;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  border: 1px solid $dark;
+
+  &:hover {
+    background: $gold;
+    border-color: $gold;
+    color: $white !important;
+  }
+}
+
+.cs-footer__view-bag {
+  display: block;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: $muted;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover { color: $gold; }
+}
+
+// ── Empty State ───────────────────────────────────────────
+.cs-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 48px 32px;
+  text-align: center;
+
+  &__icon {
+    width: 88px;
+    height: 88px;
+    border: 1px solid $border;
+    background: $cream;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+
+    i { font-size: 40px; color: $gold; opacity: 0.7; }
+  }
+
+  &__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: $dark;
+    margin: 0;
+  }
+
+  &__sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: $muted;
+    margin: 0;
+    max-width: 280px;
+    line-height: 1.6;
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 32px;
+    background: $dark;
+    color: $white;
+    border: 1px solid $dark;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: $gold;
+      border-color: $gold;
+      color: $white;
+    }
+  }
+}

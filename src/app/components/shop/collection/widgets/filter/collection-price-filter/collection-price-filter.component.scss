@@ -1,0 +1,135 @@
+// ═══════════════════════════════════════════════════════
+// NAGMA — Price Range Filter
+// ═══════════════════════════════════════════════════════
+
+$lux-gold:  #C9A96E;
+$lux-dark:  #1A1A1A;
+$border:    #E8E4DC;
+$white:     #FFFFFF;
+
+:host { display: block; }
+
+.price-range-filter { padding: 0; }
+
+// ── Input row ─────────────────────────────────────────────
+.price-inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.price-input {
+  flex: 1;
+  padding: 7px 10px;
+  border: 1px solid $border;
+  border-radius: 2px;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: $lux-dark;
+  text-align: center;
+  background: $white;
+  outline: none;
+  transition: border-color 0.18s ease;
+
+  &:focus { border-color: $lux-gold; }
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+  &[type=number] { -moz-appearance: textfield; }
+}
+
+.price-separator { font-family: "Inter", sans-serif; font-size: 13px; color: #aaa; flex-shrink: 0; }
+
+// ── Slider ────────────────────────────────────────────────
+.price-slider-container { margin-bottom: 14px; }
+
+.price-slider-track {
+  position: relative;
+  height: 2px;
+  background: #E0D9CE;
+  border-radius: 2px;
+  margin: 18px 0;
+}
+
+.price-slider-fill {
+  position: absolute;
+  height: 100%;
+  background: $lux-gold;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.price-slider {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  outline: none;
+  pointer-events: none;
+  -webkit-appearance: none;
+  appearance: none;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: $white;
+    border: 2px solid $lux-gold;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: all;
+    z-index: 2;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+
+    &:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 0 5px rgba($lux-gold, 0.12);
+    }
+  }
+
+  &::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: $white;
+    border: 2px solid $lux-gold;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: all;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+  }
+
+  &::-moz-range-track { background: transparent; height: 2px; }
+  &.min-slider { z-index: 1; }
+  &.max-slider { z-index: 2; }
+}
+
+// ── Price display ─────────────────────────────────────────
+.price-display {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Inter", sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #666;
+  margin-top: 4px;
+}
+
+// ── Dark mode ─────────────────────────────────────────────
+html.dark {
+  .price-input {
+    background: #1e1c18;
+    border-color: #3a3630;
+    color: #d0c8b8;
+    &:focus { border-color: $lux-gold; }
+  }
+  .price-slider-track { background: #3a3630; }
+  .price-slider-fill  { background: $lux-gold; }
+  .price-slider::-webkit-slider-thumb { background: #1e1c18; border-color: $lux-gold; }
+  .price-display { color: #888; }
+}

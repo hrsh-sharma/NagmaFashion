@@ -1,0 +1,65 @@
+:root {
+  --theme-color: #C9A96E;       /* Gold — luxury primary */
+  --theme-color-secondary: #1A1A1A; /* Near-black secondary */
+  --theme-color-light: #F5EFE4; /* Warm cream accent */
+}
+
+$white: #FAFAF8;
+$black: #0A0A0A;
+$title-color: #1A1A1A;
+$content-color: #5C5C5C;
+$light-gray: #F5F2ED;
+$danger-color: #C0392B;
+$rating-color: #C9A96E;
+$border-color: #E0D9D0;
+$light-semi-gray: #EDE8E2;
+$inner-bg: $light-gray;
+$grey-3: #3A3A3A;
+
+// For Card
+$info-color: #C9A96E;
+$black1: #1A1A1A;
+$grey-13: #8A8480;
+$theme-font-color: $title-color;
+$dark-card-background: #141414;
+$theme-body-font-color: #5C5C5C;
+$dark-color: #1E1E1E;
+$card-header-font-transform: uppercase;
+$theme-body-sub-title-color: rgba($theme-body-font-color, 0.65);
+$transparent-color: transparent;
+
+//Card settings
+$card-padding: 24px 28px;
+$card-margin-bottom: 24px;
+$card-border-color: 1px solid $border-color;
+$card-border-radius: 4px;
+$common-shadow-color: rgba(0, 0, 0, 0.04);
+$card-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+$card-header-bg-color: $white;
+$card-header-font-transform: uppercase;
+$card-header-span-size: 11px;
+$card-header-span-color: $theme-body-sub-title-color;
+$card-body-bg-color: $transparent-color;
+$card-footer-bg-color: $white;
+$card-hover-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+// font family
+$public-sans: "Inter", sans-serif;
+$fontawesome: "Font Awesome 6 Free";
+
+// Breakpoints
+$min-breakpoints: (lg: 992px,
+  xl: 1200px,
+  2xl: 1366px,
+);
+
+$max-breakpoints: (2xs: 360px,
+  xs: 480px,
+  sm: 575px,
+  md: 767px,
+  lg: 991px,
+  xl: 1199px,
+  2xl: 1366px,
+  3xl: 1460px,
+  4xl: 1660px,
+);

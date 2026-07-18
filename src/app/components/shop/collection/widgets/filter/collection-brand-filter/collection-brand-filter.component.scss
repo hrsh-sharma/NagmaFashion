@@ -1,0 +1,129 @@
+﻿$lux-gold:   #C9A96E;
+$lux-dark:   #1A1A1A;
+$border: #E8E4DC;
+$white:  #FFFFFF;
+
+:host { display: block; }
+
+// â”€â”€ Search â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.nf-brand-search {
+  position: relative;
+  margin-bottom: 12px;
+
+  &__icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #aaa;
+    pointer-events: none;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 8px 10px 8px 32px;
+    border: 1.5px solid #E8E8E8;
+    border-radius: 4px;
+    font-size: 13px;
+    color: $lux-dark;
+    outline: none;
+    background: $white;
+    transition: border-color 0.18s ease;
+
+    &:focus { border-color: $lux-gold; }
+    &::placeholder { color: #bbb; }
+  }
+}
+
+// â”€â”€ Brand list â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.nf-brand-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.nf-brand-list__item { display: block; }
+
+// â”€â”€ Brand row â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.nf-brand-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  cursor: pointer;
+  user-select: none;
+
+  &__input { display: none; }
+
+  &__box {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    border: 1.5px solid $border;
+    border-radius: 3px;
+    background: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.18s ease;
+  }
+
+  &__check {
+    font-size: 11px;
+    color: $white;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    line-height: 1;
+  }
+
+  &__label {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.4;
+    flex: 1;
+    transition: color 0.15s ease;
+  }
+
+  &:hover {
+    .nf-brand-item__box   { border-color: $lux-gold; }
+    .nf-brand-item__label { color: $lux-dark; }
+  }
+
+  &--checked {
+    .nf-brand-item__box  { background: $lux-gold; border-color: $lux-gold; }
+    .nf-brand-item__check { opacity: 1; }
+    .nf-brand-item__label { color: $lux-dark; font-weight: 600; }
+  }
+}
+
+// â”€â”€ Empty â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.nf-brand-empty {
+  font-size: 13px;
+  color: #aaa;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0;
+}
+
+// â”€â”€ Dark mode â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+html.dark {
+  .nf-brand-search__input {
+    background: #1e1e2e;
+    border-color: #2a2a3a;
+    color: #ddd;
+    &:focus { border-color: $lux-gold; }
+  }
+  .nf-brand-item {
+    &__box   { background: #2a2a3a; border-color: #3a3a4a; }
+    &__label { color: #aaa; }
+    &:hover .nf-brand-item__label { color: #e0e0e0; }
+    &--checked {
+      .nf-brand-item__box  { background: $lux-gold; border-color: $lux-gold; }
+      .nf-brand-item__label { color: #e0e0e0; }
+    }
+  }
+}
+

@@ -1,0 +1,98 @@
+// NAGMA — Variant attribute buttons (size, color, etc.)
+
+$gold:   #C9A96E;
+$dark:   #1A1A1A;
+$border: #E8E4DC;
+$white:  #FFFFFF;
+$muted:  #888888;
+
+:host {
+  display: block;
+  text-align: left;
+
+  // ── Attribute label "SIZE : M" ──────────────────────────
+  .product-title h4 {
+    font-family: "Inter", sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+    color: $muted !important;
+    margin: 0 0 12px !important;
+    border: none !important;
+
+    &::before, &::after { content: none !important; }
+  }
+
+  // ── Option list ──────────────────────────────────────────
+  .select-package {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    margin-bottom: 16px !important;
+    padding: 0 !important;
+    list-style: none !important;
+
+    li {
+      border: none !important;
+      background: transparent !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+
+      // ── The actual button ─────────────────────────────
+      button {
+        width: 50px !important;
+        height: 50px !important;
+        padding: 0 !important;
+        border: 1.5px solid $border !important;
+        border-radius: 2px !important;          // SQUARE — not circle
+        background: $white !important;
+        color: $dark !important;
+        font-family: "Inter", sans-serif !important;
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease !important;
+        line-height: 1 !important;
+
+        @media (max-width: 575px) {
+          width: 44px !important;
+          height: 44px !important;
+          font-size: 12px !important;
+        }
+      }
+
+      // Hover — gold border
+      &:hover button {
+        border-color: $gold !important;
+      }
+
+      // Active / selected — dark border, 2px
+      &.active button {
+        border: 2px solid $dark !important;
+        background: $white !important;
+        color: $dark !important;
+        font-weight: 700 !important;
+      }
+
+      // Disabled — faded, struck-through
+      &.disabled button {
+        opacity: 0.35 !important;
+        cursor: not-allowed !important;
+        text-decoration: line-through !important;
+        pointer-events: none !important;
+      }
+    }
+
+    // Color swatch variant stays circular
+    &.circle li button {
+      border-radius: 50% !important;
+      width: 34px !important;
+      height: 34px !important;
+    }
+  }
+}

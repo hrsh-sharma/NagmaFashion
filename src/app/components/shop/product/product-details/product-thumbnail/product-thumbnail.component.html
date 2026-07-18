@@ -1,0 +1,93 @@
+<div class="pdp">
+  <div class="container-fluid-lg">
+    <div class="pdp__layout">
+
+      <!-- ══ LEFT — Gallery column ═══════════════════════════ -->
+      <div class="pdp__gallery">
+
+        <!-- Main image area -->
+        <div class="pdp__main-wrap">
+
+          <!-- Badges -->
+          <div class="pdp__badges">
+            <span class="pdp__badge pdp__badge--sale"     *ngIf="product?.is_sale_enable">SALE</span>
+            <span class="pdp__badge pdp__badge--featured" *ngIf="!product?.is_sale_enable && product?.is_featured">FEATURED</span>
+            <span class="pdp__badge pdp__badge--new"      *ngIf="!product?.is_sale_enable && !product?.is_featured && product?.is_trending">NEW</span>
+          </div>
+
+          <owl-carousel-o [options]="productMainThumbSlider" #owlCar>
+            <ng-container *ngFor="let image of product?.product_galleries; index as i">
+              <ng-template carouselSlide [id]="image.id.toString()">
+                <div class="pdp__slide">
+                  <ng-container *ngIf="videType.includes(image.mime_type); else audioSlide">
+                    <video class="w-100" controls>
+                      <source [src]="image.original_url" [type]="image.mime_type">
+                    </video>
+                  </ng-container>
+                  <ng-template #audioSlide>
+                    <ng-container *ngIf="audioType.includes(image.mime_type); else imgSlide">
+                      <audio controls>
+                        <source [src]="image.original_url" [type]="image.mime_type">
+                      </audio>
+                    </ng-container>
+                  </ng-template>
+                  <ng-template #imgSlide>
+                    <img [src]="image.original_url" [alt]="product?.name" class="pdp__photo">
+                  </ng-template>
+                </div>
+              </ng-template>
+            </ng-container>
+
+            <!-- Fallback -->
+            <ng-container *ngIf="!product?.product_galleries?.length">
+              <ng-template carouselSlide [id]="'1'">
+                <div class="pdp__slide">
+                  <img [src]="product?.product_thumbnail?.original_url || 'assets/images/product.png'"
+                       [alt]="product?.name" class="pdp__photo">
+                </div>
+              </ng-template>
+            </ng-container>
+          </owl-carousel-o>
+        </div>
+
+        <!-- Horizontal thumbnail strip -->
+        <div class="pdp__thumbs" *ngIf="(product?.product_galleries?.length || 0) > 1">
+          <div class="pdp__thumb"
+               *ngFor="let image of product?.product_galleries"
+               [class.pdp__thumb--active]="image.id.toString() === activeSlide.toString()"
+               (click)="owlCar.to(activeSlide = image.id.toString())">
+            <img [src]="image.original_url" [alt]="product?.name" loading="lazy">
+          </div>
+        </div>
+
+      </div>
+      <!-- /pdp__gallery -->
+
+      <!-- ══ RIGHT — Info column ══════════════════════════════ -->
+      <div class="pdp__info-col">
+        <div class="pdp__info-sticky">
+          <app-product-contain [product]="product" [option]="option" [owlCar]="owlCar">
+          </app-product-contain>
+          <app-product-action [product]="product"></app-product-action>
+          <app-product-delivery-information [product]="product"></app-product-delivery-information>
+          <app-payment-option [product]="product" [option]="option"></app-payment-option>
+          <app-product-social-share [product]="product" [option]="option"></app-product-social-share>
+        </div>
+      </div>
+
+    </div>
+    <!-- /pdp__layout -->
+
+    <!-- ══ Below fold ══════════════════════════════════════════ -->
+    <div class="pdp__below">
+      <app-product-information [product]="product"></app-product-information>
+
+      <div class="pdp__related" *ngIf="product?.cross_sell_products?.length">
+        <app-product-bundle [product]="product"></app-product-bundle>
+      </div>
+
+      <app-product-details-tabs [product]="product"></app-product-details-tabs>
+    </div>
+
+  </div>
+</div>

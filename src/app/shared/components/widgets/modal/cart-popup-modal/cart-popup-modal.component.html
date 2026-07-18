@@ -1,0 +1,120 @@
+<ng-template #cartPopupModal let-modal>
+
+  <!-- ── Close button ──────────────────────────────────── -->
+  <button class="cp-close" type="button" (click)="modal.dismiss('Cross click')" aria-label="Close">
+    <i class="ri-close-line"></i>
+  </button>
+
+  <div class="cp-body">
+
+    <!-- ══ LEFT — Image Panel ═══════════════════════════ -->
+    <div class="cp-img-panel">
+      <img
+        [src]="product?.product_thumbnail?.original_url || 'assets/images/product.png'"
+        class="cp-img"
+        [alt]="product?.name">
+    </div>
+
+    <!-- ══ RIGHT — Info Panel ════════════════════════════ -->
+    <div class="cp-info">
+
+      <!-- 1. Name -->
+      <h2 class="cp-name">{{ product?.name }}</h2>
+
+      <!-- 2. Rating -->
+      <div class="cp-rating" *ngIf="product?.rating_count">
+        <ngb-rating [rate]="product?.rating_count || 0" [readonly]="true" [max]="5"></ngb-rating>
+        <span class="cp-rating__count" *ngIf="(product?.reviews_count ?? 0) > 0">
+          {{ product?.reviews_count }} {{ (product?.reviews_count ?? 0) > 1 ? 'Reviews' : 'Review' }}
+        </span>
+      </div>
+
+      <div class="cp-divider"></div>
+
+      <!-- 3. Price -->
+      <div class="cp-price-row">
+        <span class="cp-price">{{ currentPrice | currencySymbol }}</span>
+      </div>
+
+      <!-- 4. Short description -->
+      <div class="cp-desc" *ngIf="product?.short_description">
+        <p [innerHTML]="product?.short_description"></p>
+      </div>
+
+      <!-- 5. Meta: SKU / Stock / Quantity -->
+      <div class="cp-meta">
+        <div class="cp-meta__row" *ngIf="product?.sku">
+          <span class="cp-meta__label">SKU</span>
+          <span class="cp-meta__val">{{ product?.sku }}</span>
+        </div>
+        <div class="cp-meta__row" *ngIf="product?.stock_status">
+          <span class="cp-meta__label">Stock</span>
+          <span class="cp-meta__val"
+            [class.cp-meta__val--green]="product?.stock_status === 'in_stock'">
+            {{ product?.stock_status === 'in_stock' ? 'In Stock' : 'Out of Stock' }}
+          </span>
+        </div>
+        <div class="cp-meta__row" *ngIf="product?.quantity">
+          <span class="cp-meta__label">Available</span>
+          <span class="cp-meta__val">{{ product?.quantity }} items</span>
+        </div>
+      </div>
+
+      <div class="cp-divider"></div>
+
+      <!-- 6. Attribute selectors -->
+      <div class="cp-attrs-wrap" *ngIf="productAttributes?.length">
+        <div class="cp-attr" *ngFor="let attribute of productAttributes">
+          <ng-container *ngIf="availableAttributeValues[attribute.id]?.length">
+            <p class="cp-attr__label">
+              {{ attribute.name }}
+              <span class="cp-attr__selected" *ngIf="selectedAttributeValues[attribute.id]">
+                : {{ selectedAttributeValues[attribute.id]?.value }}
+              </span>
+            </p>
+            <div class="cp-attr__options">
+              <button
+                *ngFor="let attrValue of availableAttributeValues[attribute.id]"
+                class="cp-attr__btn"
+                [class.active]="selectedAttributeValues[attribute.id]?.id === attrValue.id"
+                [attr.data-style]="attribute.style"
+                (click)="selectAttributeValue(attribute.id, attrValue)">
+                {{ attrValue.value }}
+              </button>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- 7. Qty + Wishlist + Add to Cart -->
+      <div class="cp-actions">
+        <div class="cp-qty">
+          <button type="button" class="cp-qty__btn" (click)="updateQuantity(-1)">
+            <i class="ri-subtract-line"></i>
+          </button>
+          <input class="cp-qty__input" type="text" [value]="quantity" readonly>
+          <button type="button" class="cp-qty__btn" (click)="updateQuantity(1)">
+            <i class="ri-add-line"></i>
+          </button>
+        </div>
+
+        <button type="button" class="cp-wishlist" (click)="product && toggleWishlist(product)"
+          [class.active]="product?.is_wishlist">
+          <i class="ri-heart-3-line" *ngIf="!product?.is_wishlist"></i>
+          <i class="ri-heart-3-fill" *ngIf="product?.is_wishlist"></i>
+        </button>
+
+        <button type="button" class="cp-add-btn" (click)="addToCart()" [disabled]="addToCartLoader">
+          <span class="spinner-border spinner-border-sm" role="status" *ngIf="addToCartLoader"></span>
+          <i class="ri-shopping-bag-line" *ngIf="!addToCartLoader"></i>
+          {{ addToCartLoader ? 'Adding...' : 'Add To Cart' }}
+        </button>
+      </div>
+
+    </div>
+    <!-- /cp-info -->
+
+  </div>
+  <!-- /cp-body -->
+
+</ng-template>

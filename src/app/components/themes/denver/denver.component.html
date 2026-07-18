@@ -1,0 +1,483 @@
+<div class="nf-denver">
+
+  <!-- ══════════════════════════════════════════
+    1. HERO BANNER SLIDER — Luxury Full-Width
+  ══════════════════════════════════════════ -->
+  <div class="lux-slider"
+       (mouseenter)="stopBannerAutoPlay()"
+       (mouseleave)="startBannerAutoPlay()">
+
+    <div class="lux-slider__track">
+      <div class="lux-slider__slide"
+           *ngFor="let slide of bannerSlides; let i = index"
+           [class.lux-slider__slide--active]="i === currentBannerIndex">
+        <img [src]="slide.image" [alt]="slide.heading" class="lux-slider__img" loading="eager">
+
+        <!-- Luxury text overlay -->
+        <div class="lux-slider__overlay">
+          <div class="lux-slider__content">
+            <span class="lux-slider__eyebrow">New Collection</span>
+            <h2 class="lux-slider__heading">{{ slide.heading }}</h2>
+            <p class="lux-slider__sub">{{ slide.subheading }}</p>
+            <a [href]="slide.link" class="lux-slider__cta">
+              {{ slide.cta }}
+              <i class="ri-arrow-right-long-line"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Minimal arrows -->
+    <button class="lux-slider__arrow lux-slider__arrow--prev" (click)="prevBanner()" aria-label="Previous">
+      <i class="ri-arrow-left-line"></i>
+    </button>
+    <button class="lux-slider__arrow lux-slider__arrow--next" (click)="nextBanner()" aria-label="Next">
+      <i class="ri-arrow-right-line"></i>
+    </button>
+
+    <!-- Progress line dots -->
+    <div class="lux-slider__dots">
+      <button class="lux-slider__dot"
+              *ngFor="let slide of bannerSlides; let i = index"
+              [class.lux-slider__dot--active]="i === currentBannerIndex"
+              (click)="goToBanner(i)" [attr.aria-label]="'Slide ' + (i + 1)">
+      </button>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════
+    2. SHOP BY CATEGORY
+  ══════════════════════════════════════════ -->
+  <section class="cat-section">
+    <div class="container-fluid-lg">
+      <h2 class="cat-section__title">Shop by Category</h2>
+      <div class="cat-grid">
+        <a *ngFor="let cat of luxCategories" [href]="cat.link" class="cat-card">
+          <div class="cat-card__img">
+            <img [src]="cat.image" [alt]="cat.name" loading="lazy">
+            <div class="cat-card__label">
+              <span class="cat-card__name">{{ cat.name }}</span>
+              <span class="cat-card__arrow"><i class="ri-arrow-right-line"></i></span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+    2b. FEATURED PRODUCTS ROW 1
+  ══════════════════════════════════════════ -->
+  <section class="nf-sec nf-sec--featured">
+    <div class="container-fluid-lg">
+      <h2 class="nf-home-section-title nf-home-section-title--center">Trending Now</h2>
+      <app-theme-product
+        [style]="'horizontal'"
+        [productIds]="featuredProductIds"
+        [showItem]="4">
+      </app-theme-product>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+    3. OFFER STRIP — Myntra / Meesho style
+  ══════════════════════════════════════════ -->
+  <section class="offer-strip">
+    <div class="container-fluid-lg">
+      <div class="offer-strip__grid">
+        <a href="/collections/lehengas"          class="offer-chip">Lehengas</a>
+        <a href="/collections/sarees"            class="offer-chip">Sarees</a>
+        <a href="/collections/suits"             class="offer-chip">Suits</a>
+        <a href="/collections/dresses"           class="offer-chip">Dresses</a>
+        <a href="/collections/kurtis"            class="offer-chip">Kurtis</a>
+        <a href="/collections/tops"              class="offer-chip">Tops</a>
+        <a href="/collections/co-ords"           class="offer-chip">Co-Ord Sets</a>
+        <a href="/collections/salwars-churidars" class="offer-chip">Salwars</a>
+        <a href="/collections"                   class="offer-chip offer-chip--all">View All</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+    4. THE EDIT — 3-up editorial banners (Ajio style)
+  ══════════════════════════════════════════ -->
+  <section class="edit-sec">
+    <div class="container-fluid-lg">
+      <div class="edit-sec__head">
+        <span class="edit-sec__eyebrow">— The Edit —</span>
+        <h2 class="edit-sec__title">Curated Stories</h2>
+      </div>
+      <div class="edit-grid">
+
+        <a href="/collections/kurtis" class="edit-card">
+          <div class="edit-card__img">
+            <img src="assets/images/kurtiimage.png" alt="The Kurti Edit" loading="lazy">
+          </div>
+          <div class="edit-card__body">
+            <span class="edit-card__num">01</span>
+            <span class="edit-card__cat">Ethnic</span>
+            <h3 class="edit-card__title">The Kurti Edit</h3>
+            <span class="edit-card__cta">Explore Collection <i class="ri-arrow-right-line"></i></span>
+          </div>
+        </a>
+
+        <a href="/collections" class="edit-card">
+          <div class="edit-card__img">
+            <img src="assets/images/jean0mage.png" alt="Denim Street Style" loading="lazy">
+          </div>
+          <div class="edit-card__body">
+            <span class="edit-card__num">02</span>
+            <span class="edit-card__cat">Denim</span>
+            <h3 class="edit-card__title">Street Style Edit</h3>
+            <span class="edit-card__cta">Explore Collection <i class="ri-arrow-right-line"></i></span>
+          </div>
+        </a>
+
+        <a href="/collections/tops" class="edit-card">
+          <div class="edit-card__img">
+            <img src="assets/images/top-imae.png" alt="Top Picks" loading="lazy">
+          </div>
+          <div class="edit-card__body">
+            <span class="edit-card__num">03</span>
+            <span class="edit-card__cat">Casual</span>
+            <h3 class="edit-card__title">Top Picks</h3>
+            <span class="edit-card__cta">Explore Collection <i class="ri-arrow-right-line"></i></span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+    5. SHOP BY STYLE — Round tiles (Myntra/Meesho)
+  ══════════════════════════════════════════ -->
+  <section class="style-sec">
+    <div class="container-fluid-lg">
+      <div class="style-sec__head">
+        <h2 class="style-sec__title">Shop By Style</h2>
+        <p class="style-sec__sub">Find your aesthetic</p>
+      </div>
+      <div class="style-grid">
+
+        <a href="/collections/ethnic" class="style-tile">
+          <div class="style-tile__img"><img src="assets/images/lehanga-choli.png" alt="Ethnic" loading="lazy"></div>
+          <span class="style-tile__name">Ethnic</span>
+        </a>
+
+        <a href="/collections/western" class="style-tile">
+          <div class="style-tile__img"><img src="assets/images/dress.png" alt="Western" loading="lazy"></div>
+          <span class="style-tile__name">Western</span>
+        </a>
+
+        <a href="/collections/fusion" class="style-tile">
+          <div class="style-tile__img"><img src="assets/images/kurticc.png" alt="Fusion" loading="lazy"></div>
+          <span class="style-tile__name">Fusion</span>
+        </a>
+
+        <a href="/collections/indo-western" class="style-tile">
+          <div class="style-tile__img"><img src="assets/images/top.png" alt="Indo-Western" loading="lazy"></div>
+          <span class="style-tile__name">Indo-Western</span>
+        </a>
+
+        <a href="/collections/party" class="style-tile">
+          <div class="style-tile__img"><img src="assets/images/saree.png" alt="Party" loading="lazy"></div>
+          <span class="style-tile__name">Party</span>
+        </a>
+
+        <a href="/collections/workwear" class="style-tile">
+          <div class="style-tile__img"><img src="assets/images/suit-salwar.png" alt="Workwear" loading="lazy"></div>
+          <span class="style-tile__name">Workwear</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+    10. TRENDING LOOKS — Video Section
+  ══════════════════════════════════════════ -->
+  <!-- <section class="nf-sec nf-sec--videos">
+    <div class="container-fluid-lg">
+      <div class="nf-section-head nf-section-head--center">
+        <h2 class="nf-section-title">Trending Looks To Watch</h2>
+      </div>
+      <div class="nf-video-layout">
+        <div class="nf-video-col">
+          <div class="nf-video-carousel">
+            <button class="nf-video-nav nf-video-nav--prev" (click)="previousVideo()" aria-label="Previous"><i class="ri-arrow-left-s-line"></i></button>
+            <div class="nf-video-track-wrap">
+              <div class="nf-video-track" #videoCarouselTrack>
+                <div class="nf-video-slide"
+                     *ngFor="let video of videoSlides; let i = index"
+                     [class.nf-video-slide--active]="currentVideoIndex === i"
+                     [style.transform]="getVideoTransform(i)">
+                  <div class="nf-video-card">
+                    <div class="nf-video-card__header">
+                      <span class="nf-video-card__title">{{ video.title }}</span>
+                      <div class="nf-video-card__controls">
+                        <i class="ri-volume-up-line"></i>
+                        <i class="ri-fullscreen-line"></i>
+                      </div>
+                    </div>
+                    <div class="nf-video-card__body">
+                      <video [src]="video.src" [muted]="currentVideoIndex !== i" [loop]="video.loop" playsinline (click)="toggleVideoPlay(i)" (loadedmetadata)="updateVideoCarouselPosition()"></video>
+                      <div class="nf-video-card__play" *ngIf="!video.playing" (click)="playVideo(i)"><i class="ri-play-fill"></i></div>
+                    </div>
+                    <button class="nf-video-card__view-btn" (click)="viewVideo(i)">View Collection</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="nf-video-nav nf-video-nav--next" (click)="nextVideo()" aria-label="Next"><i class="ri-arrow-right-s-line"></i></button>
+          </div>
+        </div>
+        <div class="nf-video-feature">
+          <div class="nf-feature-card">
+            <span class="nf-feature-card__eyebrow">Introducing</span>
+            <h2 class="nf-feature-card__title">NAGMA<sup class="nf-feature-card__tm">™</sup></h2>
+            <p class="nf-feature-card__sub">Fashion Store</p>
+            <button class="nf-feature-card__btn" (click)="viewAllCollections()">View All Collections <i class="ri-arrow-right-long-line"></i></button>
+            <p class="nf-feature-card__desc">Discover premium fashion for every occasion</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- ══════════════════════════════════════════
+    12. HIS NEW LOOKBOOK
+  ══════════════════════════════════════════ -->
+  <!-- <section class="nf-sec nf-sec--cat-section">
+    <div class="container-fluid-lg">
+      <h2 class="nf-home-section-title nf-home-section-title--center">His New Lookbook</h2>
+      <div class="nf-cat-grid nf-cat-grid--5">
+        <a href="/collections/shirts"     class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/menu_banner.jpg"   alt="Shirts"     loading="lazy"><span class="nf-cat-card__name">SHIRTS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 30% off</p><p class="nf-cat-card__desc">Casual &amp; formal shirts</p></div></a>
+        <a href="/collections/t-shirts"   class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/hoodie.jpg"        alt="T-Shirts"   loading="lazy"><span class="nf-cat-card__name">T-SHIRTS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 50% off</p><p class="nf-cat-card__desc">Graphic &amp; solid tees</p></div></a>
+        <a href="/collections/trousers"   class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/jeans.jpg"         alt="Trousers"   loading="lazy"><span class="nf-cat-card__name">TROUSERS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 35% off</p><p class="nf-cat-card__desc">Smart casual pants</p></div></a>
+        <a href="/collections/jackets"    class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/sweatshirt.jpg"    alt="Jackets"    loading="lazy"><span class="nf-cat-card__name">JACKETS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 45% off</p><p class="nf-cat-card__desc">Winter essentials</p></div></a>
+        <a href="/collections/kurta-men"  class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/suit.png"           alt="Kurta"      loading="lazy"><span class="nf-cat-card__name">KURTAS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 40% off</p><p class="nf-cat-card__desc">Ethnic men's wear</p></div></a>
+      </div>
+    </div>
+  </section> -->
+
+
+  <!-- ══════════════════════════════════════════
+    14. LIFESTYLE & ACCESSORIES
+  ══════════════════════════════════════════ -->
+  <!-- <section class="nf-sec nf-sec--cat-section nf-sec--bg-light">
+    <div class="container-fluid-lg">
+      <h2 class="nf-home-section-title nf-home-section-title--center">Love It. Flaunt It</h2>
+      <div class="nf-cat-grid nf-cat-grid--5">
+        <a href="/collections/accessories" class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/1.jpg"              alt="Accessories" loading="lazy"><span class="nf-cat-card__name">ACCESSORIES</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 60% off</p><p class="nf-cat-card__desc">Bags, belts &amp; more</p></div></a>
+        <a href="/collections/jewellery"   class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/3.jpg"               alt="Jewellery"   loading="lazy"><span class="nf-cat-card__name">JEWELLERY</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 30% off</p><p class="nf-cat-card__desc">Statement pieces</p></div></a>
+        <a href="/collections/footwear"    class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/menu_banner_3.jpg"   alt="Footwear"    loading="lazy"><span class="nf-cat-card__name">FOOTWEAR</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 50% off</p><p class="nf-cat-card__desc">Heels, flats &amp; sneakers</p></div></a>
+        <a href="/collections/handbags"    class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/menu_banner.jpg"     alt="Handbags"    loading="lazy"><span class="nf-cat-card__name">HANDBAGS</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Min 35% off</p><p class="nf-cat-card__desc">Clutches &amp; totes</p></div></a>
+        <a href="/collections/scarves"     class="nf-cat-card"><div class="nf-cat-card__img"><img src="assets/images/menu_banner_2.jpg"   alt="Scarves"     loading="lazy"><span class="nf-cat-card__name">SCARVES</span></div><div class="nf-cat-card__info"><p class="nf-cat-card__offer">Up to 45% off</p><p class="nf-cat-card__desc">Dupattas &amp; scarves</p></div></a>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- ══════════════════════════════════════════
+    15. DYNAMIC CATEGORY SECTION (from admin)
+  ══════════════════════════════════════════ -->
+  <section class="nf-sec nf-sec--cats" *ngIf="data?.content?.categories_icon_list?.status">
+    <div class="container-fluid-lg">
+      <h2 class="nf-home-section-title nf-home-section-title--center">All Categories</h2>
+      <app-theme-categories
+        [style]="'horizontal'"
+        [theme]="'paris'"
+        [sliderOption]="categorySlider"
+        [categoryIds]="data?.content?.categories_icon_list?.category_ids || []"
+        [image]="data?.content?.categories_icon_list?.image_url">
+      </app-theme-categories>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+    16. FEATURED PRODUCTS ROW 2
+  ══════════════════════════════════════════ -->
+  <section class="nf-sec nf-sec--featured nf-sec--bg-light">
+    <div class="container-fluid-lg">
+      <h2 class="nf-home-section-title nf-home-section-title--center">New Arrivals</h2>
+      <app-theme-product
+        [style]="'horizontal'"
+        [productIds]="featuredProductIds2"
+        [showItem]="4">
+      </app-theme-product>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+    17. SEO CONTENT — Meesho-style read more
+  ══════════════════════════════════════════ -->
+  <section class="seo-sec">
+    <div class="container-fluid-lg">
+
+      <!-- ── Editorial copy ── -->
+      <div class="seo-copy" [class.seo-copy--open]="seoExpanded">
+        <h2 class="seo-copy__h1">Shop Premium Indian Fashion Online at NAGMA</h2>
+        <p class="seo-copy__intro">
+          Welcome to NAGMA — your destination for thoughtfully curated Indian and contemporary fashion.
+          From handwoven sarees and bridal lehengas to everyday kurtis and modern dresses, every piece
+          is selected to bring craftsmanship, comfort and modern elegance to your wardrobe.
+        </p>
+
+        <h3 class="seo-copy__h2">Sarees Online</h3>
+        <p>
+          Explore our edit of designer sarees, silk sarees, Banarasi sarees, cotton sarees and georgette
+          sarees handpicked for festivals, weddings and everyday wear. Whether you are looking for a
+          timeless drape for a wedding or a light, breezy cotton saree for daily use, our collection
+          balances heritage weaves with contemporary sensibilities.
+        </p>
+
+        <h3 class="seo-copy__h2">Lehengas &amp; Bridal Wear</h3>
+        <p>
+          Discover an exclusive lehenga collection for brides and bridesmaids — from heavily embroidered
+          bridal lehengas and lightweight festive lehengas to modern lehenga sets, sharara sets and
+          gharara sets. Crafted in luxurious silks, organza and net, every piece is designed to make
+          your special occasion unforgettable.
+        </p>
+
+        <h3 class="seo-copy__h2">Kurtis, Suits &amp; Salwar Kameez</h3>
+        <p>
+          Find everyday-elegant kurtis, kurta sets, salwar kameez and Anarkali suits in fabrics like cotton,
+          chanderi, muslin and rayon. Perfect for work, family gatherings or festive occasions — our
+          ethnic wear pairs traditional silhouettes with modern prints and breathable comfort.
+        </p>
+
+        <h3 class="seo-copy__h2">Western &amp; Fusion Wear</h3>
+        <p>
+          From flowy dresses and chic tops to denim, co-ord sets and indo-western outfits — explore
+          versatile pieces that move seamlessly from office to evening. Each style is selected for its
+          fit, fabric quality and ability to make a statement without effort.
+        </p>
+
+        <h3 class="seo-copy__h2">Why Shop With NAGMA</h3>
+        <p>
+          Every garment on NAGMA is sourced from skilled artisans and trusted ateliers across India.
+          We offer free shipping on orders above &#8377;999, easy 7-day returns, secure payments and
+          dedicated customer support — so that your shopping experience is as elegant as the pieces
+          you take home.
+        </p>
+      </div>
+
+      <button class="seo-toggle" (click)="seoExpanded = !seoExpanded">
+        {{ seoExpanded ? 'Show Less' : 'Read More' }}
+        <i [class]="seoExpanded ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line'"></i>
+      </button>
+
+      <!-- ── Mega category link cloud ── -->
+      <div class="seo-cloud">
+        <h3 class="seo-cloud__title">Shop By Category</h3>
+
+        <div class="seo-cloud__row">
+          <span class="seo-cloud__label">Women's Ethnic</span>
+          <div class="seo-cloud__links">
+            <a routerLink="/collections/sarees">Sarees</a><span>|</span>
+            <a routerLink="/collections/lehenga-choli-sets">Lehenga Choli Sets</a><span>|</span>
+            <a routerLink="/collections/kurtis">Kurtis</a><span>|</span>
+            <a routerLink="/collections/kurta-suit-sets">Kurta Suit Sets</a><span>|</span>
+            <a routerLink="/collections/salwars-churidars">Salwar Kameez</a><span>|</span>
+            <a routerLink="/collections/anarkali">Anarkali Suits</a><span>|</span>
+            <a routerLink="/collections/sharara-sets">Sharara Sets</a><span>|</span>
+            <a routerLink="/collections/gharara-sets">Gharara Sets</a><span>|</span>
+            <a routerLink="/collections/dupattas">Dupattas</a><span>|</span>
+            <a routerLink="/collections/dress-material">Dress Material</a>
+          </div>
+        </div>
+
+        <div class="seo-cloud__row">
+          <span class="seo-cloud__label">Women's Western</span>
+          <div class="seo-cloud__links">
+            <a routerLink="/collections/dresses">Dresses</a><span>|</span>
+            <a routerLink="/collections/tops">Tops &amp; Tunics</a><span>|</span>
+            <a routerLink="/collections/jeans">Jeans</a><span>|</span>
+            <a routerLink="/collections/skirts">Skirts</a><span>|</span>
+            <a routerLink="/collections/co-ords">Co-Ord Sets</a><span>|</span>
+            <a routerLink="/collections/jumpsuits">Jumpsuits</a><span>|</span>
+            <a routerLink="/collections/shirts">Shirts</a><span>|</span>
+            <a routerLink="/collections/trousers">Trousers</a><span>|</span>
+            <a routerLink="/collections/jackets">Jackets</a>
+          </div>
+        </div>
+
+        <div class="seo-cloud__row">
+          <span class="seo-cloud__label">Bridal &amp; Festive</span>
+          <div class="seo-cloud__links">
+            <a routerLink="/collections/bridal-lehengas">Bridal Lehengas</a><span>|</span>
+            <a routerLink="/collections/wedding-sarees">Wedding Sarees</a><span>|</span>
+            <a routerLink="/collections/sangeet-outfits">Sangeet Outfits</a><span>|</span>
+            <a routerLink="/collections/reception-gowns">Reception Gowns</a><span>|</span>
+            <a routerLink="/collections/festive-kurtis">Festive Kurtis</a><span>|</span>
+            <a routerLink="/collections/party-wear">Party Wear</a><span>|</span>
+            <a routerLink="/collections/cocktail-dresses">Cocktail Dresses</a>
+          </div>
+        </div>
+
+        <div class="seo-cloud__row">
+          <span class="seo-cloud__label">Men's Wear</span>
+          <div class="seo-cloud__links">
+            <a routerLink="/collections/shirt">Shirts</a><span>|</span>
+            <a routerLink="/collections/t-shirts">T-Shirts</a><span>|</span>
+            <a routerLink="/collections/kurtas">Kurtas</a><span>|</span>
+            <a routerLink="/collections/sherwani-sets">Sherwani Sets</a><span>|</span>
+            <a routerLink="/collections/nehru-jackets">Nehru Jackets</a><span>|</span>
+            <a routerLink="/collections/dhoti-sets">Dhoti Sets</a><span>|</span>
+            <a routerLink="/collections/mens-jeans">Jeans</a><span>|</span>
+            <a routerLink="/collections/mens-trousers">Trousers</a>
+          </div>
+        </div>
+
+        <div class="seo-cloud__row">
+          <span class="seo-cloud__label">Fabric Edit</span>
+          <div class="seo-cloud__links">
+            <a routerLink="/collections/silk">Silk</a><span>|</span>
+            <a routerLink="/collections/cotton">Cotton</a><span>|</span>
+            <a routerLink="/collections/chanderi">Chanderi</a><span>|</span>
+            <a routerLink="/collections/banarasi">Banarasi</a><span>|</span>
+            <a routerLink="/collections/georgette">Georgette</a><span>|</span>
+            <a routerLink="/collections/organza">Organza</a><span>|</span>
+            <a routerLink="/collections/muslin">Muslin</a><span>|</span>
+            <a routerLink="/collections/linen">Linen</a><span>|</span>
+            <a routerLink="/collections/velvet">Velvet</a><span>|</span>
+            <a routerLink="/collections/net">Net</a>
+          </div>
+        </div>
+
+        <div class="seo-cloud__row">
+          <span class="seo-cloud__label">Accessories</span>
+          <div class="seo-cloud__links">
+            <a routerLink="/collections/jewellery">Jewellery</a><span>|</span>
+            <a routerLink="/collections/handbags">Handbags</a><span>|</span>
+            <a routerLink="/collections/clutches">Clutches</a><span>|</span>
+            <a routerLink="/collections/footwear">Footwear</a><span>|</span>
+            <a routerLink="/collections/scarves">Scarves</a><span>|</span>
+            <a routerLink="/collections/belts">Belts</a><span>|</span>
+            <a routerLink="/collections/hair-accessories">Hair Accessories</a><span>|</span>
+            <a routerLink="/collections/sunglasses">Sunglasses</a>
+          </div>
+        </div>
+
+        <div class="seo-cloud__row">
+          <span class="seo-cloud__label">Shop By Occasion</span>
+          <div class="seo-cloud__links">
+            <a routerLink="/collections/wedding">Wedding</a><span>|</span>
+            <a routerLink="/collections/festive">Festive</a><span>|</span>
+            <a routerLink="/collections/casual">Casual</a><span>|</span>
+            <a routerLink="/collections/party">Party</a><span>|</span>
+            <a routerLink="/collections/office-wear">Office Wear</a><span>|</span>
+            <a routerLink="/collections/resort">Resort</a><span>|</span>
+            <a routerLink="/collections/cocktail">Cocktail</a><span>|</span>
+            <a routerLink="/collections/sangeet">Sangeet</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>

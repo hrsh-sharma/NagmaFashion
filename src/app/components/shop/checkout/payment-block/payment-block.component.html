@@ -1,0 +1,114 @@
+<div class="pay-wrap">
+
+  <!-- ── Header ────────────────────────────────────────── -->
+  <div class="pay-header">
+    <div>
+      <span class="pay-eyebrow">Secure Checkout</span>
+      <h2 class="pay-title">Payment Method</h2>
+      <p class="pay-sub">Select how you'd like to pay for your order</p>
+    </div>
+    <div class="pay-ssl-badge">
+      <i class="ri-lock-line"></i>
+      <span>256-bit SSL</span>
+    </div>
+  </div>
+
+  <!-- ── Methods label ─────────────────────────────────── -->
+  <div class="pay-methods-label">Choose Payment Method</div>
+
+  <!-- ── Payment method accordion cards ───────────────── -->
+  <div class="pay-methods">
+
+    <ng-container *ngFor="let payment of setting?.payment_methods;">
+      <!-- Skip UPI / smartphone methods -->
+      <div class="pay-card"
+           *ngIf="payment?.status && getMethodIcon(payment.name) !== 'ri-smartphone-line'"
+           [class.pay-card--active]="selectedMethod === payment.name"
+           (click)="set(payment.name)">
+
+        <input type="radio" name="payment_method" [id]="payment.name"
+               [checked]="selectedMethod === payment.name"
+               (change)="set(payment.name)" style="display:none">
+
+        <!-- ── Row ── -->
+        <div class="pay-card__row">
+
+          <!-- Square radio -->
+          <div class="pay-card__radio">
+            <div class="pay-card__radio-dot"></div>
+          </div>
+
+          <!-- Icon -->
+          <div class="pay-card__icon">
+            <i [class]="getMethodIcon(payment.name)"></i>
+          </div>
+
+          <!-- Labels -->
+          <div class="pay-card__text">
+            <span class="pay-card__name">
+              {{ payment.title ? payment.title : payment.name }}
+              <img *ngIf="payment.icon" [src]="payment.icon" [alt]="payment.name" class="pay-card__brand">
+            </span>
+            <span class="pay-card__sub" *ngIf="getMethodSub(payment.name)">{{ getMethodSub(payment.name) }}</span>
+          </div>
+
+          <!-- Chevron -->
+          <i class="ri-arrow-right-s-line pay-card__chevron"></i>
+        </div>
+
+        <!-- ── Expanded detail ── -->
+        <div class="pay-card__detail" *ngIf="selectedMethod === payment.name" (click)="$event.stopPropagation()">
+
+          <!-- PayU -->
+          <ng-container *ngIf="payment.name === 'payu_nagmafashion'">
+            <div class="pay-secure-note">
+              <i class="ri-shield-check-line"></i>
+              100% secure &amp; safe checkout
+            </div>
+          </ng-container>
+
+          <!-- Card / Cashfree -->
+          <ng-container *ngIf="getMethodIcon(payment.name) === 'ri-bank-card-line' && payment.name !== 'payu_nagmafashion'">
+            <div class="pay-card-types">
+              <span class="pay-chip">Visa</span>
+              <span class="pay-chip">Mastercard</span>
+              <span class="pay-chip">Rupay</span>
+            </div>
+            <div class="pay-secure-note">
+              <i class="ri-shield-check-line"></i>
+              Secured by Cashfree Payments
+            </div>
+            <div class="pay-brand" *ngIf="payment.icon">
+              <img [src]="payment.icon" [alt]="payment.name">
+            </div>
+          </ng-container>
+
+          <!-- COD -->
+          <ng-container *ngIf="getMethodIcon(payment.name) === 'ri-money-rupee-circle-line'">
+            <p class="pay-detail-desc">Pay in cash when your order is delivered to your doorstep. No advance payment required.</p>
+            <div class="pay-secure-note">
+              <i class="ri-truck-line"></i>
+              Cash collected on delivery
+            </div>
+          </ng-container>
+
+          <!-- Default / Wallet / Net Banking -->
+          <ng-container *ngIf="getMethodIcon(payment.name) !== 'ri-bank-card-line' && getMethodIcon(payment.name) !== 'ri-money-rupee-circle-line'">
+            <p class="pay-detail-desc">{{ getMethodSub(payment.name) }}</p>
+            <div class="pay-secure-note">
+              <i class="ri-shield-check-line"></i>
+              100% secure &amp; safe checkout
+            </div>
+            <div class="pay-brand" *ngIf="payment.icon">
+              <img [src]="payment.icon" [alt]="payment.name">
+            </div>
+          </ng-container>
+
+        </div>
+
+      </div>
+    </ng-container>
+
+  </div>
+
+</div>

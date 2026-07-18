@@ -1,0 +1,81 @@
+// ── NAGMA design tokens ───────────────────────────────────
+$gold:   #C9A96E;
+$dark:   #1A1A1A;
+$cream:  #F8F4EE;
+$white:  #ffffff;
+
+// ── Wrapper ───────────────────────────────────────────────
+.loader-wrapper,
+.custom-loader-wrapper {
+  background     : $dark !important;
+  display        : flex !important;
+  align-items    : center !important;
+  justify-content: center !important;
+}
+
+// ── Center stack ──────────────────────────────────────────
+.sp-loader {
+  display        : flex;
+  flex-direction : column;
+  align-items    : center;
+  gap            : 18px;
+  animation      : sp-appear 0.5s ease both;
+}
+
+// ── Logo ──────────────────────────────────────────────────
+.sp-loader__logo {
+  width      : 80px;
+  height     : auto;
+  display    : block;
+  object-fit : contain;
+  user-select: none;
+  filter     : brightness(0) invert(1); // white-out on dark bg
+}
+
+// ── Wordmark ──────────────────────────────────────────────
+.sp-loader__wordmark {
+  font-family   : 'Playfair Display', serif;
+  font-size     : 13px;
+  font-weight   : 700;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color         : $gold;
+  line-height   : 1;
+  animation     : sp-word 0.7s ease 0.15s both;
+}
+
+// ── Gold line ─────────────────────────────────────────────
+.sp-loader__bar {
+  width    : 80px;
+  height   : 1px;
+  background: rgba($gold, 0.18);
+  overflow : hidden;
+  position : relative;
+}
+
+.sp-loader__bar-fill {
+  position  : absolute;
+  top       : 0;
+  left      : 0;
+  height    : 100%;
+  width     : 50%;
+  background: $gold;
+  animation : sp-slide 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+// ── Keyframes ─────────────────────────────────────────────
+@keyframes sp-appear {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sp-word {
+  from { opacity: 0; letter-spacing: 10px; }
+  to   { opacity: 1; letter-spacing: 6px; }
+}
+
+@keyframes sp-slide {
+  0%   { transform: translateX(-120%); }
+  50%  { transform: translateX(60%); }
+  100% { transform: translateX(220%); }
+}

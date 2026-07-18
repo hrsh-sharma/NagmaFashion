@@ -1,0 +1,136 @@
+<app-breadcrumb [breadcrumb]="breadcrumb"></app-breadcrumb>
+
+<section class="cu-section">
+  <div class="container-fluid-lg">
+    <div class="cu-grid">
+
+      <!-- ── Left: Address Info ──────────────────────────── -->
+      <div class="cu-info">
+
+        <div class="cu-info__header">
+          <span class="cu-info__eyebrow">Our Details</span>
+          <h2 class="cu-info__title">Visit Our Boutique</h2>
+          <p class="cu-info__sub">We're always here to help. Reach out through any of the channels below.</p>
+        </div>
+
+        <div class="cu-info__list">
+
+          <div class="cu-info-item">
+            <div class="cu-info-item__icon"><i class="ri-building-line"></i></div>
+            <div class="cu-info-item__body">
+              <span class="cu-info-item__label">Brand</span>
+              <p class="cu-info-item__value">Nagma</p>
+            </div>
+          </div>
+
+          <div class="cu-info-item">
+            <div class="cu-info-item__icon"><i class="ri-mail-open-line"></i></div>
+            <div class="cu-info-item__body">
+              <span class="cu-info-item__label">Email Address</span>
+              <p class="cu-info-item__value">
+                <a href="mailto:info@sparkshopwear.com">info&#64;sparkshopwear.com</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="cu-info-item">
+            <div class="cu-info-item__icon"><i class="ri-phone-line"></i></div>
+            <div class="cu-info-item__body">
+              <span class="cu-info-item__label">Phone</span>
+              <p class="cu-info-item__value">
+                <a href="tel:+917428187182">+91 7428187182</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="cu-info-item">
+            <div class="cu-info-item__icon"><i class="ri-map-pin-2-line"></i></div>
+            <div class="cu-info-item__body">
+              <span class="cu-info-item__label">Registered Address</span>
+              <p class="cu-info-item__value">
+                5th Floor, G-14, Office No. 507,<br>
+                Sector 3 Road, Sector 3,<br>
+                Noida, Uttar Pradesh – 201301
+              </p>
+            </div>
+          </div>
+
+          <div class="cu-info-item">
+            <div class="cu-info-item__icon"><i class="ri-government-line"></i></div>
+            <div class="cu-info-item__body">
+              <span class="cu-info-item__label">Corporate Info</span>
+              <p class="cu-info-item__value">CIN: 09AAKCM2049Q1ZS</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Right: Contact Form ─────────────────────────── -->
+      <div class="cu-form-wrap">
+
+        <div class="cu-form-header">
+          <span class="cu-info__eyebrow">Send a Message</span>
+          <h3 class="cu-form-header__title">Get In Touch</h3>
+          <p class="cu-form-header__sub">Fill out the form and we'll get back to you shortly.</p>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="submit()" class="cu-form">
+
+          <!-- Name & Email -->
+          <div class="cu-form__row">
+            <div class="cu-field">
+              <label class="cu-label" for="cu-name">Full Name</label>
+              <input class="cu-input" id="cu-name" type="text"
+                     placeholder="Enter your name"
+                     formControlName="name"
+                     (input)="filterSpecialCharacters($event, 'name')">
+            </div>
+            <div class="cu-field">
+              <label class="cu-label" for="cu-email">Email Address</label>
+              <input class="cu-input" id="cu-email" type="email"
+                     placeholder="Enter your email"
+                     formControlName="email"
+                     (input)="filterEmailCharacters($event)">
+            </div>
+          </div>
+
+          <!-- Phone & Subject -->
+          <div class="cu-form__row">
+            <div class="cu-field">
+              <label class="cu-label" for="cu-phone">Phone Number</label>
+              <input class="cu-input" id="cu-phone" type="tel"
+                     placeholder="10-digit mobile number"
+                     formControlName="phone" maxlength="10"
+                     (input)="filterPhoneNumber($event)">
+            </div>
+            <div class="cu-field">
+              <label class="cu-label" for="cu-subject">Subject</label>
+              <input class="cu-input" id="cu-subject" type="text"
+                     placeholder="What's it about?"
+                     formControlName="subject">
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div class="cu-field">
+            <label class="cu-label" for="cu-message">Message</label>
+            <textarea class="cu-input cu-input--textarea" id="cu-message"
+                      placeholder="Write your message here…"
+                      formControlName="message" rows="5"></textarea>
+          </div>
+
+          <!-- Submit -->
+          <div class="cu-form__footer">
+            <button type="submit" class="cu-submit-btn" [disabled]="form.invalid">
+              <i class="ri-send-plane-line"></i>
+              Send Message
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
