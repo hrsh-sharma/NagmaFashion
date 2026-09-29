@@ -56,7 +56,7 @@ export class AppComponent implements OnInit {
 
     // Pin favicon immediately so there is no flash on navigation
     this.favIcon = document.querySelector('#appIcon');
-    if (this.favIcon) { this.favIcon.href = 'assets/images/nagma-logo.png'; }
+    if (this.favIcon) { this.favIcon.href = 'assets/images/gaovasi_logo.png'; }
 
     this.store.dispatch(new GetCountries());
     this.store.dispatch(new GetStates());
@@ -84,7 +84,7 @@ export class AppComponent implements OnInit {
 
       // Set Favicon
       this.favIcon = document.querySelector('#appIcon');
-      this.favIcon!.href = 'assets/images/nagma-logo.png';
+      this.favIcon!.href = 'assets/images/gaovasi_logo.png';
             
     });
 

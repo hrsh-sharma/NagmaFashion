@@ -16,9 +16,9 @@ export class ReturnExchangeComponent implements OnInit {
   ngOnInit() {
     // Set unique SEO data for Return Policy page
     this.seoService.setSEOData({
-      title: 'Easy 7-Day Return Policy – Shop Risk-Free | Nagma',
-      description: 'Shop with confidence at Nagma. Our easy 7-day return policy ensures you can shop risk-free. Learn about our simple return and exchange process.',
-      keywords: 'return policy, exchange policy, 7-day return, shop risk-free, Nagma Fashion returns',
+      title: 'Easy 7-Day Return Policy – Shop Risk-Free | Gaonvashi',
+      description: 'Shop with confidence at Gaonvashi. Our easy 7-day return policy ensures you can shop risk-free. Learn about our simple return and exchange process.',
+      keywords: 'return policy, exchange policy, 7-day return, shop risk-free, Gaonvashi returns',
       canonicalUrl: 'https://sparkshopwear.com/return-policy',
       url: 'https://sparkshopwear.com/return-policy',
       type: 'website'

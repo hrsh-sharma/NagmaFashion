@@ -226,7 +226,7 @@ export class SeoService {
       "image": images.length > 0 ? images : undefined,
       "brand": {
         "@type": "Brand",
-        "name": product.brand?.name || "Nagma Fashion"
+        "name": product.brand?.name || "Gaonvashi"
       },
       "offers": {
         "@type": "Offer",
@@ -237,7 +237,7 @@ export class SeoService {
         "itemCondition": "https://schema.org/NewCondition",
         "seller": {
           "@type": "Organization",
-          "name": "NAGMA RETAIL SOLUTIONS PRIVATE LIMITED"
+          "name": "GAONVASHI RETAIL SOLUTIONS PRIVATE LIMITED"
         }
       }
     };
@@ -260,8 +260,8 @@ export class SeoService {
     const structuredData = {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "NAGMA RETAIL SOLUTIONS PRIVATE LIMITED",
-      "legalName": "NAGMA RETAIL SOLUTIONS PRIVATE LIMITED",
+      "name": "GAONVASHI RETAIL SOLUTIONS PRIVATE LIMITED",
+      "legalName": "GAONVASHI RETAIL SOLUTIONS PRIVATE LIMITED",
       "url": "https://sparkshopwear.com",
       "logo": "https://sparkshopwear.com/assets/images/logo.png",
       "email": "info@sparkshopwear.com",
@@ -325,7 +325,7 @@ export class SeoService {
       },
       "publisher": {
         "@type": "Organization",
-        "name": "NAGMA RETAIL SOLUTIONS PRIVATE LIMITED",
+        "name": "GAONVASHI RETAIL SOLUTIONS PRIVATE LIMITED",
         "logo": {
           "@type": "ImageObject",
           "url": "https://sparkshopwear.com/assets/images/logo.png"
@@ -446,9 +446,9 @@ export class SeoService {
 
     console.log('✅ Setting default SEO for non-product page:', currentUrl);
     this.setSEOData({
-      title: 'Nagma | Premium Men’s & Women’s Clothing Online in India',
-      description: 'Shop premium men’s and women’s fashion at Nagma. Explore stylish shirts, jackets, suits, denim, and more with fast delivery across India, COD options, and easy returns.',
-      keywords: 'activewear, gym wear, joggers, men\'s clothes, women\'s clothes, stylish outfits, comfort fit, performance clothing, NAGMA',
+      title: 'Gaonvashi | Premium Men’s & Women’s Clothing Online in India',
+      description: 'Shop premium men’s and women’s fashion at Gaonvashi. Explore stylish shirts, jackets, suits, denim, and more with fast delivery across India, COD options, and easy returns.',
+      keywords: 'activewear, gym wear, joggers, men\'s clothes, women\'s clothes, stylish outfits, comfort fit, performance clothing, GAONVASHI',
       type: 'website',
       url: 'https://sparkshopwear.com/'
     });
@@ -487,7 +487,7 @@ export class SeoService {
       url: productUrl,
       canonicalUrl: product.canonical_url || productUrl,
       type: 'product',
-      author: 'Nagma Fashion'
+      author: 'Gaonvashi'
     });
 
     // Set product structured data for rich snippets
@@ -527,8 +527,8 @@ export class SeoService {
     const category = product.categories?.[0]?.name ? ` ${product.categories[0].name}` : '';
     const price = product.sale_price ? `₹${product.sale_price}` : `₹${product.price}`;
 
-    // Example: "Nike Air Max 270 Men's Running Shoes - ₹8,999 | Nagma Fashion"
-    return `${brand}${product.name}${category} - ${price} | Nagma Fashion`;
+    // Example: "Nike Air Max 270 Men's Running Shoes - ₹8,999 | Gaonvashi"
+    return `${brand}${product.name}${category} - ${price} | Gaonvashi`;
   }
 
   /**
@@ -544,7 +544,7 @@ export class SeoService {
     let rawDescription: string = product.meta_description
       || product.short_description
       || product.description
-      || `Shop ${brand}${product.name}${category} online at Nagma Fashion. Premium quality, great prices, fast delivery.${discount}`;
+      || `Shop ${brand}${product.name}${category} online at Gaonvashi. Premium quality, great prices, fast delivery.${discount}`;
 
     // Sanitize sizing/measurement notes and HTML, normalize whitespace
     rawDescription = this.stripHtmlTags(this.sanitizeProductDescription(rawDescription));
@@ -579,7 +579,7 @@ export class SeoService {
 
     // If description becomes empty after sanitization, fallback to a generic line
     if (!sanitized) {
-      sanitized = 'Premium quality, great prices, fast delivery from Nagma Fashion.';
+      sanitized = 'Premium quality, great prices, fast delivery from Gaonvashi.';
     }
 
     return sanitized;
@@ -614,7 +614,7 @@ export class SeoService {
     }
 
     // Add generic keywords
-    keywords.push('buy online', 'Nagma Fashion', 'fashion', 'clothing');
+    keywords.push('buy online', 'Gaonvashi', 'fashion', 'clothing');
 
     return keywords.join(', ');
   }

@@ -25,18 +25,35 @@
         </a>
         <div class="dropdown-menu dropdown-menu-2" [class.show]="menu.active"
           *ngIf="menu.mega_menu === 1 && menu?.child?.length && menu.mega_menu_type !== 'link_with_image'">
-          <div class="row">
-            <div class="col-9" *ngIf="menu.mega_menu_type === 'side_banner'; else other">
+          <div class="row align-items-stretch">
+            <!-- Left Side: Columns -->
+            <div [class]="menu.child.length <= 3 ? 'col-xl-8 col-lg-7' : 'col-12'" *ngIf="menu.mega_menu_type !== 'product_box' && menu.mega_menu_type !== 'side_banner' && menu.mega_menu_type !== 'blog_box' && menu.mega_menu_type !== 'bottom_banner'; else originalMegaType">
               <div class="row">
-                <div class="dropdown-column col-xl-4 mb-4" *ngFor="let megaMenu of menu.child">
+                <div [class]="menu.child.length === 1 ? 'dropdown-column col-12 mb-3' : (menu.child.length === 2 ? 'dropdown-column col-sm-6 mb-3' : 'dropdown-column col-md-4 mb-3')" *ngFor="let megaMenu of menu.child">
                   <app-link-box [menu]="megaMenu"></app-link-box>
                 </div>
               </div>
             </div>
-            <ng-template #other>
-              <div class="dropdown-column col-xl-3 mb-4" *ngFor="let megaMenu of menu.child">
-                <app-link-box [menu]="megaMenu"></app-link-box>
+            <!-- Right Side: Editorial Lookbook Showcase Card -->
+            <div class="col-xl-4 col-lg-5 d-none d-lg-block" *ngIf="menu.child.length <= 3 && menu.mega_menu_type !== 'product_box' && menu.mega_menu_type !== 'side_banner' && menu.mega_menu_type !== 'blog_box' && menu.mega_menu_type !== 'bottom_banner'">
+              <a [routerLink]="['/collections']" class="mega-lookbook-card">
+                <img [src]="menu.slug === 'men-s-collection' ? 'assets/images/men-category-card.png' : (menu.slug === 'women-s-collection' ? 'assets/images/women-category-card.png' : (menu.slug === 'active-style' ? 'assets/images/active-category-card.png' : 'assets/images/gaovasi_hero_2.png'))" [alt]="menu.title" class="mega-lookbook-card__img">
+              </a>
+            </div>
+
+            <ng-template #originalMegaType>
+              <div class="col-9" *ngIf="menu.mega_menu_type === 'side_banner'; else other">
+                <div class="row">
+                  <div class="dropdown-column col-xl-4 mb-4" *ngFor="let megaMenu of menu.child">
+                    <app-link-box [menu]="megaMenu"></app-link-box>
+                  </div>
+                </div>
               </div>
+              <ng-template #other>
+                <div class="dropdown-column col-xl-3 mb-4" *ngFor="let megaMenu of menu.child">
+                  <app-link-box [menu]="megaMenu"></app-link-box>
+                </div>
+              </ng-template>
             </ng-template>
             <div class="dropdown-column col-xl-6 d-xl-block d-none" *ngIf="menu.mega_menu_type === 'product_box'">
               <div class="menu-product-slider" *ngIf="menu.product_ids.length">

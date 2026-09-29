@@ -105,7 +105,7 @@ export class SettingState {
                 icon: './assets/images/cash_free.jpg',
               },
               {
-                name: 'payu_nagmafashion',
+                name: 'payu_gaonvashi',
                 status: true,
                 title: 'Pay by PayU',
                 icon: './assets/images/payuicon.png',

@@ -360,7 +360,7 @@ export class CheckoutComponent {
         break;
       case 'star_mangal':
         break;
-      case 'payu_nagmafashion':
+      case 'payu_gaonvashi':
         break;
       default:
         break;
@@ -694,8 +694,8 @@ export class CheckoutComponent {
     });
   }
 
-  // PayU Payment Integration (Nagma Fashion)
-  initiatePayuNagmaFashionPaymentIntent(payment_method: string, uuid: any, order_result: any) {
+  // PayU Payment Integration (Gaonvashi)
+  initiatePayuGaonvashiPaymentIntent(payment_method: string, uuid: any, order_result: any) {
     const userData = localStorage.getItem('account');
     const parsedUserData = JSON.parse(userData || '{}')?.user || {};
 
@@ -705,7 +705,7 @@ export class CheckoutComponent {
       checkout: this.checkoutTotal
     };
 
-    this.cartService.initiatePayuNagmaFashionIntent({
+    this.cartService.initiatePayuGaonvashiIntent({
       uuid: payload.uuid,
       email: payload.email,
       amount: this.checkoutTotal?.total?.total,
@@ -788,7 +788,7 @@ export class CheckoutComponent {
     });
   }
 
-  // Transaction Status Check for Nagma Fashion Nabu (and other payment gateways)
+  // Transaction Status Check for Gaonvashi Nabu (and other payment gateways)
   checkTransactionStatusSleekSynergy(uuid: any, paymentWindow: Window | null, payment_method: string) {
     this.pollingSubscription = interval(this.pollingInterval).pipe(
       switchMap(() => this.cartService.checkTransectionStatusNeoKred(uuid, payment_method)),
@@ -1117,8 +1117,8 @@ export class CheckoutComponent {
     if (this.payment_method === 'star_mangal') {
       this.initiateStarMangalPaymentIntent(this.payment_method, uuid, result);
     }
-    if (this.payment_method === 'payu_nagmafashion') {
-      this.initiatePayuNagmaFashionPaymentIntent(this.payment_method, uuid, result);
+    if (this.payment_method === 'payu_gaonvashi') {
+      this.initiatePayuGaonvashiPaymentIntent(this.payment_method, uuid, result);
     }
   }
 

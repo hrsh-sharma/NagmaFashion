@@ -235,9 +235,9 @@ export class CartService {
     });
   }
 
-  initiatePayuNagmaFashionIntent(data: any): Observable<any> {
+  initiatePayuGaonvashiIntent(data: any): Observable<any> {
     return new Observable(observer => {
-      fetch(`${environment.URL}/payu-initiate-payment-nagmafashion`,{
+      fetch(`${environment.URL}/payu-initiate-payment-gaonvashi`,{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

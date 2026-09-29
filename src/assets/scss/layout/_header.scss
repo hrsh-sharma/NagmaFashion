@@ -620,8 +620,8 @@ header {
         }
 
         img {
-          @include pseudowh($width: calc(150px + (220 - 150) * ((100vw - 320px) / (1920 - 320))),
-            $height: auto);
+          width: clamp(70px, 9vw, 115px) !important;
+          height: auto;
           object-fit: contain;
 
           @include mq-max(md) {
@@ -5725,7 +5725,7 @@ header.header-3 {
   }
 }
 
-// ── NAGMA Search Dropdown ────────────────────────────────
+// ── GAONVASHI Search Dropdown ────────────────────────────────
 .search-suggestion-box {
   position: absolute;
   width: 100%;

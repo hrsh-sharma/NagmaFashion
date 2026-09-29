@@ -36,9 +36,9 @@ export class ContactUsComponent implements OnInit {
   ngOnInit() {
     // Set unique SEO data for Contact Us page
     this.seoService.setSEOData({
-      title: 'Contact Nagma – We\'re Here to Help You 24/7',
-      description: 'Get in touch with Nagma customer support. We\'re available 24/7 to help with orders, products, and any questions you may have.',
-      keywords: 'contact us, customer support, help, Nagma Fashion contact, customer service',
+      title: 'Contact Gaonvashi – We\'re Here to Help You 24/7',
+      description: 'Get in touch with Gaonvashi customer support. We\'re available 24/7 to help with orders, products, and any questions you may have.',
+      keywords: 'contact us, customer support, help, Gaonvashi contact, customer service',
       canonicalUrl: 'https://sparkshopwear.com/Contact-Us',
       url: 'https://sparkshopwear.com/Contact-Us',
       type: 'website',

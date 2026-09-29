@@ -26,14 +26,14 @@ export class DenverComponent implements OnInit, AfterViewInit, OnDestroy {
   // ── Hero banner slider ───────────────────────────────────
   public bannerSlides = [
     {
-      image: 'assets/images/hero-ban.png',
+      image: 'assets/images/gaovasi_hero_1.png',
       heading: 'UP TO 60% OFF',
       subheading: 'Your underneath era starts right now',
       cta: 'SHOP NOW',
       link: '/collections'
     },
     {
-      image: 'assets/images/herob2.png',
+      image: 'assets/images/gaovasi_hero_2.png',
       heading: 'NEW ARRIVALS',
       subheading: 'Discover the latest trends in fashion',
       cta: 'EXPLORE NOW',

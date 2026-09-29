@@ -60,7 +60,7 @@
         <div class="pay-card__detail" *ngIf="selectedMethod === payment.name" (click)="$event.stopPropagation()">
 
           <!-- PayU -->
-          <ng-container *ngIf="payment.name === 'payu_nagmafashion'">
+          <ng-container *ngIf="payment.name === 'payu_gaonvashi'">
             <div class="pay-secure-note">
               <i class="ri-shield-check-line"></i>
               100% secure &amp; safe checkout
@@ -68,7 +68,7 @@
           </ng-container>
 
           <!-- Card / Cashfree -->
-          <ng-container *ngIf="getMethodIcon(payment.name) === 'ri-bank-card-line' && payment.name !== 'payu_nagmafashion'">
+          <ng-container *ngIf="getMethodIcon(payment.name) === 'ri-bank-card-line' && payment.name !== 'payu_gaonvashi'">
             <div class="pay-card-types">
               <span class="pay-chip">Visa</span>
               <span class="pay-chip">Mastercard</span>

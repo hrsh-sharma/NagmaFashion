@@ -44,9 +44,9 @@ export class ThemesComponent implements OnInit {
     
     // Set additional homepage-specific SEO data
     this.seoService.setSEOData({
-      canonicalUrl: 'https://nagmafashion.in/',
-      url: 'https://nagmafashion.in/',
-      image: 'https://nagmafashion.in/assets/images/hero-banner.jpg'
+      canonicalUrl: 'https://gaonvashi.in/',
+      url: 'https://gaonvashi.in/',
+      image: 'https://gaonvashi.in/assets/images/hero-banner.jpg'
     });
   }
   

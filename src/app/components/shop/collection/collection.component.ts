@@ -98,27 +98,27 @@ export class CollectionComponent {
     
     switch (categoryLower) {
       case 'activewear':
-        title = 'Activewear Collection | Gym Wear, Sportswear & Fitness Clothes | Nagma Fashion';
-        description = 'Shop premium activewear and sportswear at Nagma Fashion. Find high-quality gym wear, fitness clothes, yoga pants, sports bras, and athletic wear for men & women. Perfect for workouts, running, and active lifestyle.';
-        keywords = 'activewear, gym wear, sportswear, fitness clothes, workout clothes, yoga pants, sports bras, athletic wear, running clothes, exercise wear, gym clothes, fitness apparel, Nagma Fashion';
+        title = 'Activewear Collection | Gym Wear, Sportswear & Fitness Clothes | Gaonvashi';
+        description = 'Shop premium activewear and sportswear at Gaonvashi. Find high-quality gym wear, fitness clothes, yoga pants, sports bras, and athletic wear for men & women. Perfect for workouts, running, and active lifestyle.';
+        keywords = 'activewear, gym wear, sportswear, fitness clothes, workout clothes, yoga pants, sports bras, athletic wear, running clothes, exercise wear, gym clothes, fitness apparel, Gaonvashi';
         break;
 
       case 'men':
-        title = 'Mens Clothing Collection Nagma Fashion';
-        description = 'Explore mens shirts jackets suits jeans and more at Nagma Fashion. New arrivals fast PAN India delivery COD and easy 7 day returns.';
-        keywords = 'men\'s clothes, men\'s fashion, men\'s clothing, men\'s apparel, men\'s shirts, men\'s pants, men\'s jeans, men\'s jackets, men\'s casual wear, men\'s formal clothes, stylish men\'s fashion, Nagma Fashion';
+        title = 'Mens Clothing Collection Gaonvashi';
+        description = 'Explore mens shirts jackets suits jeans and more at Gaonvashi. New arrivals fast PAN India delivery COD and easy 7 day returns.';
+        keywords = 'men\'s clothes, men\'s fashion, men\'s clothing, men\'s apparel, men\'s shirts, men\'s pants, men\'s jeans, men\'s jackets, men\'s casual wear, men\'s formal clothes, stylish men\'s fashion, Gaonvashi';
         break;
 
       case 'women':
-        title = 'Women\'s Clothing Collection | Fashionable Women\'s Apparel & Style | Nagma Fashion';
-        description = 'Explore stunning women\'s clothing and fashion at Nagma Fashion. Shop trendy women\'s fashion including dresses, tops, jeans, skirts, women\'s casual wear, formal clothes, and stylish women\'s apparel. Fashion that makes you feel confident.';
-        keywords = 'women\'s clothes, women\'s fashion, women\'s clothing, women\'s apparel, women\'s dresses, women\'s tops, women\'s jeans, women\'s skirts, women\'s casual wear, women\'s formal clothes, stylish women\'s fashion, Nagma Fashion';
+        title = 'Women\'s Clothing Collection | Fashionable Women\'s Apparel & Style | Gaonvashi';
+        description = 'Explore stunning women\'s clothing and fashion at Gaonvashi. Shop trendy women\'s fashion including dresses, tops, jeans, skirts, women\'s casual wear, formal clothes, and stylish women\'s apparel. Fashion that makes you feel confident.';
+        keywords = 'women\'s clothes, women\'s fashion, women\'s clothing, women\'s apparel, women\'s dresses, women\'s tops, women\'s jeans, women\'s skirts, women\'s casual wear, women\'s formal clothes, stylish women\'s fashion, Gaonvashi';
         break;
 
       default:
-        title = `${category.charAt(0).toUpperCase() + category.slice(1)} Collection | Nagma Fashion Fashion Store`;
-        description = `Shop ${category} collection at Nagma Fashion. Discover trendy fashion, quality clothing, and stylish apparel for every occasion.`;
-        keywords = `${category}, fashion, clothing, apparel, Nagma Fashion, trendy style`;
+        title = `${category.charAt(0).toUpperCase() + category.slice(1)} Collection | Gaonvashi Fashion Store`;
+        description = `Shop ${category} collection at Gaonvashi. Discover trendy fashion, quality clothing, and stylish apparel for every occasion.`;
+        keywords = `${category}, fashion, clothing, apparel, Gaonvashi, trendy style`;
         break;
     }
 
@@ -130,12 +130,12 @@ export class CollectionComponent {
     this.meta.updateTag({ name: 'keywords', content: keywords });
     this.meta.updateTag({ property: 'og:title', content: title });
     this.meta.updateTag({ property: 'og:description', content: description });
-    this.meta.updateTag({ property: 'og:url', content: `https://nagmafashion.in/collections/${category}` });
+    this.meta.updateTag({ property: 'og:url', content: `https://gaonvashi.in/collections/${category}` });
     this.meta.updateTag({ name: 'twitter:title', content: title });
     this.meta.updateTag({ name: 'twitter:description', content: description });
 
     // Update canonical URL
-    this.meta.updateTag({ rel: 'canonical', href: `https://nagmafashion.in/collections/${category}` });
+    this.meta.updateTag({ rel: 'canonical', href: `https://gaonvashi.in/collections/${category}` });
     
     // Update breadcrumb
     this.breadcrumb.title = `${category.charAt(0).toUpperCase() + category.slice(1)} Collection`;
@@ -150,9 +150,9 @@ export class CollectionComponent {
    * Set default SEO meta tags for collections page
    */
   private setDefaultSEO(): void {
-    const title = 'Shop Collections | Activewear, Men\'s & Women\'s Fashion | Nagma Fashion';
-    const description = 'Explore our curated collections at Nagma Fashion. Shop activewear, men\'s clothing, women\'s fashion, and more. Find the perfect style for every occasion with our quality fashion collections.';
-    const keywords = 'collections, activewear, men\'s clothes, women\'s clothes, fashion collections, stylish clothing, Nagma Fashion collections';
+    const title = 'Shop Collections | Activewear, Men\'s & Women\'s Fashion | Gaonvashi';
+    const description = 'Explore our curated collections at Gaonvashi. Shop activewear, men\'s clothing, women\'s fashion, and more. Find the perfect style for every occasion with our quality fashion collections.';
+    const keywords = 'collections, activewear, men\'s clothes, women\'s clothes, fashion collections, stylish clothing, Gaonvashi collections';
 
     // Force title update
     this.forceUpdateTitle(title);
@@ -162,10 +162,10 @@ export class CollectionComponent {
     this.meta.updateTag({ name: 'keywords', content: keywords });
     this.meta.updateTag({ property: 'og:title', content: title });
     this.meta.updateTag({ property: 'og:description', content: description });
-    this.meta.updateTag({ property: 'og:url', content: 'https://nagmafashion.in/collections' });
+    this.meta.updateTag({ property: 'og:url', content: 'https://gaonvashi.in/collections' });
     this.meta.updateTag({ name: 'twitter:title', content: title });
     this.meta.updateTag({ name: 'twitter:description', content: description });
-    this.meta.updateTag({ rel: 'canonical', href: 'https://nagmafashion.in/collections' });
+    this.meta.updateTag({ rel: 'canonical', href: 'https://gaonvashi.in/collections' });
     
     // Reset breadcrumb to default
     this.breadcrumb.title = 'Collections';

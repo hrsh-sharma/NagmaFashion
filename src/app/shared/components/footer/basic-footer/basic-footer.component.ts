@@ -85,6 +85,18 @@ export class BasicFooterComponent {
     });
   }
 
+  share() {
+    if (navigator.share) {
+      navigator.share({
+        title: 'GAONVASHI Luxury Fashion',
+        url: window.location.href
+      }).catch(console.error);
+    } else {
+      console.log('Share not supported on this browser, do it the old way.');
+      // Fallback copy to clipboard or custom share modal could go here
+    }
+  }
+
   toggleSocialActions() {
     this.showSocialActions = !this.showSocialActions;
   }

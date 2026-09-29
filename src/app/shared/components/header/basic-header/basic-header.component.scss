@@ -4,14 +4,14 @@
 //   ROW 2: Full-width centered navigation bar
 // ============================================================
 
-$lux-gold:       #C9A96E;
+$lux-gold: #C9A96E;
 $lux-gold-light: rgba(201, 169, 110, 0.14);
-$lux-dark:       #1A1A1A;
-$lux-bg:         #FAFAF8;
-$lux-border:     #E0D9D0;
-$lux-text:       #2C2C2C;
-$lux-muted:      #8A8480;
-$lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$lux-dark: #1A1A1A;
+$lux-bg: #FAFAF8;
+$lux-border: #E0D9D0;
+$lux-text: #2C2C2C;
+$lux-muted: #8A8480;
+$lux-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
 // ── Sticky behaviour ─────────────────────────────────────
 .nf-header {
@@ -31,13 +31,23 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
       box-shadow: 0 2px 20px rgba(0, 0, 0, 0.07);
       animation: lux-drop 0.28s ease both;
     }
-    .nf-header__nav { display: none !important; }
+
+    .nf-header__nav {
+      display: none !important;
+    }
   }
 }
 
 @keyframes lux-drop {
-  from { transform: translateY(-100%); opacity: 0; }
-  to   { transform: translateY(0);     opacity: 1; }
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 // ══════════════════════════════════════════════════════════
@@ -56,7 +66,10 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
   padding: 16px 0;
   gap: 16px;
 
-  @media (max-width: 767px) { padding: 12px 0; gap: 10px; }
+  @media (max-width: 767px) {
+    padding: 12px 0;
+    gap: 10px;
+  }
 }
 
 // ── Left side: search (desktop) / hamburger (mobile) ──
@@ -70,7 +83,10 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
   width: 100%;
   max-width: 300px;
 
-  ::ng-deep app-box-search { display: block; width: 100%; }
+  ::ng-deep app-box-search {
+    display: block;
+    width: 100%;
+  }
 
   ::ng-deep {
     .form-control {
@@ -87,8 +103,15 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
       box-shadow: none !important;
       transition: border-color 0.25s ease !important;
 
-      &::placeholder { color: $lux-muted !important; font-style: italic !important; }
-      &:focus { border-bottom-color: $lux-gold !important; box-shadow: none !important; }
+      &::placeholder {
+        color: $lux-muted !important;
+        font-style: italic !important;
+      }
+
+      &:focus {
+        border-bottom-color: $lux-gold !important;
+        box-shadow: none !important;
+      }
     }
 
     .btn.search-button,
@@ -105,8 +128,15 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
       padding: 0 !important;
       transition: all 0.2s ease !important;
 
-      i { font-size: 16px !important; color: $lux-muted !important; transition: color 0.2s ease !important; }
-      &:hover i { color: $lux-gold !important; }
+      i {
+        font-size: 16px !important;
+        color: $lux-muted !important;
+        transition: color 0.2s ease !important;
+      }
+
+      &:hover i {
+        color: $lux-gold !important;
+      }
     }
   }
 }
@@ -126,7 +156,7 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .nagma-logo-img {
-      width: clamp(52px, 6vw, 72px) !important;
+      width: clamp(52px, 6vw, 115px) !important;
       height: auto !important;
       display: block;
     }
@@ -140,7 +170,10 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
       line-height: 1;
       text-transform: uppercase;
 
-      @media (max-width: 575px) { font-size: 13px; letter-spacing: 0.2em; }
+      @media (max-width: 575px) {
+        font-size: 13px;
+        letter-spacing: 0.2em;
+      }
     }
   }
 }
@@ -163,11 +196,15 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
   text-decoration: none;
 
   ::ng-deep {
+
     // NOTE: exclude the account dropdown buttons (.acc-btn) — they manage
     // their own background/padding and were being flattened to invisible.
-    button:not(.acc-btn), a:not(.acc-btn),
-    .header-wishlist, .btn,
-    .custom-account-dropdown, .account-trigger {
+    button:not(.acc-btn),
+    a:not(.acc-btn),
+    .header-wishlist,
+    .btn,
+    .custom-account-dropdown,
+    .account-trigger {
       background: transparent !important;
       border: none !important;
       padding: 0 !important;
@@ -184,7 +221,9 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
       transition: color 0.22s ease !important;
       line-height: 1 !important;
 
-      @media (max-width: 575px) { font-size: 18px !important; }
+      @media (max-width: 575px) {
+        font-size: 18px !important;
+      }
     }
 
     // account dropdown buttons keep their own icon size/colour
@@ -193,7 +232,8 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
       color: inherit !important;
     }
 
-    .badge, span.position-absolute {
+    .badge,
+    span.position-absolute {
       background: $lux-gold !important;
       color: #0A0A0A !important;
       font-size: 9px !important;
@@ -208,7 +248,8 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
       right: -3px !important;
     }
 
-    .acc-wrap, .acc-trigger {
+    .acc-wrap,
+    .acc-trigger {
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
@@ -225,7 +266,11 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
       align-items: center !important;
       justify-content: center !important;
 
-      img { width: 100% !important; height: 100% !important; object-fit: cover !important; }
+      img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+      }
     }
 
     .acc-trigger__initial {
@@ -237,8 +282,13 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
   }
 
-  &:hover ::ng-deep i { color: $lux-gold !important; }
-  &:hover .nf-icon-label { color: $lux-gold; }
+  &:hover ::ng-deep i {
+    color: $lux-gold !important;
+  }
+
+  &:hover .nf-icon-label {
+    color: $lux-gold;
+  }
 }
 
 .nf-icon-label {
@@ -263,8 +313,15 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
   align-items: center;
   justify-content: center;
 
-  i { font-size: 20px; color: $lux-text; transition: color 0.2s ease; }
-  &:hover i { color: $lux-gold; }
+  i {
+    font-size: 20px;
+    color: $lux-text;
+    transition: color 0.2s ease;
+  }
+
+  &:hover i {
+    color: $lux-gold;
+  }
 }
 
 // Mobile hamburger
@@ -276,16 +333,20 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
   display: flex;
   align-items: center;
 
-  i { font-size: 24px; color: $lux-dark; }
+  i {
+    font-size: 24px;
+    color: $lux-dark;
+  }
 }
 
 // ══════════════════════════════════════════════════════════
 // ROW 2 — Full-width centered navigation
 // ══════════════════════════════════════════════════════════
 .nf-header__nav {
-  background: $lux-dark;
-  border-bottom: 1px solid rgba($lux-gold, 0.25);
-  position: relative;   // dropdown anchors to THIS, not the nav-item
+  background: $lux-bg;
+  border-bottom: 1px solid rgba($lux-gold, 0.15);
+  border-top: 1px solid rgba($lux-gold, 0.15);
+  position: relative; // dropdown anchors to THIS, not the nav-item
   z-index: 998;
 }
 
@@ -295,7 +356,9 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: static;
 
   ::ng-deep {
-    .main-nav, .navbar {
+
+    .main-nav,
+    .navbar {
       width: 100%;
       position: static;
     }
@@ -305,32 +368,32 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
       flex-direction: row;
       justify-content: center;
       align-items: stretch;
-      gap: 8px;
+      gap: 16px;
       width: 100%;
       padding: 0 16px;
-      position: static;  // let mega-menu escape to .nf-header__nav
+      position: static; // let mega-menu escape to .nf-header__nav
     }
 
-    > .nav-item,
-    .navbar-nav > .nav-item {
-      position: static;  // mega-menu escapes this, anchors to .nf-header__nav
+    >.nav-item,
+    .navbar-nav>.nav-item {
+      position: static; // mega-menu escapes this, anchors to .nf-header__nav
       display: flex;
       align-items: center;
 
-      > .nav-link,
-      > .nav-link:focus,
-      > .nav-link:active,
-      > .nav-link.active {
+      >.nav-link,
+      >.nav-link:focus,
+      >.nav-link:active,
+      >.nav-link.active {
         font-family: "Inter", sans-serif !important;
-        font-size: 11.5px !important;
-        font-weight: 500 !important;
+        font-size: 13px !important;
+        font-weight: 600 !important;
         letter-spacing: 0.12em !important;
         text-transform: uppercase !important;
-        color: #C8BFB0 !important;
-        padding: 16px 20px !important;
+        color: #0D3754 !important;
+        padding: 18px 20px !important;
         white-space: nowrap !important;
         position: relative !important;
-        transition: color 0.2s ease !important;
+        transition: color 0.25s ease !important;
         display: block !important;
         line-height: 1 !important;
 
@@ -339,10 +402,11 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
           content: '' !important;
           position: absolute !important;
           bottom: 0 !important;
-          left: 20px !important;
-          right: 20px !important;
-          height: 2px !important;
-          background: $lux-gold !important;
+          left: 18px !important;
+          right: 18px !important;
+          height: 3px !important;
+          background: linear-gradient(90deg, #AD8746, #CFC1A4) !important;
+          border-radius: 3px 3px 0 0 !important;
           transform: scaleX(0) !important;
           transform-origin: center !important;
           transition: transform 0.25s $lux-ease !important;
@@ -350,111 +414,24 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
         &:hover,
         &.active {
-          color: $lux-gold !important;
-          font-weight: 500 !important;
-          &::after { transform: scaleX(1) !important; }
+          color: #AD8746 !important;
+          
+          &::after {
+            transform: scaleX(1) !important;
+          }
         }
       }
 
       // Strip Bootstrap dropdown-toggle bold & caret styling
-      > .dropdown-toggle {
-        font-weight: 500 !important;
-        &::after { display: none !important; }
+      >.dropdown-toggle {
+        font-weight: 600 !important;
+
+        &::after {
+          display: none !important;
+        }
       }
     }
 
-    // ── Mega dropdown — full-width anchored to nav bar ────
-    .dropdown-menu-2 {
-      position: absolute !important;
-      top: 100% !important;
-      left: 0 !important;
-      right: 0 !important;
-      width: 100% !important;
-      transform: none !important;
-      margin-top: 0 !important;
-      z-index: 1050 !important;
-      background: #1E1C1A !important;
-      border: none !important;
-      border-top: 2px solid #C9A96E !important;
-      border-bottom: 1px solid rgba(201, 169, 110, 0.15) !important;
-      border-radius: 0 !important;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
-      padding: 16px 40px !important;
-
-      // Remove Bootstrap mb-4 from columns
-      .row { margin: 0 !important; }
-      [class*="col-"] { margin-bottom: 0 !important; padding-bottom: 0 !important; }
-    }
-
-    // ── Simple dropdown — anchored to nav-item ────────────
-    // re-apply relative on the item only for non-mega
-    .nav-item:not(.dropdown-mega) {
-      position: relative !important;
-    }
-
-    .dropdown-menu:not(.dropdown-menu-2) {
-      position: absolute !important;
-      top: 100% !important;
-      left: 0 !important;
-      right: auto !important;
-      width: auto !important;
-      min-width: 200px !important;
-      transform: none !important;
-      margin-top: 0 !important;
-      z-index: 1050 !important;
-      background: #1E1C1A !important;
-      border: 1px solid rgba(201, 169, 110, 0.15) !important;
-      border-top: 2px solid #C9A96E !important;
-      border-radius: 0 0 6px 6px !important;
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45) !important;
-    }
-
-    // ── Mega menu column divider ──────────────────────────
-    .dropdown-column {
-      padding: 0 28px !important;
-      border-right: 1px solid rgba(201, 169, 110, 0.12) !important;
-
-      &:first-child { padding-left: 0 !important; }
-      &:last-child  { border-right: none !important; padding-right: 0 !important; }
-    }
-
-    // ── Heading (Western Wear / Ethnic Wear) ──────────────
-    .dropdown-header,
-    h5.dropdown-header {
-      font-family: "Playfair Display", serif !important;
-      font-size: 12.5px !important;
-      font-weight: 600 !important;
-      color: #C9A96E !important;
-      letter-spacing: 0.08em !important;
-      padding: 0 0 6px 0 !important;
-      margin: 0 0 4px 0 !important;
-      border-bottom: 1px solid rgba(201, 169, 110, 0.15) !important;
-      text-transform: none !important;
-    }
-
-    // ── Dropdown items (Jeans, Shirts…) ──────────────────
-    .dropdown-item,
-    a.dropdown-item {
-      font-family: "Inter", sans-serif !important;
-      font-size: 12px !important;
-      font-weight: 400 !important;
-      letter-spacing: 0.03em !important;
-      color: #C8BFB0 !important;
-      background: transparent !important;
-      padding: 4px 0 !important;
-      border: none !important;
-      transition: color 0.18s ease, transform 0.18s ease !important;
-      display: block !important;
-      line-height: 1.5 !important;
-      white-space: nowrap !important;
-
-      &:hover,
-      &:focus {
-        color: #C9A96E !important;
-        background: transparent !important;
-        transform: translateX(4px);
-      }
-    }
   }
 }
 
@@ -511,7 +488,10 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
     cursor: pointer;
     transition: all 0.2s ease;
 
-    &:hover { background: $lux-gold-light; border-color: $lux-gold; }
+    &:hover {
+      background: $lux-gold-light;
+      border-color: $lux-gold;
+    }
   }
 
   &__body {
@@ -523,7 +503,9 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
         display: block;
         border-bottom: 1px solid $lux-border;
 
-        &:last-child { border-bottom: none; }
+        &:last-child {
+          border-bottom: none;
+        }
 
         .nav-link {
           font-family: "Inter", sans-serif;
@@ -538,7 +520,10 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
           justify-content: space-between;
           transition: color 0.2s ease, padding-left 0.2s ease;
 
-          &:hover { color: $lux-gold; padding-left: 30px; }
+          &:hover {
+            color: $lux-gold;
+            padding-left: 30px;
+          }
         }
 
         .dropdown-toggle::after {
@@ -571,8 +556,15 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
           border-bottom: 1px solid $lux-border;
           transition: all 0.2s ease;
 
-          &:last-child { border-bottom: none; }
-          &:hover { background: $lux-gold-light; color: $lux-gold; padding-left: 46px; }
+          &:last-child {
+            border-bottom: none;
+          }
+
+          &:hover {
+            background: $lux-gold-light;
+            color: $lux-gold;
+            padding-left: 46px;
+          }
         }
       }
     }
@@ -581,26 +573,45 @@ $lux-ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
 // ── Dark mode ─────────────────────────────────────────────
 html.dark {
+
   .nf-header,
   .nf-header__top {
     background: #141210;
     border-bottom-color: rgba($lux-gold, 0.12);
   }
 
-  .nf-top-row__logo ::ng-deep .nagma-brand-name { color: #F0EBE3; }
+  .nf-top-row__logo ::ng-deep .nagma-brand-name {
+    color: #F0EBE3;
+  }
 
-  .nf-icon-label { color: #7A7470; }
-  .nf-icon-action:hover .nf-icon-label { color: $lux-gold; }
+  .nf-icon-label {
+    color: #7A7470;
+  }
+
+  .nf-icon-action:hover .nf-icon-label {
+    color: $lux-gold;
+  }
 
   .nf-top-search ::ng-deep {
     .form-control {
       border-bottom-color: rgba($lux-gold, 0.2) !important;
       color: #C8C0B8 !important;
-      &:focus { border-bottom-color: $lux-gold !important; }
+
+      &:focus {
+        border-bottom-color: $lux-gold !important;
+      }
     }
-    button.search-button { border-bottom-color: rgba($lux-gold, 0.2) !important; }
+
+    button.search-button {
+      border-bottom-color: rgba($lux-gold, 0.2) !important;
+    }
   }
 
-  .nf-mobile-menu { background: #141210 !important; }
-  .nf-mobile-menu__body { background: #141210; }
+  .nf-mobile-menu {
+    background: #141210 !important;
+  }
+
+  .nf-mobile-menu__body {
+    background: #141210;
+  }
 }
